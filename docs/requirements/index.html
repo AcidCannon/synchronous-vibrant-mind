@@ -233,9 +233,108 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Requirements
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" title="Requirements" class="md-nav__link md-nav__link--active">
       Requirements
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invitation-sent" class="md-nav__link">
+    Invitation Sent
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invitation-received" class="md-nav__link">
+    Invitation Received
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history-video-conference" class="md-nav__link">
+    History video-conference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upcoming-video-conference" class="md-nav__link">
+    Upcoming video-conference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-conference-main-screen" class="md-nav__link">
+    Video-conference Main Screen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    Message
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#must-have" class="md-nav__link">
+    Must Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-have" class="md-nav__link">
+    Should Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#would-have" class="md-nav__link">
+    Would Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#could-have" class="md-nav__link">
+    Could Have
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -257,6 +356,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invitation-sent" class="md-nav__link">
+    Invitation Sent
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invitation-received" class="md-nav__link">
+    Invitation Received
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history-video-conference" class="md-nav__link">
+    History video-conference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upcoming-video-conference" class="md-nav__link">
+    Upcoming video-conference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-conference-main-screen" class="md-nav__link">
+    Video-conference Main Screen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    Message
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#must-have" class="md-nav__link">
+    Must Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-have" class="md-nav__link">
+    Should Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#would-have" class="md-nav__link">
+    Would Have
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#could-have" class="md-nav__link">
+    Could Have
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -276,12 +460,221 @@
                 
                 
                 <h1 id="user-stories">User Stories</h1>
-<p>...</p>
-<h1 id="us-xxx">US X.XX</h1>
-<h1 id="must-have">Must Have</h1>
-<h1 id="should-have">Should Have</h1>
-<h1 id="would-have">Would Have</h1>
-<h1 id="could-have">Could Have</h1>
+<h2 id="authentication">Authentication</h2>
+<p><strong>US 1.01 - Authenticate VMind account</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> authenticate with my VibrantMind account,<br />
+<strong>So that</strong> I can get access to the web application.<br />
+<strong>Acceptance Tests</strong><br />
+1. Log in as a user with correct information.<br />
+2. Input incorrect information and make sure it doesn't allow the user to continue.  </p>
+<p><strong>US 1.02 - Authenticate invitee</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> receive an error email when I am not a player on VibrantMind,<br />
+<strong>So that</strong> I can sign up at VibrantMind and accept the invitation to play.<br />
+<strong>Acceptance Tests</strong><br />
+1. The user can receive an error email when he/she is invited to play the game, but does not have an account on VirantMind.  </p>
+<p><strong>US 1.03 - Authenticate inviter</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> receive an error email,<br />
+<strong>So that</strong> I can realize I failed to invite another player who does not have a VibrantMind account yet.<br />
+<strong>Acceptance Tests</strong><br />
+1. The user can receive the email with the correct error message.</p>
+<h2 id="invitation-sent">Invitation Sent</h2>
+<p><strong>US 2.01 - Choose Player</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> enter the username or email of a player,<br />
+<strong>So that</strong> I can find the player I want to play with.<br />
+<strong>Acceptance Tests</strong><br />
+1. Input player's username/email with correct information.
+2. Input incorrect information and make sure it doesn't allow the user to continue.</p>
+<p><strong>US 2.02 - Set game date and game start time</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> select the game date and game start time of the invitation,<br />
+<strong>So that</strong> I can set up an accurate time to play with another player together.<br />
+<strong>Acceptance Tests</strong> <br />
+1. Make sure the game date and time player selected is the same in the invitation email.</p>
+<p><strong>US 2.03 - Send invitation</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> see and click the send button,<br />
+<strong>So that</strong> I can send the invitation to the player.<br />
+<strong>Acceptance Tests</strong><br />
+1. Make sure the player I invited receives the invitation email.<br />
+2. Update the invitation sent.  </p>
+<p><strong>US 2.04 - View invitations sent</strong><br />
+<strong>As a user</strong> <br />
+<strong>I want to</strong> view all my invitations-sent in details(who, when, if they are accepted),<br />
+<strong>So that</strong> I can recall all my invitations.<br />
+<strong>Acceptance Tests</strong><br />
+1. Users should be able to see all of the invitations in a list as well as all the details.  </p>
+<h2 id="invitation-received">Invitation Received</h2>
+<p><strong>US 3.01 - View a list of Invitation received</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view a list of invitation received,<br />
+<strong>So that</strong> I can recall all the invitations I received.<br />
+<strong>Acceptance Tests</strong><br />
+1. The invitations received displayed correctly without missing or adding.  </p>
+<p><strong>US 3.02 - View details of Invitation received</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> see the inviter/game date/game start time/accept options/decline option of the invitation,<br />
+<strong>So that</strong> I can decide whether I accept the invitation or not.<br />
+<strong>Acceptance Tests</strong><br />
+1. Should be able to see the details inviter/game date/game start time/accept options/decline option of invitation.  </p>
+<p><strong>US 3.03 - Accept or Decline the Invitation</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> click the accept or decline button in invitation received,<br />
+<strong>So that</strong> I can either accept or decline the invitation.<br />
+<strong>Acceptance Tests</strong><br />
+1. The upcoming video-conference is updated.<br />
+2. Updating invitation received.<br />
+3. Updating my upcoming video-conference.<br />
+4. Updating the inviter’s message.   </p>
+<p><strong>US 3.04 - Deal with time conflict invitations</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> choose one of the two invitation options if they are conflict with each other,<br />
+<strong>So that</strong> I can attend only one video-conference at a certain period of time.<br />
+<strong>Acceptance Tests</strong><br />
+1. Try to accept an invitation with the conflict issue, should flag to let the user know.<br />
+2. Users are able to choose one of two invitations to attend, the other one is declined automatically.<br />
+3. The message is updated.<br />
+4. The Invitation received is updated.<br />
+5. The upcoming event is updated.  </p>
+<h2 id="history-video-conference">History video-conference</h2>
+<p><strong>US 4.01 - View a list of video-conferences history</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view a list of video-conferences history,<br />
+<strong>So that</strong> I can recall what happened on that day.<br />
+<strong>Acceptance Tests</strong><br />
+1.  The history of video-conferences displayed correctly without missing or adding.  </p>
+<p><strong>US 4.02 - View each detailed history video-conference</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view player/game date/game start time/timestamp/time period of each history video-conference,<br />
+<strong>So that</strong> I can recall the details for each history video-conference.<br />
+<strong>Acceptance Tests</strong><br />
+1. All details of the video-conferences histories are correct.  </p>
+<h2 id="upcoming-video-conference">Upcoming video-conference</h2>
+<p><strong>US 5.01 - View a list of upcoming video-conferences</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view a list of upcoming video-conferences,<br />
+<strong>So that</strong> I can know all the upcoming video-conferences that I will attend.<br />
+<strong>Acceptance Tests</strong><br />
+1. The upcoming video-conferences display correctly without missing or adding.  </p>
+<p><strong>US 5.02 - View each detailed upcoming video-conference</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view player/game date/game start time of each upcoming video-conference,<br />
+<strong>So that</strong> I can know the details for each upcoming video-conference.<br />
+<strong>Acceptance Tests</strong><br />
+1. All details of the upcoming video-conferences are correct.  </p>
+<p><strong>US 5.03 - Join video-conference</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> click the join button with the meeting link,<br />
+<strong>So that</strong> I can jump to the meeting web page to join the video-conference.<br />
+<strong>Acceptance Tests</strong><br />
+1. Jump to the meeting web page successfully.<br />
+2. Join the video-conference successfully.  </p>
+<p><strong>US 5.04 - Add a calendar entry</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> click the link of a downloadable calendar entry(.ics file),<br />
+<strong>So that</strong> I can add the calendar entry to my calendar.<br />
+<strong>Acceptance Tests</strong><br />
+1. Click the link, can download the .ics calendar entry.<br />
+2. The calendar entry is able to be added to the user’s calendar.  </p>
+<h2 id="video-conference-main-screen">Video-conference Main Screen</h2>
+<p><strong>US 6.01 - View of the main screen</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> see a 4 tiles in the screen,<br />
+<strong>So that</strong> I can see my game screen, video feed and another player’s game screen, video feed, with their usernames on top of the screen.<br />
+<strong>Acceptance Tests</strong><br />
+1. Be able to see both players' game screen and video feed with usernames.<br />
+2. The user is able to play at his/her game screen  </p>
+<p><strong>US 6.02 - Audio and Video</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> be able to access my computer’s audio and video,<br />
+<strong>So that</strong> I can chat with another player, see their face and their game screen.<br />
+<strong>Acceptance Tests</strong><br />
+1. Be able to see both players' faces.<br />
+2. Be able to talk and chat with each other.<br />
+3. Be able to see their game screen.  </p>
+<p><strong>US 6.03 - Black screen at video feed when not log in</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> see a black screen at player’s video feed,<br />
+<strong>So that</strong> I can know they are not logged in yet.<br />
+<strong>Acceptance Tests</strong><br />
+1. When a player is not logged in, the player’s feed video should be black.  </p>
+<p><strong>US 6.04 - Logout at the video-conference</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> click the logout button,<br />
+<strong>So that</strong> I can leave the video-conference.<br />
+<strong>Acceptance Tests</strong><br />
+1. The user who logs out can leave the video-conference successfully.<br />
+2. The user who is remaining at the screen can either log out or hold to play alone.<br />
+3. After both players log out or both video's feed turn black:<br />
+    &ensp;&ensp;<em>a.</em> The session should be ended. <br />
+    &ensp;&ensp;<em>b.</em> Update history.<br />
+    &ensp;&ensp;<em>c.</em> Update upcoming events.  </p>
+<p><strong>US 6.05 - Multiple templates for screen layout</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> click one of four video windows to enlarge this window while video-conferencing,<br />
+<strong>So that</strong> I can have multiple templates for screen layout.<br />
+<strong>Acceptance Tests</strong><br />
+1. Click the window, the window will be enlarged.<br />
+2. The screen layout will be changed.  </p>
+<p><strong>US 6.06 - Score updates</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> see a ticker tape at the bottom of the screen with score updates,<br />
+<strong>So that</strong> I can know the players' scores.<br />
+<strong>Acceptance Tests</strong><br />
+1. The score is displayed and updated correctly.  </p>
+<h2 id="message">Message</h2>
+<p><strong>US 7.01 - View a list of Messages</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> view a list of messages I received,<br />
+<strong>So that</strong> I can recall all the messages I received.<br />
+<strong>Acceptance Tests</strong><br />
+1. The message lists displayed correctly without missing or adding.  </p>
+<p><strong>US 7.02 - View each detailed message</strong><br />
+<strong>As a user</strong><br />
+<strong>I want to</strong> know who accepted/declined/failed to receive my invitation with a specific time,<br />
+<strong>So that</strong> I can keep updated of the invitation I sent.<br />
+<strong>Acceptance Tests</strong><br />
+1. All details of the messages are correct.  </p>
+<h2 id="must-have">Must Have</h2>
+<ul>
+<li>US 1.01 - Authenticate</li>
+<li>US 2.01 - Choose Player</li>
+<li>US 2.02 - Set game date and game start time</li>
+<li>US 2.03 - Send invitation</li>
+<li>US 3.01 - View a list of Invitation received</li>
+<li>US 3.02 - View details of Invitation received</li>
+<li>US 3.03 - Accept or decline the Invitation</li>
+<li>US 4.01 - View a list of video-conferences history</li>
+<li>US 4.02 - View each detailed history video-conference</li>
+<li>US 5.01 - View a list of upcoming video-conferences</li>
+<li>US 5.02 - View each detailed upcoming video-conference</li>
+<li>US 5.03 - Join video-conference</li>
+<li>US 6.01 - View of the main screen</li>
+<li>US 6.02 - Audio and Video</li>
+<li>US 6.04 - Logout at the video-conference</li>
+<li>US 7.01 - View a list of Messages</li>
+<li>US 7.02 - View each detailed message</li>
+</ul>
+<h2 id="should-have">Should Have</h2>
+<ul>
+<li>US 1.02 - Authenticate invitee</li>
+<li>US 1.03 - Authenticate inviter</li>
+<li>US 2.04 - View Invitations sent</li>
+<li>US 3.04 - Deal with time conflict invitations</li>
+<li>US 5.04 - Add a calendar entry</li>
+</ul>
+<h2 id="would-have">Would Have</h2>
+<ul>
+<li>US 6.03 - Black screen at video feed when not log in</li>
+</ul>
+<h2 id="could-have">Could Have</h2>
+<ul>
+<li>US 6.05 - Multiple templates for screen layout</li>
+<li>US 6.06 - Score updates</li>
+</ul>
                 
               
               

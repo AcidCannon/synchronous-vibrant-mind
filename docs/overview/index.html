@@ -400,32 +400,77 @@
                   <h1>Overview</h1>
                 
                 <h2 id="overview">Overview</h2>
-<p>...</p>
+<p>Synchronous VibrantMinds system is a system that is intended to support people play vibrant-minds games together while having the video-conference. This system will be a web application mimicking social playing with board games. This system is intended for all players to play in Vibrant Minds.</p>
 <h2 id="project-glossary">Project Glossary</h2>
 <ul>
-<li><strong>Attempt</strong>  ...</li>
-<li><strong>Common Attribute</strong>   ...</li>
-<li><strong>Custom Attribute</strong>   ...</li>
-<li><strong>Experiment</strong>  ...</li>
-<li><strong>Researcher</strong>  ...</li>
-<li><strong>Result</strong>  ...</li>
-<li><strong>Subject</strong>  ...</li>
+<li><strong>User</strong> Anyone who does not have an account in Vibrant Minds.</li>
+<li><strong>Player</strong> Anyone who has an account in Vibrant Minds.</li>
+<li><strong>Inviter</strong> Player who sends the invitation.</li>
+<li><strong>Invitee</strong> Player who receives the invitation.</li>
+<li><strong>Login/SignUp Page</strong> An interface where users can sign in their account or sign-up a new account (redirected to the VMinds webpage).</li>
+<li><strong>Username/Email</strong> A keyword hint which prompts the users to enter their name/email address.</li>
+<li><strong>Passward</strong> A keyword hint which prompts the users to enter the password of their account.</li>
+<li><strong>Game Date</strong> The specific date of your video conference.</li>
+<li><strong>Game Start Time</strong> The specific time of your video conference.</li>
+<li><strong>Home Page</strong> Inviting a player.</li>
+<li><strong>Select Player</strong> Entering the name/email address of the player you want to invite.</li>
+<li><strong>Select Game Date and Start Time</strong> Selecting the specific date and time of your video conference.</li>
+<li><strong>Send Invitation</strong> A button that sends an invitation message to another player’s Message Page.</li>
+<li><strong>Invitation Sent Page</strong> Showing a list of the invitations the player sent.</li>
+<li><strong>Sent Invitation Record</strong> Records, including the details (Invitee/Game Date/Game Start Time/Invitation State) of the invitation the player sent.</li>
+<li><strong>Invitation State</strong> Showing Accepted/Declined/Pending/Invitation Failed to record the state of the invitation sent.</li>
+<li><strong>Invitation Received page</strong> Showing a list of the invitations the player received.</li>
+<li><strong>Invitation Received Record</strong> Records, including the details (Inviter/Game Date/Game Start Time/Accept Option/Decline Option) of the invitation the player received.</li>
+<li><strong>Accept Invitation</strong> Accept button allows the player to accept the invitation.</li>
+<li><strong>Decline Invitation</strong> Decline button allows the player to decline the invitation.</li>
+<li><strong>Invitation Failed</strong> The invitation is failed if the user you invited does not have an account in Vibrant Minds.</li>
+<li><strong>Upcoming Event Page</strong> Showing a list of confirmed upcoming video-conferences the player is going to attend.</li>
+<li><strong>Upcoming Event Record</strong> Records, including the details (Player/Game Date/Game Start Time/Downloadable Calendar Entry/Join Meeting Option) of the confirmed upcoming video-conference the player is going to attend.</li>
+<li><strong>Calendar Entry</strong> A downloadable link with a .ics format file that could be imported on the players’ calendar application.</li>
+<li><strong>Join Meeting</strong> A button with a link can jump to the Main Screen so that the player can join the meeting.</li>
+<li><strong>History Page</strong> Showing a list of history video-conferences the player has attended.</li>
+<li><strong>History Record</strong> Records, including the details (Player/Game Date/Game Start Time/Timestamp/Time Period) of the history video-conference the player has attended.</li>
+<li><strong>Timestamp</strong> Record the time when both players log in the video-conference and log out the video-conference.</li>
+<li><strong>Time Period</strong> How long the video-conference lasted (from the earliest login time to the last log out time).</li>
+<li><strong>Message Page</strong> Showing a list of messages the player received.</li>
+<li><strong>Message</strong> Messages who accepted/declined/failed to receive my invitation with a specific time. Also records, including the details (Invitee/Game Date/Game Start Time/Invitation State) of the invitation the player sent, so that the player can track the information.</li>
+<li><strong>Main Screen</strong> The video conference page with 4 tiles split the screen.</li>
+<li><strong>Video Feed</strong> Real-time live video streaming of the two players.</li>
+<li><strong>Game Screen</strong> Real-time game video streaming that they are playing with during the video conference.</li>
+<li><strong>Log Out</strong> A button to leave the video conference.</li>
+<li><strong>Score Updates</strong> A ticker tape at the bottom of the screen with score updates</li>
+<li><strong>Multiple templates for screen layout</strong> Click one of four video windows to enlarge the window, making multiple templates for screen layout.</li>
+<li><strong>Enlarge the Video Window</strong> Make the clicked window the largest, the other three windows displayed as a row with smaller scale at the top of the screen.</li>
+<li><strong>Invitee Error Email</strong> An email message that tells the user does not have an account, including a link to sign-up for Vibrant Minds.</li>
+<li><strong>Inviter Error Email</strong> An email message that tells the inviter that the user he/she invited does not exist.</li>
+<li><strong>Time Conflict Invitations</strong> Two invitations conflict by starting on the same game date at the same game start time.</li>
+<li><strong>Invitation Option</strong> Options of the invitation with inviter/game date/game time information, when invitee try to accept an invitation conflicts with another invitation that invitee has accepted.</li>
 </ul>
 <h2 id="storyboarding">Storyboarding</h2>
-<p>...</p>
+<p><img alt="Storyboarding" src="https://github.com/UAlberta-CMPUT401/synchronous-vibrant-mind/blob/master/docs/img/Sprint1_Storyboarding.pdf" title="Storyboarding" /></p>
 <h2 id="use-cases-or-user-stories">Use Cases or User Stories</h2>
-<p>...</p>
+<p><a href="https://ualberta-cmput401.github.io/synchronous-vibrant-mind/requirements/">User stories can be found under the requirements section here.</a></p>
 <h2 id="technical-resources">Technical Resources</h2>
 <ul>
 <li><strong>Front-end:</strong> <code>React</code></li>
 <li><strong>Back-end:</strong> <code>Django</code></li>
-<li><strong>Deployment:</strong> <code>Docker</code> <code>TravisCI</code>
+<li><strong>Deployment:</strong> <code>Docker</code> <code>TravisCI</code><br />
 (Subject to change...)</li>
 </ul>
 <h2 id="similar-products">Similar Products</h2>
-<p>...</p>
+<p><strong>Zoom</strong> </p>
+<ul>
+<li>A platform for video and audio conferencing, chat, and webinars.  </li>
+</ul>
+<p><strong>Twitch</strong>   </p>
+<ul>
+<li>Live Game Streaming. Watch live streams and chat with devoted gamers around the world.  </li>
+</ul>
 <h2 id="similar-open-source-projects">Similar Open-source Projects</h2>
-<p>...</p>
+<p><strong>BigBlueButton</strong></p>
+<ul>
+<li>A web conferencing software system that supports the online learning facility.</li>
+</ul>
                 
               
               
