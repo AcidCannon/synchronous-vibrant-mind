@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
     
     
       
@@ -19,13 +17,17 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,9 +42,14 @@
   </head>
   
   
-    <body dir="ltr">
-  
     
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -132,8 +139,6 @@
 </header>
     
     <div class="md-container" data-md-component="container">
-      
-        
       
       
         
@@ -456,9 +461,6 @@
                   </a>
                 
                 
-                  
-                
-                
                 <h1 id="user-stories">User Stories</h1>
 <p>User Stories are described with a specific format: As XXX, I want... so that...<br />
 User stories are also further organized using the MoSCoW method (must have, should have, could have, would have) under their own sections.<br />
@@ -485,28 +487,28 @@ Date: September 26              Authors:  Boyuan Dong, Mingjun Hou  </p>
 1. The user can receive the email with the correct error message.</p>
 <h2 id="invitation-sent">Invitation Sent</h2>
 <p><strong>US 2.01 - Send invitation (Must Have)</strong><br />
-<strong>As a user</strong><br />
-<strong>I want to</strong> send an invitation to a player with a start time,
-<strong>So that</strong> I can ask another player to join this video conferencing with me.
+<strong>As a user</strong>  <br />
+<strong>I want to</strong> send an invitation to a player with a start time,<br />
+<strong>So that</strong> I can ask another player to join this video conferencing with me.<br />
 <strong>Acceptance Tests</strong><br />
-1. Input player's username/email with correct information.
-2. Input incorrect information and make sure it doesn't allow the user to continue.
-3. Make sure the game date and time player selected is the same in the invitation sent.
-4. Make sure the player I invited receives the invitation  </p>
+1. Input player's username/email with correct information.<br />
+2. Input incorrect information and make sure it doesn't allow the user to continue.<br />
+3. Make sure the game date and time player selected is the same in the invitation sent.<br />
+4. Make sure the player I invited receives the invitation.  </p>
 <p><strong>US 2.02 - View invitations sent (Should Have)</strong><br />
 <strong>As a user</strong> <br />
-<strong>I want to</strong> view all my invitations-sent in details(who, when, if they are accepted),
+<strong>I want to</strong> view all my invitations-sent in details(who, when, if they are accepted),<br />
 <strong>So that</strong> I can recall all my invitations.<br />
 <strong>Acceptance Tests</strong><br />
-1. Users should be able to see all of the invitations in a list as well as all the details. </p>
+1. Users should be able to see all of the invitations in a list as well as all the details.  </p>
 <p><strong>US 2.03 -  Invitations conflict  (Must Have)</strong><br />
 <strong>As a user</strong> <br />
-<strong>I want to</strong> received an error message,
-<strong>So that</strong> I can know the player I invited already in a meeting.
+<strong>I want to</strong> received an error message,<br />
+<strong>So that</strong> I can know the player I invited already in a meeting.<br />
 <strong>Acceptance Tests</strong><br />
-1. Inviter should not be able to send the invitation to the invitee.
-2. Error message is presented correctly.
-3. Message page should be updated timely and correctly.</p>
+1. Inviter should not be able to send the invitation to the invitee.<br />
+2. Error message is presented correctly.<br />
+3. Message page should be updated timely and correctly.  </p>
 <h2 id="invitation-received">Invitation Received</h2>
 <p><strong>US 3.01 - View a list of Invitation received (Must Have)</strong><br />
 <strong>As a user</strong><br />
@@ -519,23 +521,23 @@ Date: September 26              Authors:  Boyuan Dong, Mingjun Hou  </p>
 <strong>I want to</strong> see the inviter/game date/game start time/accept options/decline option of the invitation,<br />
 <strong>So that</strong> I can decide whether I accept the invitation or not.<br />
 <strong>Acceptance Tests</strong><br />
-1. Should be able to see the details inviter/game date/game start time/accept options/decline option of invitation.  </p>
+1. Should be able to see the details inviter/game date/game start time/accept options/decline option of invitation.    </p>
 <p><strong>US 3.03 - Accept the Invitation (Must Have)</strong><br />
 <strong>As a user</strong><br />
-<strong>I want to</strong> accept the invitation,
-<strong>So that</strong> I can set up this meeting.
+<strong>I want to</strong> accept the invitation,<br />
+<strong>So that</strong> I can set up this meeting.<br />
 <strong>Acceptance Tests</strong><br />
-1. Updating my upcoming event.
-2. Updating invitation received
-3. Updating the inviter’s message</p>
+1. Updating my upcoming event.<br />
+2. Updating invitation received.  <br />
+3. Updating the inviter’s message.    </p>
 <p><strong>US 3.04 - Decline the Invitation (Must Have)</strong><br />
 <strong>As a user</strong><br />
-<strong>I want to</strong> decline the invitation,
-<strong>So that</strong> I can refuse to attend the meeting.
+<strong>I want to</strong> decline the invitation,<br />
+<strong>So that</strong> I can refuse to attend the meeting.<br />
 <strong>Acceptance Tests</strong><br />
-1. Updating my upcoming event.
-2. Updating invitation received
-3. Updating the inviter’s message</p>
+1. Updating my upcoming event.<br />
+2. Updating invitation received.<br />
+3. Updating the inviter’s message.  </p>
 <h2 id="history-video-conference">History video-conference</h2>
 <p><strong>US 4.01 - View a list of video-conferences history (Must Have)</strong><br />
 <strong>As a user</strong><br />
@@ -564,18 +566,18 @@ Date: September 26              Authors:  Boyuan Dong, Mingjun Hou  </p>
 1. All details of the upcoming video-conferences are correct.  </p>
 <p><strong>US 5.03 - Join video-conference (Must Have)</strong><br />
 <strong>As a user</strong><br />
-<strong>I want to</strong> jump to the meeting web page by clicking the join button with the meeting link,
-<strong>So that</strong> I can join the video-conference. 
+<strong>I want to</strong> jump to the meeting web page by clicking the join button with the meeting link,<br />
+<strong>So that</strong> I can join the video-conference. <br />
 <strong>Acceptance Tests</strong><br />
-1. Jump to the meeting web page successfully.
-2. Join the video-conference successfully.</p>
+1. Jump to the meeting web page successfully.<br />
+2. Join the video-conference successfully.  </p>
 <p><strong>US 5.04 - Add a calendar entry (Should Have)</strong><br />
 <strong>As a user</strong><br />
-<strong>I want to</strong> download the .ics file by clicking the link of a calendar entry,
-<strong>So that</strong> I can add the calendar entry to my calendar.
+<strong>I want to</strong> download the .ics file by clicking the link of a calendar entry,<br />
+<strong>So that</strong> I can add the calendar entry to my calendar.<br />
 <strong>Acceptance Tests</strong><br />
-1. Click the link, can download the .ics calendar entry.
-2. The calendar entry is able to be added to the user’s calendar.</p>
+1. Click the link, can download the .ics calendar entry.<br />
+2. The calendar entry is able to be added to the user’s calendar.  </p>
 <h2 id="video-conference-main-screen">Video-conference Main Screen</h2>
 <p><strong>US 6.01 - View of the main screen (Must Have)</strong><br />
 <strong>As a user</strong><br />
@@ -624,10 +626,10 @@ Date: September 26              Authors:  Boyuan Dong, Mingjun Hou  </p>
 1. The score is displayed and updated correctly.  </p>
 <p><strong>US 6.07 - Send emojis  (Would Have)</strong><br />
 <strong>As a user</strong><br />
-<strong>I want to</strong> have ThumbsUp and Clapping emojis,
-<strong>So that</strong> I can use them to congratulate/cheer another player.
+<strong>I want to</strong> have ThumbsUp and Clapping emojis,<br />
+<strong>So that</strong> I can use them to congratulate/cheer another player.<br />
 <strong>Acceptance Tests</strong><br />
-1. Both of the players could see the emoji if one of them sent an emoji.</p>
+1. Both of the players could see the emoji if one of them sent an emoji.  </p>
 <h2 id="message">Message</h2>
 <p><strong>US 7.01 - View a list of Messages (Must Have)</strong><br />
 <strong>As a user</strong><br />
@@ -730,15 +732,15 @@ Date: September 26              Authors:  Boyuan Dong, Mingjun Hou  </p>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
