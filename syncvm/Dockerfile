@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir ${CONFIG_ROOT}
 # install dependencies
 COPY requirements.txt ${CONFIG_ROOT}/requirements.txt
-RUN pip install -r ${CONFIG_ROOT}/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r ${CONFIG_ROOT}/requirements.txt
 
 # arbitrary location choice: you can change the directory
 RUN mkdir ${APP_ROOT}
@@ -18,3 +18,5 @@ WORKDIR ${APP_ROOT}
 
 # copy our project code
 ADD . ${APP_ROOT}
+
+ENTRYPOINT ["sh","entrypoint.sh"]
