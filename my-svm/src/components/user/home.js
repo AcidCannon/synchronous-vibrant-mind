@@ -10,7 +10,7 @@ class Home extends Component {
     render() {
       return (
         <div>
-          这里是Home
+          This is Home.
           <Table />
         </div>
       );

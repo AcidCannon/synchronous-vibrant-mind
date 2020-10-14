@@ -10,7 +10,7 @@ class History extends Component {
     render() {
       return (
         <div>
-          这里是History
+          This is History.
           <Table />
         </div>
       );

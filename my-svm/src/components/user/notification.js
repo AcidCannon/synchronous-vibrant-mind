@@ -10,7 +10,7 @@ class Notification extends Component {
     render() {
       return (
         <div>
-          这里是Notification
+          This is Notification.
           <Table />
         </div>
       );

@@ -10,7 +10,7 @@ class InvitationSent extends Component {
     render() {
       return (
         <div>
-          这里是Invitation Sent
+          This is Invitation Sent.
           <Table />
         </div>
       );

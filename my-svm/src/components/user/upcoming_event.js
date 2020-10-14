@@ -10,7 +10,7 @@ class UpcomingEvent extends Component {
     render() {
       return (
         <div>
-          这里是UpcomingEvent
+          This is UpcomingEvent.
           <Table />
         </div>
       );

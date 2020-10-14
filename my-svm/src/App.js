@@ -31,9 +31,9 @@ function App() {
   return (
     <Router>
       <div>
-                  
+
         {/* <Route exact path="/" component={Home} /> */}
-        <Route path="/user" component={User} />
+        <Route exact path="/" component={User} />
       </div>
     </Router>
   );
