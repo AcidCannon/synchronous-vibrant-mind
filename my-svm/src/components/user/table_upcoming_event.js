@@ -10,7 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'invitee', label: 'Invitee', minWidth: 170 },
+  { id: 'player', label: 'Player', minWidth: 170 },
   { id: 'gamedate', label: 'Game date', minWidth: 100 },
   {
     id: 'game_start_time',
@@ -20,33 +20,33 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'invitation_state',
-    label: 'invitation_state',
+    id: 'download_calendar',
+    label: 'Download Calendar',
     minWidth: 170,
     align: 'right',
     // format: (value) => value.toLocaleString('en-US'),
   },
-  // {
-  //   id: 'invitation_state',
-  //   label: 'Density',
-  //   minWidth: 170,
-  //   align: 'right',
-  //   format: (value) => value.toFixed(2),
-  // },
+  {
+    id: 'join_meeting',
+    label: 'Join Meeting',
+    minWidth: 170,
+    align: 'right',
+    // format: (value) => value.toFixed(2),
+  },
 ];
 
-function createData(invitee, gamedate, game_start_time, invitation_state) {
+function createData(player, gamedate, game_start_time, download_calendar, join_meeting) {
   // const density = game_start_time / size;
-  return { invitee, gamedate, game_start_time, invitation_state };
+  return { player, gamedate, game_start_time, download_calendar, join_meeting };
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,'Accept'),
-  createData('Bdong', '2020-05-26', 8, 'Decline'),
-  createData('Zoe', '2020-06-01', 8, 'Failed'),
-  createData('Zuhao', '2020-06-01', 8, 'Pending'),
-  createData('Zijian', '2020-06-01', 8, 'Pending'),
-  createData('Zihao', '2020-06-01', 8, 'Pending'),
+  createData('Alpha', '2020-01-23', 8,'BUTTON', 'LINK'),
+  createData('Bdong', '2020-05-26', 8, 'BUTTON', 'LINK'),
+  createData('Zoe', '2020-06-01', 8, 'BUTTON', 'LINK'),
+  createData('Zuhao', '2020-06-01', 8, 'BUTTON', 'LINK'),
+  createData('Zijian', '2020-06-01', 8, 'BUTTON', 'LINK'),
+  createData('Zihao', '2020-06-01', 8, 'BUTTON', 'LINK'),
 
 ];
 

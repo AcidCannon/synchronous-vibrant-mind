@@ -21,7 +21,7 @@ const columns = [
   },
   {
     id: 'invitation_state',
-    label: 'invitation_state',
+    label: 'Invitation State',
     minWidth: 170,
     align: 'right',
     // format: (value) => value.toLocaleString('en-US'),

@@ -10,7 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'invitee', label: 'Invitee', minWidth: 170 },
+  { id: 'player', label: 'Player', minWidth: 170 },
   { id: 'gamedate', label: 'Game date', minWidth: 100 },
   {
     id: 'game_start_time',
@@ -20,8 +20,36 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'invitation_state',
-    label: 'invitation_state',
+    id: 'player_login',
+    label: 'Player Login',
+    minWidth: 170,
+    align: 'right',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'player_logout',
+    label: 'Player Logout',
+    minWidth: 170,
+    align: 'right',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'my_login',
+    label: 'My Login',
+    minWidth: 170,
+    align: 'right',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'my_logout',
+    label: 'My Logout',
+    minWidth: 170,
+    align: 'right',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'time_period',
+    label: 'Time Period',
     minWidth: 170,
     align: 'right',
     // format: (value) => value.toLocaleString('en-US'),
@@ -35,18 +63,18 @@ const columns = [
   // },
 ];
 
-function createData(invitee, gamedate, game_start_time, invitation_state) {
+function createData(player, gamedate, game_start_time, player_login, player_logout, my_login, my_logout, time_period) {
   // const density = game_start_time / size;
-  return { invitee, gamedate, game_start_time, invitation_state };
+  return { player, gamedate, game_start_time, player_login, player_logout, my_login, my_logout, time_period};
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,'Accept'),
-  createData('Bdong', '2020-05-26', 8, 'Decline'),
-  createData('Zoe', '2020-06-01', 8, 'Failed'),
-  createData('Zuhao', '2020-06-01', 8, 'Pending'),
-  createData('Zijian', '2020-06-01', 8, 'Pending'),
-  createData('Zihao', '2020-06-01', 8, 'Pending'),
+  createData('Alpha', '2020-01-23', 8,'2020-01-23', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
+  createData('Bdong', '2020-05-26', 8, '2020-05-26', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
+  createData('Zoe', '2020-06-01', 8, '2020-06-01', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
+  createData('Zuhao', '2020-06-01', 8, '2020-06-01', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
+  createData('Zijian', '2020-06-01', 8, '2020-06-01', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
+  createData('Zihao', '2020-06-01', 8, '2020-06-01', '2020-06-01', '2020-06-01', '2020-06-01', '2'),
 
 ];
 

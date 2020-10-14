@@ -10,22 +10,21 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'invitee', label: 'Invitee', minWidth: 170 },
-  { id: 'gamedate', label: 'Game date', minWidth: 100 },
   {
-    id: 'game_start_time',
-    label: 'Game start time',
+    id: 'content',
+    label: 'Content',
     minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'invitation_state',
-    label: 'invitation_state',
-    minWidth: 170,
-    align: 'right',
+    align: 'left',
     // format: (value) => value.toLocaleString('en-US'),
   },
+  {
+    id: 'time',
+    label: 'Time',
+    minWidth: 170,
+    align: 'left',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+
   // {
   //   id: 'invitation_state',
   //   label: 'Density',
@@ -35,18 +34,17 @@ const columns = [
   // },
 ];
 
-function createData(invitee, gamedate, game_start_time, invitation_state) {
+function createData(content, time) {
   // const density = game_start_time / size;
-  return { invitee, gamedate, game_start_time, invitation_state };
+  return {content, time};
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,'Accept'),
-  createData('Bdong', '2020-05-26', 8, 'Decline'),
-  createData('Zoe', '2020-06-01', 8, 'Failed'),
-  createData('Zuhao', '2020-06-01', 8, 'Pending'),
-  createData('Zijian', '2020-06-01', 8, 'Pending'),
-  createData('Zihao', '2020-06-01', 8, 'Pending'),
+  createData('Alpha Hou accepted your request.', '2020-01-23'),
+  createData('The invitation you sent to Boyuan Dong is Failed', '2020-05-26'),
+  createData('Zoey Liu declined your invitation', '2020-06-01'),
+  createData('Lily Smith accepted your invitation', '2020-06-01'),
+  createData('Boyuan is busy at this time', '2020-06-01'),
 
 ];
 

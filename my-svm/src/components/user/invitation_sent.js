@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from './Table';
+import Table from './table_invitation_sent';
 
 class InvitationSent extends Component {
     constructor(props){
