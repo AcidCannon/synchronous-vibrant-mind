@@ -21,6 +21,7 @@ class Invitation(model.Model):
     meeting = models.OneToOneField("Meeting", on_delete=models.CASCADE)
 
 class Meeting(model.Model):
+    start_time = models.DateTimeField()
     player1 = models.ForeignKey("Player", on_delete=models.CASCADE, related_name = "player1")
     player1_login_time = models.DateTimeField()
     player1_logout_time = models.DateTimeField()
@@ -37,6 +38,7 @@ class Notification(model.Model):
     content = models.TextField()
     time = models.DateTimeField(auto_now_add=True)
     player = models.ForeignKey("Player", on_delete=models.CASCADE)
+    invitation = models.ForeignKey("Invitation", on_delete=models.CASCADE)
 
 class Player(models.Model):
     name = models.TextField()
