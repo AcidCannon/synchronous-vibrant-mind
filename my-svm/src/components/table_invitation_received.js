@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
 const columns = [
   { id: 'inviter', label: 'Inviter', minWidth: 170 },
@@ -19,6 +20,7 @@ const columns = [
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
+
   {
     id: 'accept',
     label: 'Accept',
@@ -41,12 +43,12 @@ function createData(inviter, gamedate, game_start_time, accept, decline) {
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,'BUTTON', 'BUTTON'),
-  createData('Bdong', '2020-05-26', 8, 'BUTTON', 'BUTTON'),
-  createData('Zoe', '2020-06-01', 8, 'BUTTON', 'BUTTON'),
-  createData('Zuhao', '2020-06-01', 8, 'BUTTON', 'BUTTON'),
-  createData('Zijian', '2020-06-01', 8, 'BUTTON', 'BUTTON'),
-  createData('Zihao', '2020-06-01', 8, 'BUTTON', 'BUTTON'),
+  createData('Alpha', '2020-01-23', 8,<Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
+  createData('Bdong', '2020-05-26', 8, <Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
+  createData('Zoe', '2020-06-01', 8, <Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
+  createData('Zuhao', '2020-06-01', 8, <Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
+  createData('Zijian', '2020-06-01', 8, <Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
+  createData('Zihao', '2020-06-01', 8, <Button variant="contained" color="primary">Accept</Button>, <Button variant="contained" color="primary">Decline</Button>),
 
 ];
 

@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 const columns = [
   { id: 'player', label: 'Player', minWidth: 170 },
@@ -35,18 +37,21 @@ const columns = [
   },
 ];
 
+// This resolves to nothing and doesn't affect browser history
+const dudUrl = 'javascript:;';
+
 function createData(player, gamedate, game_start_time, download_calendar, join_meeting) {
   // const density = game_start_time / size;
   return { player, gamedate, game_start_time, download_calendar, join_meeting };
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,'BUTTON', 'LINK'),
-  createData('Bdong', '2020-05-26', 8, 'BUTTON', 'LINK'),
-  createData('Zoe', '2020-06-01', 8, 'BUTTON', 'LINK'),
-  createData('Zuhao', '2020-06-01', 8, 'BUTTON', 'LINK'),
-  createData('Zijian', '2020-06-01', 8, 'BUTTON', 'LINK'),
-  createData('Zihao', '2020-06-01', 8, 'BUTTON', 'LINK'),
+  createData('Alpha', '2020-01-23', 8,<Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Bdong', '2020-05-26', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Zoe', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Zuhao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Zijian', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Zihao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
 
 ];
 

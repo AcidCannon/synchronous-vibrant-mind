@@ -25,13 +25,6 @@ const columns = [
     // format: (value) => value.toLocaleString('en-US'),
   },
 
-  // {
-  //   id: 'invitation_state',
-  //   label: 'Density',
-  //   minWidth: 170,
-  //   align: 'right',
-  //   format: (value) => value.toFixed(2),
-  // },
 ];
 
 function createData(content, time) {
