@@ -1,9 +1,9 @@
 version: "3.7"
 
 services:
-  app:
+  backend_app:
     build: syncvm
-    container_name: syncvm-release
+    container_name: syncvm-backend-release
     restart: always
     env_file:
       - django.env
@@ -18,7 +18,7 @@ services:
   
   nginx:
     image: nginx:1.17
-    container_name: syncvm-nginx
+    container_name: syncvm-nginx-release
     restart: always
     ports:
       - "80:80"
@@ -26,11 +26,11 @@ services:
       - ./nginx:/etc/nginx/conf.d
       - static_volume:/src/staticfiles
     depends_on:
-      - app
+      - backend_app
 
   syncvm_database1:
     image: postgres:10
-    container_name: syncvm-db1
+    container_name: syncvm-db1-release
     env_file:
       - syncvm_database1.env
     ports:
