@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './table_upcoming_event';
+import { Grid } from '@material-ui/core';
 
 class UpcomingEvent extends Component {
     constructor(props){
@@ -10,7 +11,9 @@ class UpcomingEvent extends Component {
     render() {
       return (
         <div>
-          This is UpcomingEvent.
+          <Grid container justify="center" style={{color: "#3291ff" }}>
+            <h1>Upcoming Event</h1>
+          </Grid>
           <Table />
         </div>
       );
