@@ -29,7 +29,6 @@ class Page extends Component {
 
                 <div className='page'>
                     <div className='left'>
-
                         <ListItemLink href="/home/home">Home</ListItemLink>
                         <Divider />
                         <ListItemLink href='/home/invitation_sent'>Invitation Sent</ListItemLink>
@@ -43,7 +42,6 @@ class Page extends Component {
                         <ListItemLink href='/home/notification'>Notification</ListItemLink>
                         <Divider />
                     </div>
-
                     <div className='right'>
                         {/* 父目录的动态写法：this.props.match.url 在此处=/user/ */}
                         <Route path='/home/home' component={Home} />
