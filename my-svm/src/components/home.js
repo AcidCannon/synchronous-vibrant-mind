@@ -50,7 +50,9 @@ export default function Home() {
                     sm={12}
                     alignItems="center" 
                     direction="column" 
-                    justify="space-between">
+                    justify="space-between"
+                    style={{color: "#3291ff" }}
+                    >
                         <div />
                         <div>
                             <Grid container justify="center">

@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import React, { Component } from 'react';
 import Table from './table_invitation_received';
 
@@ -10,7 +11,9 @@ class InvitationReceived extends Component {
     render() {
       return (
         <div>
-          This is InvitationReceived.
+          <Grid container justify="center" style={{color: "#3291ff" }}>
+            <h1>Invitation Received</h1>
+          </Grid>
           <Table />
         </div>
       );

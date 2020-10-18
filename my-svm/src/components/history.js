@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './table_history';
+import { Grid } from '@material-ui/core';
 
 class History extends Component {
     constructor(props){
@@ -10,7 +11,9 @@ class History extends Component {
     render() {
       return (
         <div>
-          This is History.
+          <Grid container justify="center" style={{color: "#3291ff" }}>
+            <h1>History</h1>
+          </Grid>
           <Table />
         </div>
       );
