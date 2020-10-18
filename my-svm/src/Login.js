@@ -22,11 +22,11 @@ export default function Login() {
                 alignItems="center" 
                 direction="column" 
                 justify="space-between"
-                style={{padding: 10, backgroundColor: 'grey'}}
+                style={{padding: 10, backgroundColor: '#333'}}
                 >
                     <div />
                     <div>
-                        <Grid container justify="center" style={{backgroundColor: 'yellow', width: 600, height:300}}>
+                        <Grid container justify="center" style={{backgroundColor: 'white', width: 600, height:300}}>
                             <div 
                             style={{
                             display: "flex", 
@@ -35,12 +35,13 @@ export default function Login() {
                             minWidth: 300,
                             }}
                             >
-                                <Grid container justify="center">
+                                <Grid container justify="flex-start">
                                     <h2>Log in</h2>
                                 </Grid>
                                 <TextField 
                                     label="Username" 
                                     margin="normal" 
+                                    variant="outlined"
                                     InputProps={{
                                         startAdornment: (
                                         <InputAdornment position="start">
@@ -52,6 +53,7 @@ export default function Login() {
                                 <TextField 
                                     label="Passward" 
                                     margin="normal" 
+                                    variant="outlined"
                                     InputProps={{
                                         startAdornment: (
                                         <InputAdornment position="start">
