@@ -6,8 +6,8 @@ import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "./uofa.png";
 // import {Link} from 'react-router-dom';
 
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-import ListRouter from './Page';
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
+import Page from './Page';
 import  Home from './components/home';
 // import {Route} from "react-router";
 import Typography from "@material-ui/core/Typography";
@@ -17,7 +17,7 @@ import Typography from "@material-ui/core/Typography";
 
 export default function Login() {
     return(
-        <Router>
+        // <Router>
         <div>
             <Grid container style={{minHeight: "100vh"}}>
                 <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
@@ -74,11 +74,11 @@ export default function Login() {
                                 />
                                 <div style={{height: 20}} />
 
-                                <Link to="/home" primary="Home">
-                                    <Button className="e-button" type="primary">Log in</Button>
+                                <Link to="/home/home" style={{color:'black'}}>
+                                    <div>Log in</div>
                                 </Link>
-                                {/*<Route>*/}
 
+                                {/*<Route>*/}
                                 {/*<Button*/}
                                 {/*    color="primary"*/}
                                 {/*    variant="contained"*/}
@@ -88,9 +88,12 @@ export default function Login() {
                                 {/*    Log in*/}
                                 {/*</Button>*/}
                                 {/*</Route>*/}
+
                                 <div style={{height: 20}} />
-                                <Route path='/home' component={Home} />
+                                {/*<Redirect to="/home"/>*/}
+
                             </div>
+
 
                         </Grid>
                     </div>
@@ -102,8 +105,9 @@ export default function Login() {
                     <div />
                 </Grid>
             </Grid>
+
         </div>
-            </Router>
+
     );
 }
 

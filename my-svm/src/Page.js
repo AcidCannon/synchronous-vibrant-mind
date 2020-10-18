@@ -16,7 +16,7 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
 }
 
-class ListRouter extends Component {
+class Page extends Component {
     constructor(props){
         super(props);
         this.state={}
@@ -26,37 +26,39 @@ class ListRouter extends Component {
         return (
             <Router>
                 <Header />
+
                 <div className='page'>
                     <div className='left'>
-                        <ListItemLink href="home">Home</ListItemLink>
+
+                        <ListItemLink href="/home/home">Home</ListItemLink>
                         <Divider />
-                        <ListItemLink href='invitation_sent'>Invitation Sent</ListItemLink>
+                        <ListItemLink href='/home/invitation_sent'>Invitation Sent</ListItemLink>
                         <Divider />
-                        <ListItemLink href='invitation_received'>Invitation Received</ListItemLink>
+                        <ListItemLink href='/home/invitation_received'>Invitation Received</ListItemLink>
                         <Divider />
-                        <ListItemLink href='upcoming_event'>Upcoming Event</ListItemLink>
+                        <ListItemLink href='/home/upcoming_event'>Upcoming Event</ListItemLink>
                         <Divider />
-                        <ListItemLink href='history'>History</ListItemLink>
+                        <ListItemLink href='/home/history'>History</ListItemLink>
                         <Divider />
-                        <ListItemLink href='notification'>Notification</ListItemLink>
+                        <ListItemLink href='/home/notification'>Notification</ListItemLink>
                         <Divider />
                     </div>
 
                     <div className='right'>
                         {/* 父目录的动态写法：this.props.match.url 在此处=/user/ */}
-                        <Route path='/home' component={Home} />
-                        <Route path='/invitation_sent' component={InvitationSent} />
-                        <Route path='/invitation_received' component={InvitationReceived} />
-                        <Route path='/upcoming_event' component={UpcomingEvent} />
-                        <Route path='/history' component={History} />
-                        <Route path='/notification' component={Notification} />
+                        <Route path='/home/home' component={Home} />
+                        <Route path='/home/invitation_sent' component={InvitationSent} />
+                        <Route path='/home/invitation_received' component={InvitationReceived} />
+                        <Route path='/home/upcoming_event' component={UpcomingEvent} />
+                        <Route path='/home/history' component={History} />
+                        <Route path='/home/notification' component={Notification} />
                     </div>
                 </div>
             </Router>
         );
     }
 }
-export default ListRouter;
+export default Page;
 
 
 
