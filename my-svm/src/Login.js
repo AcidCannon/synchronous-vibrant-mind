@@ -4,15 +4,7 @@ import logo from './logo.png';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "./uofa.png";
-// import {Link} from 'react-router-dom';
-
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
-import Page from './Page';
-import  Home from './components/home';
-// import {Route} from "react-router";
-import Typography from "@material-ui/core/Typography";
-
-
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 export default function Login() {
@@ -74,27 +66,18 @@ export default function Login() {
                                 />
                                 <div style={{height: 20}} />
 
-                                <Link to="/home/home" style={{color:'black'}}>
-                                    <div>Log in</div>
-                                </Link>
-
-                                {/*<Route>*/}
-                                {/*<Button*/}
-                                {/*    color="primary"*/}
-                                {/*    variant="contained"*/}
-                                {/*    component={Link} to='/home'*/}
-                                {/*    // primary="Home"*/}
-                                {/*    >*/}
-                                {/*    Log in*/}
-                                {/*</Button>*/}
-                                {/*</Route>*/}
+                                <Button
+                                    color="primary"
+                                    variant="contained"
+                                    component={Link} to='/home/home'
+                                    // primary="Home"
+                                    >
+                                    Log in
+                                </Button>
 
                                 <div style={{height: 20}} />
                                 {/*<Redirect to="/home"/>*/}
-
                             </div>
-
-
                         </Grid>
                     </div>
                     <Grid container justify="flex-end">
@@ -105,9 +88,7 @@ export default function Login() {
                     <div />
                 </Grid>
             </Grid>
-
         </div>
-
     );
 }
 
