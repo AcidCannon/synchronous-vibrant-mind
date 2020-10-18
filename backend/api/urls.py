@@ -2,6 +2,16 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index)
+    path("", views.index),
+    path("addPlayer", views.addPlayer),
+    path("sendInvitation", views.sendInvitation),
+    path("getInvitationSent", views.getInvitationSent),
+    path("getInvitationReceived",views.getInvitationReceived),
+    path("sendNotification", views.sendNotification),
+    path("getNotification", views.getNotification),
+    path("getMeetingHistory", views.getMeetingHistory),
+    path("getUpcomingEvent", views.getUpcomingEvent),
+    path("changeInvitationStatus", views.changeInvitationStatus),
+    path("changeNotificationStatus", views.changeNotificationStatus)
 ]
 
