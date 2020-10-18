@@ -42,8 +42,4 @@ class Notification(models.Model):
 class Player(models.Model):
     name = models.TextField()
     email = models.EmailField()
-    # invitations_sent = models.ManyToManyField("Invitation", related_name = "sent")
-    # invitation_received = models.ManyToManyField("Invitation", related_name = "received")
-    # upcoming_meetings = models.ManyToManyField("Meeting", related_name = "upcoming")
-    # meetings_history = models.ManyToManyField("Meeting", related_name = "history")
 

@@ -16,11 +16,14 @@ class InvitationSerializer(serializers.ModelSerializer):
         # fields = ['state', 'inviter','invitee', 'start_time']
 
 class MeetingSerializer(serializers.ModelSerializer):
+    player1 = serializers.SlugRelatedField(read_only=False, slug_field="name", queryset=Player.objects.all())
+    player2 = serializers.SlugRelatedField(read_only=False, slug_field="name", queryset=Player.objects.all())
     class Meta:
         model = models.Meeting
         fields = '__all__'
 
 class NotificationSerializer(serializers.ModelSerializer):
+    player = serializers.SlugRelatedField(read_only=False, slug_field="name", queryset=Player.objects.all())
     class Meta:
         model = models.Notification
         fields = '__all__'
