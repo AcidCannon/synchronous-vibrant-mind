@@ -18,12 +18,6 @@ function App() {
       <div>
           <Route exact path="/" component={Login} />
           <Route path="/home" component={Page} />
-          {/*<Route path='/home/home' component={Home} />*/}
-          {/*<Route path='/home/invitation_sent' component={InvitationSent} />*/}
-          {/*<Route path='/home/invitation_received' component={InvitationReceived} />*/}
-          {/*<Route path='/home/upcoming_event' component={UpcomingEvent} />*/}
-          {/*<Route path='/home/history' component={History} />*/}
-          {/*<Route path='/home/notification' component={Notification} />*/}
       </div>
     </Router>
   );
