@@ -1,11 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import {Divider} from "@material-ui/core";
 import IntegrationAutosuggest from './home_select_player';
 import InlineTimePickerDemo from "./home_select_date";
 import Button from "@material-ui/core/Button";
+
+import { AccountCircle, LockRounded } from "@material-ui/icons";
+import { Grid, InputAdornment, TextField } from "@material-ui/core";
 
 const styles = {
     paper:{
@@ -29,22 +32,53 @@ const styles = {
 export default function Home() {
     // const classes = useStyles();
     return (
-        <Grid item xs={12}>
+        <div>
+            <Grid  
+            justify="center" 
+            item 
+            xs={12} 
+            alignItems="center" 
+            direction="column" 
+            >
             {/*<Paper className={classes.paper}>*/}
-            <Paper style={styles.paper}>
-                Send Invitation
-                <Divider/>
-                Add a player
-                <Divider/>
-                <IntegrationAutosuggest/>
-                {/*<Divider/>*/}
-                Select the start time
-                <Divider/>
-                <InlineTimePickerDemo/>
-                <Divider/>
-                <Button variant="contained" color="primary">Sent</Button>
-
-            </Paper>
-        </Grid>
+                <Paper 
+                style={styles.paper}
+                >
+                    <Grid 
+                    container
+                    xs={12} 
+                    sm={12}
+                    alignItems="center" 
+                    direction="column" 
+                    justify="space-between">
+                        <div />
+                        <div>
+                            <Grid container justify="center">
+                                <h1>Send Invitation</h1>
+                            </Grid>
+                            <div style={{height: 20}} />
+                            <h3>Add a player</h3>
+                            <Divider/>
+                            <div style={{height: 20}} />
+                            <IntegrationAutosuggest />
+                            <h3>Select the start time</h3>
+                            <Divider/>
+                            <InlineTimePickerDemo/>
+                             
+                        </div>
+                        
+                        
+                    </Grid>
+                
+                <Grid container justify="flex-end">
+                    <Button variant="contained" color="primary">Sent</Button>
+                </Grid>
+                
+                </Paper>
+                
+            </Grid>
+        
+        </div>
+        
     );
 }
