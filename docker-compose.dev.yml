@@ -2,7 +2,7 @@ version: "3"
 
 services:
   backend_app:
-    build: syncvm
+    build: backend
     container_name: syncvm-backend-dev
     env_file:
       - django.env

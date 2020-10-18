@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   backend_app:
-    build: syncvm
+    build: backend
     container_name: syncvm-backend-release
     restart: always
     env_file:
@@ -15,6 +15,17 @@ services:
       "gunicorn --workers=4 --bind=0.0.0.0:8080 syncvmsite.wsgi:application"
     depends_on:
       - syncvm_database1
+    
+  frontend_app:
+    build: frontend
+    container_name: syncvm-frontend-release
+    stdin_open: true
+    restart: always
+    ports: 
+      - "8081:8081"
+    volumes:
+      - syncvm_frontend_modules_volume:/app/node_modules
+      - syncvm_frontend_app_volume:/app
   
   nginx:
     image: nginx:1.17
@@ -27,6 +38,7 @@ services:
       - static_volume:/src/staticfiles
     depends_on:
       - backend_app
+      - frontend_app
 
   syncvm_database1:
     image: postgres:10
@@ -41,4 +53,6 @@ services:
 volumes:
   static_volume:
   syncvm_database1_volume:
+  syncvm_frontend_modules_volume:
+  syncvm_frontend_app_volume:
   
