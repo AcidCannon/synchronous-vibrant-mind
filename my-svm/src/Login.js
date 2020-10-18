@@ -4,15 +4,20 @@ import logo from './logo.png';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "./uofa.png";
-import { Link } from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import ListRouter from './Page';
 import  Home from './components/home';
+// import {Route} from "react-router";
+import Typography from "@material-ui/core/Typography";
 
 
 
 
 export default function Login() {
     return(
+        <Router>
         <div>
             <Grid container style={{minHeight: "100vh"}}>
                 <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
@@ -68,16 +73,25 @@ export default function Login() {
                                      }}
                                 />
                                 <div style={{height: 20}} />
-                                <Button 
-                                    color="primary" 
-                                    variant="contained"
-                                    component={Link} to="/ListRouter"
-                                    >
-                                    Log in
-                                </Button>
+
+                                <Link to="/home" primary="Home">
+                                    <Button className="e-button" type="primary">Log in</Button>
+                                </Link>
+                                {/*<Route>*/}
+
+                                {/*<Button*/}
+                                {/*    color="primary"*/}
+                                {/*    variant="contained"*/}
+                                {/*    component={Link} to='/home'*/}
+                                {/*    // primary="Home"*/}
+                                {/*    >*/}
+                                {/*    Log in*/}
+                                {/*</Button>*/}
+                                {/*</Route>*/}
                                 <div style={{height: 20}} />
+                                <Route path='/home' component={Home} />
                             </div>
-                            
+
                         </Grid>
                     </div>
                     <Grid container justify="flex-end">
@@ -89,6 +103,7 @@ export default function Login() {
                 </Grid>
             </Grid>
         </div>
+            </Router>
     );
 }
 
