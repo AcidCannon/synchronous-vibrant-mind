@@ -4,6 +4,11 @@ import logo from './logo.png';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "./uofa.png";
+import { Link } from 'react-router-dom';
+import ListRouter from './Page';
+import  Home from './components/home';
+
+
 
 
 export default function Login() {
@@ -63,7 +68,11 @@ export default function Login() {
                                      }}
                                 />
                                 <div style={{height: 20}} />
-                                <Button color="primary" variant="contained">
+                                <Button 
+                                    color="primary" 
+                                    variant="contained"
+                                    component={Link} to="/ListRouter"
+                                    >
                                     Log in
                                 </Button>
                                 <div style={{height: 20}} />
