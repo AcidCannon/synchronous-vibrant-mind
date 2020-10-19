@@ -10,6 +10,7 @@ import InvitationReceived from './components/invitation_received';
 import UpcomingEvent from './components/upcoming_event';
 import History from './components/history';
 import Notification from './components/notification';
+import Mainscreen from './components/mainscreen';
 import Header from "./Header";
 
 function ListItemLink(props) {
@@ -50,6 +51,7 @@ class Page extends Component {
                         <Route path='/home/upcoming_event' component={UpcomingEvent} />
                         <Route path='/home/history' component={History} />
                         <Route path='/home/notification' component={Notification} />
+                        <Route path='/home/mainscreen' component={Mainscreen} />
                     </div>
                 </div>
             </Router>

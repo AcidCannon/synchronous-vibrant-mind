@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
+import {BrowserRouter as Router, Route, Link as Link2} from 'react-router-dom';
 
 const columns = [
   { id: 'player', label: 'Player', minWidth: 170 },
@@ -46,12 +47,12 @@ function createData(player, gamedate, game_start_time, download_calendar, join_m
 }
 
 const rows = [
-  createData('Alpha', '2020-01-23', 8,<Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
-  createData('Bdong', '2020-05-26', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
-  createData('Zoe', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
-  createData('Zuhao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
-  createData('Zijian', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
-  createData('Zihao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary">Join</Button>),
+  createData('Alpha', '2020-01-23', 8,<Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
+  createData('Bdong', '2020-05-26', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
+  createData('Zoe', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
+  createData('Zuhao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
+  createData('Zijian', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
+  createData('Zihao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" component={Link2} to='/home/mainscreen'>Join</Button>),
 
 ];
 
