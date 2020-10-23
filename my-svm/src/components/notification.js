@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './table_notification';
+import { Grid } from '@material-ui/core';
 
 class Notification extends Component {
     constructor(props){
@@ -10,7 +11,9 @@ class Notification extends Component {
     render() {
       return (
         <div>
-          This is Notification.
+          <Grid container justify="center" style={{color: "#3291ff" }}>
+            <h1>Notification</h1>
+          </Grid>
           <Table />
         </div>
       );

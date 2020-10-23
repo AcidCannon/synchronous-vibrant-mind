@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './table_invitation_sent';
+import { Grid } from '@material-ui/core';
 
 class InvitationSent extends Component {
     constructor(props){
@@ -10,7 +11,9 @@ class InvitationSent extends Component {
     render() {
       return (
         <div>
-          This is Invitation Sent.
+          <Grid container justify="center" style={{color: "#3291ff" }}>
+            <h1>Invitation Sent</h1>
+          </Grid>
           <Table />
         </div>
       );

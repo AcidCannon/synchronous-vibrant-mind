@@ -9,6 +9,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/core/styles';
 
+
+import { AccountCircle, LockRounded } from "@material-ui/icons";
+import { InputAdornment } from "@material-ui/core";
+
 const suggestions = [
     { label: 'alpha@hotmail.com' },
     { label: 'bdong@hotmail.com' },
@@ -31,6 +35,16 @@ function renderInputComponent(inputProps) {
                 },
             }}
             {...other}
+            label="Player" 
+            margin="normal" 
+            variant="outlined"
+            InputProps={{
+                startAdornment: (
+                <InputAdornment position="start">
+                    <AccountCircle/>
+                    </InputAdornment>
+                    ),
+                }}
         />
     );
 }
