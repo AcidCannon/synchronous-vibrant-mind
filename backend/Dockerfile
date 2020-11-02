@@ -1,5 +1,4 @@
-# start from an official image
-# Switch to different pip source if download speed is super slow
+# Use Dockerfile.alt if download speed of pip is slow
 FROM python:3.8.5
 
 ENV APP_ROOT /src
@@ -11,7 +10,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir ${CONFIG_ROOT}
 # install dependencies
 COPY requirements.txt ${CONFIG_ROOT}/requirements.txt
-RUN pip install -r ${CONFIG_ROOT}/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r ${CONFIG_ROOT}/requirements.txt
 
 # arbitrary location choice: you can change the directory
 RUN mkdir ${APP_ROOT}
