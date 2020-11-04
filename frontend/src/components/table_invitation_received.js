@@ -84,7 +84,35 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
 
-    async function changeInvitationStatus(clicked_email, clicked_start_time, clicked_status){
+    async function sentNotification(clicked_email, clicked_status, id){
+      if (clicked_status == "ACCEPTED"){
+        var player_content = "username accepted your invitation";
+      }else if (clicked_status == "DECLINED"){
+        var player_content = "username is bussy";
+      }
+      const response = await fetch("http://localhost/api/sendNotification", {
+        method: "POST",
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ player_email: clicked_email, invitation_id: id, content: player_content})
+        }).then(async response => {
+          const data = await response.json();
+    
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          }
+    
+      }).catch(error => {
+          console.error('There was an error!', error);
+      });
+     
+    }
+
+    async function changeInvitationStatus(clicked_email, clicked_start_time, clicked_status, id){
       const response = await fetch("http://localhost/api/changeInvitationStatus", {
         method: "POST",
           headers: { 
@@ -100,6 +128,9 @@ export default function StickyHeadTable() {
               const error = (data && data.message) || response.status;
               return Promise.reject(error);
           }
+
+          sentNotification(clicked_email, clicked_status, id);
+  
     
       }).catch(error => {
           console.error('There was an error!', error);
@@ -136,8 +167,8 @@ export default function StickyHeadTable() {
                   row.inviter, 
                   gamedate, 
                   game_start_time, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "ACCEPTED")}}>Accept</Button>, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "DECLINED")}}>Decline</Button>)
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "ACCEPTED", row.id)}}>Accept</Button>, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "DECLINED", row.id)}}>Decline</Button>)
                   );
             }
             

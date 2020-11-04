@@ -101,8 +101,7 @@ export default class Login extends Component {
                     this.setState({clicked:true});
                     return Promise.reject(error);
                 }
-    
-                this.setState({ email: data.user.participant_info.email, clicked:true});
+                this.setState({ email: data.user.participant_info.email});
                 this.addPlayer();
                 console.log("login successful");
             })
@@ -121,6 +120,7 @@ export default class Login extends Component {
       }
 
     async addPlayer(){
+        this.setState({clicked:true});
         const response = await fetch("http://localhost/api/addPlayer", {
             method: "POST",
             headers: { 
@@ -215,7 +215,7 @@ export default class Login extends Component {
         return(
             <div style={{ height: 'auto !important',  width: 'auto !important'}}>
                 <Grid container style={{minHeight: "100vh"}}>
-                    <Grid container direction='column' item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
+                    <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
                         <Grid  justify="center">
                         <img src={logo} className="header_logo"  style={{width: 680, height: 300}}  alt="logo" />
                         </Grid>
