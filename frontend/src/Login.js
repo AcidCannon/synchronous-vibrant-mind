@@ -20,8 +20,7 @@ export default class Login extends Component {
             email: null,
             login: false,
             errorMessage: null,
-            clicked: false
-            // loginErrors: null
+            loginErrors: null
         };
     
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,31 +91,33 @@ export default class Login extends Component {
                 },
                 body: JSON.stringify({ username: this.state.username, password: this.state.password })
               }).then(async response => {
-                const data = await response.json();
+                const result = await response.json();
     
                 // check for error response
                 if (!response.ok) {
                     // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    this.setState({clicked:true});
+                    const error = (result && result.message) || response.status;
+                    this.setState({loginErrors:true});
                     return Promise.reject(error);
                 }
-                this.setState({ email: data.user.participant_info.email});
+                this.setState({ email: result.user.participant_info.email});
                 this.addPlayer();
                 console.log("login successful");
+
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate()+1);
+                document.cookie='User name'+ "=" +escape(JSON.stringify({ name: result.user.username }))+
+                    ((1==null) ? "" : ";expires="+exdate.toGMTString())
+                document.cookie='email'+ "=" +escape(JSON.stringify({ email: result.user.participant_info.email }))+
+                    ((1==null) ? "" : ";expires="+exdate.toGMTString())
             })
             .catch(error => {
                 this.setState({ errorMessage: error.toString() });
-                this.setState({clicked:true});
+                this.setState({loginErrors:true});
                 console.error('There was an error!', error);
             });
 
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate()+1);
-        document.cookie='User name'+ "=" +escape(JSON.stringify({ name: result.user.username }))+
-            ((1==null) ? "" : ";expires="+exdate.toGMTString())
-        document.cookie='email'+ "=" +escape(JSON.stringify({ email: result.user.participant_info.email }))+
-            ((1==null) ? "" : ";expires="+exdate.toGMTString())
+        
 
 
         // const json = await response.json();
@@ -129,7 +130,6 @@ export default class Login extends Component {
       }
 
     async addPlayer(){
-        this.setState({clicked:true});
         const response = await fetch("http://localhost/api/addPlayer", {
             method: "POST",
             headers: { 
@@ -143,6 +143,7 @@ export default class Login extends Component {
             if (!response.ok) {
                 // get error message from body or default to response status
                 const error = (data && data.message) || response.status;
+                this.setState({loginErrors:true});
                 return Promise.reject(error);
             }
             
@@ -152,6 +153,7 @@ export default class Login extends Component {
         })
         .catch(error => {
             this.setState({ errorMessage: error.toString() });
+            this.setState({loginErrors:true});
             console.error('There was an error!', error);
         });
 
@@ -301,7 +303,7 @@ export default class Login extends Component {
                                     
                                     <div style={{height: 20}} />
 
-                                    { !this.state.login && this.state.clicked &&
+                                    { this.state.loginErrors &&
                                         <div>
                                             <Alert severity="error">Your username and password didn't match. Please try again. </Alert>
                                         </div>
