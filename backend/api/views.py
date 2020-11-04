@@ -107,10 +107,10 @@ def getInvitationReceived(request):
 @api_view(["POST"])
 def sendNotification(request):
     try:
-        player_email = request.data['player_email']
+        username = request.data['username']
         invitation_id = request.data['invitation_id']
         content = request.data['content']
-        player = Player.objects.get(email = player_email)
+        player = Player.objects.get(name = username)
         invitation = Invitation.objects.get(id = invitation_id)
         notification = Notification(state = "UNREAD", content = content, player = player, invitation = invitation)
         notification.save()
