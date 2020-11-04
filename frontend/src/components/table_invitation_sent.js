@@ -62,6 +62,13 @@ const useStyles = makeStyles({
 });
 
 export default function StickyHeadTable() {
+  const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
+  const x_username = unescape(username[2]);
+  const y_username = x_username.slice(9,-2);
+  const email = document.cookie.match('(^|;) ?' + "email" + '=([^;]*)(;|$)');
+  const x_email = unescape(email[2]);
+  const y_email = x_email.slice(10,-2);
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -83,7 +90,7 @@ export default function StickyHeadTable() {
         headers: { 
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ inviter_email: "bdong@ualberta.ca"  })
+        body: JSON.stringify({ inviter_email: y_email  })
       });
       // check for error response
       if (!response.ok) {
