@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
+import moment from 'moment';
 
 
 // import { Blob } from 'react-blob';
@@ -89,6 +90,8 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rows, updateRows] = React.useState([]);
+  
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -98,6 +101,54 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  React.useEffect(function effectFunction() {
+    async function fetchUpcomingEvents() {
+      const response = await fetch("http://localhost/api/getUpcomingEvent", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
+      });
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (result && result.message) || response.status;
+        return Promise.reject(error);
+      }
+        const result = await response.json();
+        const newRows = [];
+        if( (response.status == 200) && (result.upcoming.length > 0) ){
+          //for loop method
+          console.log("this is the response of bdong", result.invitations);
+          for (var row of result.upcoming){
+            var now = moment();
+            if (moment(row.start_time).isAfter(now)){
+              var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD');
+              var game_start_time = moment.utc(row.start_time).format('hh:mm a');
+              var title = "Vibraint Minds Together" ;
+              var description = row.player + "will play with me at Vibraint Minds Together";
+              var startTime = moment(row.start_time).calendar();
+              var endTime = moment(row.start_time).add(2, 'hours').calendar();
+              var location = "Will be an link to our website later" ;
+              var event = CreateCalendarEvent(title, description, startTime, endTime, location)
+              newRows.push(
+                createData(
+                  row.player, 
+                  gamedate, 
+                  game_start_time, 
+                  <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
+                  <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>
+                  ));
+            }
+            
+          }
+        }
+        updateRows(newRows);
+      }
+      fetchUpcomingEvents();
+  }, []);
 
   return (
     <Paper className={classes.root}>
