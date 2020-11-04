@@ -84,22 +84,56 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
 
-    async function changeInvitationStatus(clicked_email, clicked_start_time, clicked_status){
-      const response = await fetch("http://localhost/api/changeInvitationStatus", {
+    async function sentNotification(inviter, invitee, clicked_status, id){
+      if (clicked_status == "ACCEPTED"){
+        var player_content = invitee + " accepted your invitation";
+      }else if (clicked_status == "DECLINED"){
+        var player_content = invitee + " is bussy";
+      }
+      const response = await fetch("http://localhost/api/sendNotification", {
         method: "POST",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ email: clicked_email, start_time: clicked_start_time , status: clicked_status})
+          body: JSON.stringify({ username: inviter, invitation_id: id, content: player_content})
         }).then(async response => {
           const data = await response.json();
-    
+          console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
           // check for error response
           if (!response.ok) {
               // get error message from body or default to response status
               const error = (data && data.message) || response.status;
               return Promise.reject(error);
           }
+    
+      }).catch(error => {
+          console.error('There was an error!', error);
+      });
+     
+    }
+
+    async function changeInvitationStatus(inviter, invitee, clicked_status, invitation_id){
+      const response = await fetch("http://localhost/api/changeInvitationStatus", {
+        method: "POST",
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: invitation_id, status: clicked_status})
+        }).then(async response => {
+          const data = await response.json();
+          console.log('this is the changeInvitationState json', JSON.stringify({ id: invitation_id, status: clicked_status}));
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          }
+
+          await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+          sentNotification(inviter, invitee, clicked_status, invitation_id);
+          console.log('successful');
+          
+  
     
       }).catch(error => {
           console.error('There was an error!', error);
@@ -130,15 +164,16 @@ export default function StickyHeadTable() {
             if (row.state == "PENDING"){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
               var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
-              var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
+              // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
               newRows.push(
                 createData(
                   row.inviter, 
                   gamedate, 
                   game_start_time, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "ACCEPTED")}}>Accept</Button>, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "DECLINED")}}>Decline</Button>)
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "ACCEPTED", row.id)}}>Accept</Button>, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "DECLINED", row.id)}}>Decline</Button>)
                   );
+
             }
             
           }
