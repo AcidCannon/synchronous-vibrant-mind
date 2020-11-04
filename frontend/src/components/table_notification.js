@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import moment from 'moment';
 
 const columns = [
   {
@@ -32,14 +33,8 @@ function createData(content, time) {
   return {content, time};
 }
 
-const rows = [
-  createData('Alpha Hou accepted your request.', '2020-01-23'),
-  createData('The invitation you sent to Boyuan Dong is Failed', '2020-05-26'),
-  createData('Zoey Liu declined your invitation', '2020-06-01'),
-  createData('Lily Smith accepted your invitation', '2020-06-01'),
-  createData('Boyuan is busy at this time', '2020-06-01'),
+const rows = [];
 
-];
 
 const useStyles = makeStyles({
   root: {
@@ -54,6 +49,7 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rows, updateRows] = React.useState([]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -63,6 +59,36 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  React.useEffect(function effectFunction() {
+    async function fetchNotification() {
+      const response = await fetch("http://localhost/api/getNotification", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
+      });
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (result && result.message) || response.status;
+        return Promise.reject(error);
+      }
+        const result = await response.json();
+        const newRows = [];
+        if( (response.status == 200) && (result.notifications.length >0) ){
+          //for loop method
+          console.log("this is the response of bdong", result.notifications);
+          for (var row of result.notifications){
+            var sent_time = moment.utc(row.time).format('YYYY-MM-DD, hh:mm a').toString();
+            newRows.push(createData(row.content, sent_time));
+          }
+        }
+        updateRows(newRows);
+      }
+      fetchNotification();
+  }, []);
 
   return (
     <Paper className={classes.root}>

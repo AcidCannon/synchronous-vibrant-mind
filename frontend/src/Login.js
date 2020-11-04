@@ -20,7 +20,7 @@ export default class Login extends Component {
             email: null,
             login: false,
             errorMessage: null,
-            clicked: null
+            clicked: false
             // loginErrors: null
         };
     
@@ -83,81 +83,118 @@ export default class Login extends Component {
     // }
 
 
-    // // This is async await version
-    // async auth(){
-    //     const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
-    //             method: "POST",
-    //             headers: { 
-    //               'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ username: this.state.username, password: this.state.password })
-    //           })
-    //     const json = await response.json();
-    //     await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-    //     if (response.ok){
-    //         this.setState({login: true, email: json.user.participant_info.email});
-    //         this.addPlayer();
-    //         console.log("state", this.state);
-    //     }
-    //   }
+    // This is async await version
+    async auth(){
+        const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
+                method: "POST",
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: this.state.username, password: this.state.password })
+              }).then(async response => {
+                const data = await response.json();
+    
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    this.setState({clicked:true});
+                    return Promise.reject(error);
+                }
+    
+                this.setState({ email: data.user.participant_info.email, clicked:true});
+                this.addPlayer();
+                console.log("login successful");
+            })
+            .catch(error => {
+                this.setState({ errorMessage: error.toString() });
+                this.setState({clicked:true});
+                console.error('There was an error!', error);
+            });
+        // const json = await response.json();
+        // await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+        // if (response.ok){
+        //     this.setState({login: true, email: json.user.participant_info.email});
+        //     this.addPlayer();
+        //     console.log("state", this.state);
+        // }
+      }
 
-    // async addPlayer(){
-    //     const response = await fetch("http://localhost/api/addPlayer", {
+    async addPlayer(){
+        const response = await fetch("http://localhost/api/addPlayer", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: this.state.username, email: this.state.email })
+        }).then(async response => {
+            const data = await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+            
+            this.setState({login: true});
+            console.log("successful addPlayer", data);
+            console.log("state", this.state);
+        })
+        .catch(error => {
+            this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+        });
+
+
+        // const json = await response.json();
+        // await new Promise((resolve, reject) => setTimeout(resolve, 5000));
+        // if (response.ok){
+        //     console.log("successful", json);
+        //     console.log("state", this.state);
+        // }
+        
+    }
+
+    // // This is the promise version
+    // async auth() {
+    //     // read our JSON
+    //     let response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
     //         method: "POST",
     //         headers: { 
     //             'Content-Type': 'application/json'
     //         },
-    //         body: JSON.stringify({ name: this.state.username, email: this.state.email })
-    //     })
-    //     const json = await response.json();
-    //     await new Promise((resolve, reject) => setTimeout(resolve, 5000));
-    //     if (response.ok){
-    //         console.log("successful", json);
-    //         console.log("state", this.state);
+    //         body: JSON.stringify({ username: this.state.username, password: this.state.password })
+    //         })
+    //     let result = await response.json();
+    //     // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
+    //     console.log("successful result", result);
+    //     // read addPlayer
+    //     let addPlayerResponse = await fetch("http://localhost/api/addPlayer", {
+    //         method: "POST",
+    //         headers: { 
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ name: result.user.username, email: result.user.participant_info.email })
+    //         })
+
+
+    //     let addPlayerresult = await addPlayerResponse.json();
+
+    //     // let addPlayer = await response.json();
+    //     if (addPlayerresult.status == "success"){
+    //         console.log("successful addPlayer");
     //     }
         
-    // }
 
-    // This is the promise version
-   
-    async auth() {
-        // read our JSON
-        let response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
-            method: "POST",
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: this.state.username, password: this.state.password })
-            })
-        let result = await response.json();
-        // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
-        console.log("successful result", result);
-        // read addPlayer
-        let addPlayerResponse = await fetch("http://localhost/api/addPlayer", {
-            method: "POST",
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: result.user.username, email: result.user.participant_info.email })
-            })
-
-
-        let addPlayerresult = await addPlayerResponse.json();
-
-        // let addPlayer = await response.json();
-        if (addPlayerresult.status == "success"){
-            console.log("successful addPlayer");
-        }
-        
-
-        // show the avatar
-        // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
+    //     // show the avatar
+    //     // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
       
-        // wait 3 seconds
-        await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-        this.setState({login: true, email: result.user.participant_info.email, clicked: true});
+    //     // wait 3 seconds
+    //     await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+    //     this.setState({login: true, email: result.user.participant_info.email, clicked: true});
       
-      }
+    //   }
 
     
 

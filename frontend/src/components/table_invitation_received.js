@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
 
 const columns = [
   { id: 'inviter', label: 'Inviter', minWidth: 170 },
@@ -61,10 +62,13 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rows, updateRows, setRows] = React.useState([]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -74,6 +78,75 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+
+
+
+  React.useEffect(function effectFunction() {
+
+    async function changeInvitationStatus(clicked_email, clicked_start_time, clicked_status){
+      const response = await fetch("http://localhost/api/changeInvitationStatus", {
+        method: "POST",
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: clicked_email, start_time: clicked_start_time , status: clicked_status})
+        }).then(async response => {
+          const data = await response.json();
+    
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          }
+    
+      }).catch(error => {
+          console.error('There was an error!', error);
+      });
+     
+    }
+
+    async function fetchInvitationReceived() {
+      const response = await fetch("http://localhost/api/getInvitationReceived", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ invitee_email: "bdong@ualberta.ca"  })
+      });
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (result && result.message) || response.status;
+        return Promise.reject(error);
+      }
+        const result = await response.json();
+        const newRows = [];
+        if( (response.status == 200) && (result.invitations.length >0)){
+          //for loop method
+          console.log("this is the response of bdong", result.invitations);
+          for (var row of result.invitations){
+            if (row.state == "PENDING"){
+              var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
+              var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
+              var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
+              newRows.push(
+                createData(
+                  row.inviter, 
+                  gamedate, 
+                  game_start_time, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "ACCEPTED")}}>Accept</Button>, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "DECLINED")}}>Decline</Button>)
+                  );
+            }
+            
+          }
+        }
+        updateRows(newRows);
+      }
+      fetchInvitationReceived();
+  }, []);
 
   return (
     <Paper className={classes.root}>

@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import moment from 'moment';
 
 const columns = [
   { id: 'invitee', label: 'Invitee', minWidth: 170 },
@@ -40,15 +41,16 @@ function createData(invitee, gamedate, game_start_time, invitation_state) {
   return { invitee, gamedate, game_start_time, invitation_state };
 }
 
-const rows = [
-  createData('Alpha', '2020-01-23', 8,'Accept'),
-  createData('Bdong', '2020-05-26', 8, 'Decline'),
-  createData('Zoe', '2020-06-01', 8, 'Failed'),
-  createData('Zuhao', '2020-06-01', 8, 'Pending'),
-  createData('Zijian', '2020-06-01', 8, 'Pending'),
-  createData('Zihao', '2020-06-01', 8, 'Pending'),
+const rows = [];
+// const rows = [
+//   createData('Alpha', '2020-01-23', 8,'Accept'),
+//   createData('Bdong', '2020-05-26', 8, 'Decline'),
+//   createData('Zoe', '2020-06-01', 8, 'Failed'),
+//   createData('Zuhao', '2020-06-01', 8, 'Pending'),
+//   createData('Zijian', '2020-06-01', 8, 'Pending'),
+//   createData('Zihao', '2020-06-01', 8, 'Pending'),
 
-];
+// ];
 
 const useStyles = makeStyles({
   root: {
@@ -63,6 +65,7 @@ export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rows, updateRows] = React.useState([]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -72,6 +75,37 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  React.useEffect(function effectFunction() {
+    async function fetchInvitationSent() {
+      const response = await fetch("http://localhost/api/getInvitationSent", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inviter_email: "bdong@ualberta.ca"  })
+      });
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (result && result.message) || response.status;
+        return Promise.reject(error);
+      }
+        const result = await response.json();
+        const newRows = [];
+        if( (response.status == 200) && (result.invitations.length >0) ){
+          //for loop method
+          console.log("this is the response of bdong", result.invitations);
+          for (var row of result.invitations){
+            var date = moment.utc(row.start_time).format('YYYY-MM-DD');
+            var time = moment.utc(row.start_time).format('hh:mm a');
+            newRows.push(createData(row.invitee, date.toString(), time.toString(), row.state));
+          }
+        }
+        updateRows(newRows);
+      }
+      fetchInvitationSent();
+  }, []);
 
   return (
     <Paper className={classes.root}>

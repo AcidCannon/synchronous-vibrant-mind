@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, Component} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route,Link } from 'react-router-dom'; //引入路由模块
 import Page from './Page';
@@ -14,22 +14,36 @@ import Notification from "./components/notification";
 // import ReactResizeDetector from 'react-resize-detector'
 
 
-function App() {
-  return (
-    <Router style={{ height: 'auto !important',  width: 'auto !important'}}>
-      <div>
-          <Route exact path="/" component={Login} />
-          <Route path="/home" component={Page} />
-          {/*<Route path='/home/home' component={Home} />*/}
-          {/*<Route path='/home/invitation_sent' component={InvitationSent} />*/}
-          {/*<Route path='/home/invitation_received' component={InvitationReceived} />*/}
-          {/*<Route path='/home/upcoming_event' component={UpcomingEvent} />*/}
-          {/*<Route path='/home/history' component={History} />*/}
-          {/*<Route path='/home/notification' component={Notification} />*/}
-      </div>
-    </Router>
-  
-  );
+class App extends Component{
+  constructor() {
+    super();
+    this.state = {
+        username: null,
+        password: null,
+        email: null,
+        login: false,
+        errorMessage: null,
+        clicked: null
+        // loginErrors: null
+    };
+  }
+    
+  render(){
+    return (
+      <Router style={{ height: 'auto !important',  width: 'auto !important'}}>
+        <div>
+            <Route exact path="/" component={Login} />
+            <Route path="/home" component={Page} />
+            {/*<Route path='/home/home' component={Home} />*/}
+            {/*<Route path='/home/invitation_sent' component={InvitationSent} />*/}
+            {/*<Route path='/home/invitation_received' component={InvitationReceived} />*/}
+            {/*<Route path='/home/upcoming_event' component={UpcomingEvent} />*/}
+            {/*<Route path='/home/history' component={History} />*/}
+            {/*<Route path='/home/notification' component={Notification} />*/}
+        </div>
+      </Router>
+      );
+    }
 
 }
 
