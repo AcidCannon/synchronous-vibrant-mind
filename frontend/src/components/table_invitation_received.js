@@ -112,16 +112,16 @@ export default function StickyHeadTable() {
      
     }
 
-    async function changeInvitationStatus(clicked_email, inviter, invitee, clicked_start_time, clicked_status, id){
+    async function changeInvitationStatus(inviter, invitee, clicked_status, invitation_id){
       const response = await fetch("http://localhost/api/changeInvitationStatus", {
         method: "POST",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ email: clicked_email, start_time: clicked_start_time , status: clicked_status})
+          body: JSON.stringify({ id: invitation_id, status: clicked_status})
         }).then(async response => {
           const data = await response.json();
-    
+          console.log('this is the changeInvitationState json', JSON.stringify({ id: invitation_id, status: clicked_status}));
           // check for error response
           if (!response.ok) {
               // get error message from body or default to response status
@@ -129,7 +129,10 @@ export default function StickyHeadTable() {
               return Promise.reject(error);
           }
 
-          sentNotification(inviter, invitee, clicked_status, id);
+          await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+          sentNotification(inviter, invitee, clicked_status, invitation_id);
+          console.log('successful');
+          
   
     
       }).catch(error => {
@@ -161,14 +164,14 @@ export default function StickyHeadTable() {
             if (row.state == "PENDING"){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
               var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
-              var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
+              // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
               newRows.push(
                 createData(
                   row.inviter, 
                   gamedate, 
                   game_start_time, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", row.inviter, row.invitee, start_time, "ACCEPTED", row.id)}}>Accept</Button>, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", row.inviter, row.invitee, start_time, "DECLINED", row.id)}}>Decline</Button>)
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "ACCEPTED", row.id)}}>Accept</Button>, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "DECLINED", row.id)}}>Decline</Button>)
                   );
 
             }
