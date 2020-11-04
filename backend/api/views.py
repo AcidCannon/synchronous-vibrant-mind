@@ -223,9 +223,9 @@ def getUpcomingEvent(request):
 @api_view(["POST"])
 def changeInvitationStatus(request):
     try:
-        # invitation_id = request.data['invitation_id']
-        email = request.data['email']
-        start_time = dateparser.parse(request.data['start_time'])
+        invitation_id = request.data['invitation_id']
+        # email = request.data['email']
+        # start_time = dateparser.parse(request.data['start_time'])
         status = request.data['status']
         if(not(status == 'ACCEPTED' or status == 'DECLINED' or status == 'PENDING' or status == 'FAILED')):
             json = {
@@ -233,12 +233,7 @@ def changeInvitationStatus(request):
                 'msg' : "Invalid status changed"
             }
             return JsonResponse(json, safe=False)
-        player = Player.objects.get(email = email)
-        query = Q(invitee = player)
-        query.add(Q(state = "PENDING"), Q.AND)
-        query.add(Q(start_time = start_time), Q.AND)
-        invitations = Invitation.objects.filter(query)
-        invitation = invitations[0]
+        invitation = Invitation.objects.get(id = invitation_id)
         invitation.state = status
         invitation.save(update_fields=['state'])
     except Exception as e:
