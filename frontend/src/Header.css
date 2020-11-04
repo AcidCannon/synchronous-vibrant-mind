@@ -10,10 +10,24 @@
   pointer-events: none;
 }
 
+.header_text1{
+  margin-right: 10px;
+  /*display: inline;*/
+  color: black;
+
+}
+.header_text2{
+  margin-right: 10px;
+  /*display: inline;*/
+  color: orange;
+
+}
+
 .header_button{
   display: inline;
 
 }
+
 
 .Top-header {
   position: relative;
@@ -43,12 +57,4 @@
   color: #61dafb;
 }
 
-/* @keyframes Top-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-  
+

@@ -38,39 +38,39 @@ class Page extends Component {
                         direction="column" 
                         >
                         <Grid item >
-                        <ListItemLink justify="center" href="/home/home">Home</ListItemLink>
+                            <ListItemLink justify="center" href="/vibrant-minds-together/home">Home</ListItemLink>
                         </Grid>
-                        <Divider />
-                        <Grid item>
-                            <ListItemLink href='/home/invitation_sent'>Invitation Sent</ListItemLink>
-                        </Grid>
-                        <Divider />
-                        <Grid item justify="center">
-                        <ListItemLink href='/home/invitation_received'>Invitation Received</ListItemLink>
-                        </Grid>
-                        <Divider />
-                        <Grid item justify="center">
-                        <ListItemLink href='/home/upcoming_event'>Upcoming Event</ListItemLink>
-                        </Grid>
-                        <Divider />
-                        <Grid item justify="center">
-                        <ListItemLink href='/home/history'>History</ListItemLink>
-                        </Grid>
-                        <Divider />
-                        <Grid item justify="center">
-                        <ListItemLink href='/home/notification'>Notification</ListItemLink>
+                            <Divider />
+                            <Grid item>
+                                <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitation Sent</ListItemLink>
+                            </Grid>
+                            <Divider />
+                            <Grid item justify="center">
+                                <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitation Received</ListItemLink>
+                            </Grid>
+                            <Divider />
+                            <Grid item justify="center">
+                                <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Event</ListItemLink>
+                            </Grid>
+                            <Divider />
+                            <Grid item justify="center">
+                                <ListItemLink href='/vibrant-minds-together/history'>History</ListItemLink>
+                            </Grid>
+                            <Divider />
+                            <Grid item justify="center">
+                                <ListItemLink href='/vibrant-minds-together/notification'>Notification</ListItemLink>
                         </Grid>
                         <Divider />
                         </Grid>
                     </div>
                     <div className='right'>
                         {/* 父目录的动态写法：this.props.match.url 在此处=/user/ */}
-                        <Route path='/home/home' component={Home} />
-                        <Route path='/home/invitation_sent' component={InvitationSent} />
-                        <Route path='/home/invitation_received' component={InvitationReceived} />
-                        <Route path='/home/upcoming_event' component={UpcomingEvent} />
-                        <Route path='/home/history' component={History} />
-                        <Route path='/home/notification' component={Notification} />
+                        <Route path='/vibrant-minds-together/home' component={Home} />
+                        <Route path='/vibrant-minds-together/invitation_sent' component={InvitationSent} />
+                        <Route path='/vibrant-minds-together/invitation_received' component={InvitationReceived} />
+                        <Route path='/vibrant-minds-together/upcoming_event' component={UpcomingEvent} />
+                        <Route path='/vibrant-minds-together/history' component={History} />
+                        <Route path='/vibrant-minds-together/notification' component={Notification} />
                     </div>
                 </div>
             </Router>

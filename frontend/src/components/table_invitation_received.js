@@ -112,16 +112,16 @@ export default function StickyHeadTable() {
      
     }
 
-    async function changeInvitationStatus(inviter, invitee, clicked_status, invitation_id){
+    async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       const response = await fetch("http://localhost/api/changeInvitationStatus", {
         method: "POST",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ id: invitation_id, status: clicked_status})
+          body: JSON.stringify({ invitation_id: id, status: clicked_status})
         }).then(async response => {
           const data = await response.json();
-          console.log('this is the changeInvitationState json', JSON.stringify({ id: invitation_id, status: clicked_status}));
+          console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
           // check for error response
           if (!response.ok) {
               // get error message from body or default to response status
@@ -130,7 +130,7 @@ export default function StickyHeadTable() {
           }
 
           await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-          sentNotification(inviter, invitee, clicked_status, invitation_id);
+          sentNotification(inviter, invitee, clicked_status, id);
           console.log('successful');
           
   
