@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.png';
 import './Header.css';
-import {Button} from "@material-ui/core";
+import {Button, Grid} from "@material-ui/core";
 
 
 export default function Header() {
@@ -15,9 +15,11 @@ export default function Header() {
         <div className="Top">
             <header className="Top-header">
                 <img src={logo} className="header_logo" alt="logo" />
+                <Grid container justify="flex-end" direction="rows">
                 <p className={"header_text1"}>Logged in as</p>
                 <p className={"header_text2"}> {y}. </p>
                 <Button className="header_button" >Log out</Button>
+                </Grid>
             </header>
 
         </div>
