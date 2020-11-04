@@ -84,21 +84,21 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
 
-    async function sentNotification(clicked_email, clicked_status, id){
+    async function sentNotification(inviter, invitee, clicked_status, id){
       if (clicked_status == "ACCEPTED"){
-        var player_content = "username accepted your invitation";
+        var player_content = invitee + " accepted your invitation";
       }else if (clicked_status == "DECLINED"){
-        var player_content = "username is bussy";
+        var player_content = invitee + " is bussy";
       }
       const response = await fetch("http://localhost/api/sendNotification", {
         method: "POST",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ player_email: clicked_email, invitation_id: id, content: player_content})
+          body: JSON.stringify({ username: inviter, invitation_id: id, content: player_content})
         }).then(async response => {
           const data = await response.json();
-    
+          console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
           // check for error response
           if (!response.ok) {
               // get error message from body or default to response status
@@ -112,7 +112,7 @@ export default function StickyHeadTable() {
      
     }
 
-    async function changeInvitationStatus(clicked_email, clicked_start_time, clicked_status, id){
+    async function changeInvitationStatus(clicked_email, inviter, invitee, clicked_start_time, clicked_status, id){
       const response = await fetch("http://localhost/api/changeInvitationStatus", {
         method: "POST",
           headers: { 
@@ -129,7 +129,7 @@ export default function StickyHeadTable() {
               return Promise.reject(error);
           }
 
-          sentNotification(clicked_email, clicked_status, id);
+          sentNotification(inviter, invitee, clicked_status, id);
   
     
       }).catch(error => {
@@ -167,9 +167,10 @@ export default function StickyHeadTable() {
                   row.inviter, 
                   gamedate, 
                   game_start_time, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "ACCEPTED", row.id)}}>Accept</Button>, 
-                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", start_time, "DECLINED", row.id)}}>Decline</Button>)
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", row.inviter, row.invitee, start_time, "ACCEPTED", row.id)}}>Accept</Button>, 
+                  <Button variant="contained" color="primary" onClick={()=> {changeInvitationStatus("bdong@ualberta.ca", row.inviter, row.invitee, start_time, "DECLINED", row.id)}}>Decline</Button>)
                   );
+
             }
             
           }

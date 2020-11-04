@@ -67,7 +67,7 @@ export default function StickyHeadTable() {
         headers: { 
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
+        body: JSON.stringify({ player_email: "lily@ualberta.ca"  })
       });
       // check for error response
       if (!response.ok) {
