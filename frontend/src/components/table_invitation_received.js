@@ -42,6 +42,10 @@ function createData(inviter, invitee, id, gamedate, game_start_time) {
 
 const rows = [];
 
+function refreshPage() {
+  window.location.reload(false);
+}
+
 async function sentNotification(inviter, invitee, clicked_status, id){
   if (clicked_status == "ACCEPTED"){
     var player_content = invitee + " accepted your invitation";
@@ -89,6 +93,7 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       sentNotification(inviter, invitee, clicked_status, id);
       console.log('successful', response.status);
+      refreshPage() 
 
   }).catch(error => {
       console.error('There was an error!', error);
@@ -112,6 +117,7 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, updateRows] = React.useState([]);
+ 
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -122,10 +128,7 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  const handleUpdateRows = (event, newRows) => {
-    updateRows(newRows);
-  };
-
+  
 
   React.useEffect(function effectFunction() {
     async function fetchInvitationReceived() {
@@ -205,8 +208,6 @@ export default function StickyHeadTable() {
                         variant="contained" 
                         color="primary" 
                         onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "ACCEPTED", row.id)}} 
-                        rows = {rows}
-                        onChangeRows = {handleUpdateRows}
                         >
                           Accept
                         </Button>
@@ -218,8 +219,6 @@ export default function StickyHeadTable() {
                         variant="contained" 
                         color="primary" 
                         onClick={()=> {changeInvitationStatus(row.inviter, row.invitee, "DECLINED", row.id)}}
-                        rows = {rows}
-                        onChangeRows = {handleUpdateRows}
                         >
                           Decline
                         </Button>
