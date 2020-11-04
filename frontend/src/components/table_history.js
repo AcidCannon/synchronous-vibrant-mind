@@ -10,6 +10,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
 
+
+
+
 const columns = [
   { id: 'player', label: 'Player', minWidth: 170 },
   { id: 'gamedate', label: 'Game date', minWidth: 100 },
@@ -82,12 +85,18 @@ const useStyles = makeStyles({
 
 
 async function getMeetingHistory(){
+  const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
+  const x_username = unescape(username[2])
+  const y_username = x_username.slice(9,-2)
+  const email = document.cookie.match('(^|;) ?' + "email" + '=([^;]*)(;|$)');
+  const x_email = unescape(email[2])
+  const y_email = x_email.slice(10,-2)
   const response = await fetch("http://localhost/api/getMeetingHistory", {
               method: "POST",
               headers: { 
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
+              body: JSON.stringify({ player_email: y_email  })
             }).then(async response => {
                 const result = await response.json();
                 // const rows = [];
