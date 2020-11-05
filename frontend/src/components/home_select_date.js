@@ -14,11 +14,25 @@ function InlineTimePickerDemo() {
             alignItems="center" 
             direction="row" 
             >
+            
+            <KeyboardDatePicker
+                // clearable
+                margin="normal"
+                id="date-picker-inline"
+                label="Date"
+                value={selectedDate}
+                placeholder="10/10/2018"
+                onChange={date => handleDateChange(date)}
+                minDate={new Date()}
+                format="yyyy-MM-dd"
+            />
+
                 
-            <KeyboardDatePicker 
+            {/* <KeyboardDatePicker 
                 disableToolbar
+                autoOk
                 variant="inline"
-                format="MM/dd/yyyy"
+                format="yyyy-MM-dd"
                 margin="normal"
                 id="date-picker-inline"
                 label="Date"
@@ -27,17 +41,18 @@ function InlineTimePickerDemo() {
                 KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
-            />
+            /> */}
              <div style={{width: 100}} />
+
             <KeyboardTimePicker
                 margin="normal"
                 id="time-picker"
                 label="Time"
                 value={selectedDate}
                 onChange={handleDateChange}
-                KeyboardButtonProps={{
-                    'aria-label': 'change time',
-                  }}
+                // KeyboardButtonProps={{
+                //     'aria-label': 'change time',
+                //   }}
             />
 
             </Grid>
