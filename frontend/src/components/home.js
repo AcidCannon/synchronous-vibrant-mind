@@ -28,6 +28,30 @@ const styles = {
 //     },
 // }));
 
+async function sendInvitation(my_email, player_email, game_start_time){
+    const response = await fetch("http://localhost/api/addInvitation", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inviter_email: my_email, invitee_email: player_email, status: "PENDING", start_time: game_start_time })
+        }).then(async response => {
+        const result = await response.json();
+
+        // check for error response
+        if (!response.ok) {
+            // get error message from body or default to response status
+            const error = (result && result.message) || response.status;
+                return Promise.reject(error);
+            }
+    
+            
+        console.log("login successful");
+
+        }).catch(error => {
+                console.error('There was an error!', error);
+        });
+}
 
 export default function Home() {
     // const classes = useStyles();
@@ -73,7 +97,7 @@ export default function Home() {
                     </Grid>
                 
                 <Grid container justify="flex-end">
-                    <Button variant="contained" color="primary">Sent</Button>
+                    <Button variant="contained" color="primary" onClick={()=> {sendInvitation()}}>Sent</Button>
                 </Grid>
                 
                 </Paper>

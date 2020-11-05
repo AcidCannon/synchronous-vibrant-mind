@@ -33,7 +33,7 @@ class App extends Component{
       <Router style={{ height: 'auto !important',  width: 'auto !important'}}>
         <div>
             <Route exact path="/" component={Login} />
-            <Route path="/home" component={Page} />
+            <Route path="/vibrant-minds-together" component={Page} />
             {/*<Route path='/home/home' component={Home} />*/}
             {/*<Route path='/home/invitation_sent' component={InvitationSent} />*/}
             {/*<Route path='/home/invitation_received' component={InvitationReceived} />*/}

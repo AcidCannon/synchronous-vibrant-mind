@@ -81,78 +81,17 @@ const useStyles = makeStyles({
 });
 
 
-async function getMeetingHistory(){
-  const response = await fetch("http://localhost/api/getMeetingHistory", {
-              method: "POST",
-              headers: { 
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
-            }).then(async response => {
-                const result = await response.json();
-                // const rows = [];
-
-                // check for error response
-                if (!response.ok) {
-                  // get error message from body or default to response status
-                  const error = (result && result.message) || response.status;
-                  return Promise.reject(error);
-                }
-                
-                
-                if( (response.status == 200) && (result.history.length >0) ){
-                  //map method
-                  // result.history.map( ({id, start_time, player, p_login, p_logout, my_login, my_logout} ) => {
-                  //   var date = Moment(start_time).format('YYYY-MM-DD');
-                  //   var time = Moment(start_time).format('h:mm');
-                  //   var p_login_time = Moment(p_login).format('h:mm');
-                  //   var p_logout_time = Moment(p_logout).format('h:mm');
-                  //   var my_login_time = Moment(my_login).format('h:mm');
-                  //   var my_logout_time = Moment(my_logout).format('h:mm');
-                  //   if ( p_logout_time.diff(my_logout_time) ){
-                  //     var timePiroid = Moment(start_time).diff(Moment(p_logout),'hours',true);
-                  //   }else{
-                  //     var timePiroid = Moment(start_time).diff(Moment(my_logout),'hours',true);
-                  //   }
-                  //   createData(player, date.toString(), time.toString(), p_login_time.toString(), p_logout_time.toString(), my_login_time.toString(), my_logout_time.toString(),timePiroid.toString());
-                  // })
-
-                  //for loop method
-                  console.log("this is the response of bdong", result.history);
-                  for (var row of result.history){
-                    var date = moment(row.start_time).format('YYYY-MM-DD');
-                    var time = moment(row.start_time).format('h:mm');
-                    var p_login_time = moment(row.p_login).format('h:mm');
-                    var p_logout_time = moment(row.p_logout).format('h:mm');
-                    var my_login_time = moment(row.my_login).format('h:mm');
-                    var my_logout_time = moment(row.my_logout).format('h:mm');
-                    if ( p_logout_time < my_logout_time ){
-                      var num = moment(row.start_time).diff(moment(row.p_logout),'hours',true);
-                      var timePiroid = Math.abs(Math.round(num * 100) / 100); 
-                    }else{
-                      var num = moment(row.start_time).diff(moment(row.my_logout),'hours',true);
-                      var timePiroid = Math.abs(Math.round(num * 100) / 100 ) ; 
-                    }
-                    rows.push(createData(row.player, date.toString(), time.toString(), p_login_time.toString(), p_logout_time.toString(), my_login_time.toString(), my_logout_time.toString(),timePiroid.toString()));
-                  }
-                }
- 
-              
-                // console.log('this is the temp_rows', temp_rows);
-                // const rows = temp_rows.map((row) => row);
-                console.log('this is the rows', rows);
-                await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-                return rows;
-                
-              
-            });  
-
-    }
-
 
 
 
 export default function StickyHeadTable() {
+  const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
+  const x_username = unescape(username[2]);
+  const y_username = x_username.slice(9,-2);
+  const email = document.cookie.match('(^|;) ?' + "email" + '=([^;]*)(;|$)');
+  const x_email = unescape(email[2]);
+  const y_email = x_email.slice(10,-2);
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -175,7 +114,7 @@ export default function StickyHeadTable() {
         headers: { 
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ player_email: "bdong@ualberta.ca"  })
+        body: JSON.stringify({ player_email: y_email  })
       });
       // check for error response
       if (!response.ok) {
