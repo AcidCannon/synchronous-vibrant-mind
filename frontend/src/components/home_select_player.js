@@ -158,7 +158,8 @@ export default function IntegrationAutosuggest() {
             method: "GET",
             headers: { 
               'Content-Type': 'application/json',
-              'Authorization': '639e6000b8f093c6ebb5229bd04053262b2e9389'
+              'credentials': 'include',
+              'Authorization': 'Bearer '+ '639e6000b8f093c6ebb5229bd04053262b2e9389'
             },
             // body: JSON.stringify({ inviter_email: y_email  })
           });
