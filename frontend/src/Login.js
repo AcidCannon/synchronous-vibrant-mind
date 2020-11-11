@@ -103,6 +103,7 @@ export default class Login extends Component {
                 this.setState({ email: result.user.participant_info.email});
                 this.addPlayer();
                 console.log("login successful");
+                console.log("login token", result.token);
 
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+1);

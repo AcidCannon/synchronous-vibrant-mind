@@ -126,6 +126,7 @@ export default function IntegrationAutosuggest() {
     });
 
     const [stateSuggestions, setSuggestions] = React.useState([]);
+    const [suggestions, updateSuggestions] = React.useState([]);
 
     const handleSuggestionsFetchRequested = ({ value }) => {
         setSuggestions(getSuggestions(value));
@@ -150,6 +151,50 @@ export default function IntegrationAutosuggest() {
         getSuggestionValue,
         renderSuggestion,
     };
+
+    React.useEffect(function effectFunction() {
+        async function fetchSuggestions() {
+          const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/participants", {
+            method: "GET",
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': '639e6000b8f093c6ebb5229bd04053262b2e9389'
+            },
+            // body: JSON.stringify({ inviter_email: y_email  })
+          });
+        // async function fetchSuggestions() {
+        //     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+        //     var url = "http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/participants"
+        //     var xmlhttp = new XMLHttpRequest();
+        //     xmlhttp.open("GET", url);
+        //     xmlhttp.send();
+        //     xmlhttp.onreadystatechange = (e) => {
+        //         console.log(xmlhttp.responseText)
+        //     }
+
+
+          const result = await response.json();
+          // check for error response
+          if (!response.ok) {
+            // get error message from body or default to response status
+            const error = (result && result.message) || response.status;
+            return Promise.reject(error);
+          }
+            
+            const newSuggestions = [];
+            if( (response.status == 200) && (result.length >0) ){
+              //for loop method
+              console.log("this is the response of bdong", result.invitations);
+              for (var row of result){
+                // var username = row.username;
+                var player_email = row.participant_info.email
+                newSuggestions.push({label: player_email});
+              }
+            }
+            updateSuggestions(newSuggestions);
+          }
+          fetchSuggestions();
+      }, []);
 
     return (
         <div className={classes.root}>
