@@ -107,10 +107,8 @@ export default class Login extends Component {
 
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+1);
-                document.cookie='User name'+ "=" +escape(JSON.stringify({ name: result.user.username }))+
-                    ((1==null) ? "" : ";expires="+exdate.toGMTString())
-                document.cookie='email'+ "=" +escape(JSON.stringify({ email: result.user.participant_info.email }))+
-                    ((1==null) ? "" : ";expires="+exdate.toGMTString())
+                document.cookie='User name'+ "=" +escape(JSON.stringify({ name: result.user.username }))+ ";expires="+exdate.toGMTString()
+                document.cookie='email'+ "=" +escape(JSON.stringify({ email: result.user.participant_info.email }))+ ";expires="+exdate.toGMTString()
             })
             .catch(error => {
                 this.setState({ errorMessage: error.toString() });
@@ -299,7 +297,7 @@ export default class Login extends Component {
 
                                     <Button color="primary" variant="contained" onClick={()=> {this.auth()}}>Log in</Button>
 
-                                    {this.state.login && <Redirect from='/' to='/vibrant-minds-together/home'></Redirect>}
+                                    {this.state.login && <Redirect from='/login' to='/vibrant-minds-together/home'></Redirect>}
                                     
                                     
                                     <div style={{height: 20}} />
