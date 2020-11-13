@@ -11,21 +11,20 @@
 }
 
 .header_text1{
-  margin-right: 10px;
-  /*display: inline;*/
+  margin-right: 5px;
   color: black;
 
 }
 .header_text2{
-  margin-right: 10px;
-  /*display: inline;*/
   color: orange;
+}
 
+.header_text3{
+  color: black;
 }
 
 .header_button{
-  display: inline;
-
+  color: black;
 }
 
 
@@ -56,5 +55,4 @@
 .Top-link {
   color: #61dafb;
 }
-
 
