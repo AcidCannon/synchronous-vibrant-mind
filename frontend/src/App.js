@@ -12,7 +12,7 @@ import History from "./components/history";
 import Notification from "./components/notification";
 
 // import ReactResizeDetector from 'react-resize-detector'
-
+import Webrtc from "./Webrtc";
 
 class App extends Component{
   constructor() {
@@ -34,6 +34,7 @@ class App extends Component{
         <div>
             <Route exact path="/" component={Login} />
             <Route path="/vibrant-minds-together" component={Page} />
+            <Route path="/webrtc" component={Webrtc} />
             {/*<Route path='/home/home' component={Home} />*/}
             {/*<Route path='/home/invitation_sent' component={InvitationSent} />*/}
             {/*<Route path='/home/invitation_received' component={InvitationReceived} />*/}
