@@ -84,7 +84,7 @@ export default function StickyHeadTable() {
       }
         const result = await response.json();
         const newRows = [];
-        if( (response.status == 200) && (result.notifications.length >0) ){
+        if( (response.status == 200) && (result.notifications) ){
           //for loop method
           console.log("this is the response of bdong", result.notifications);
           for (var row of result.notifications){

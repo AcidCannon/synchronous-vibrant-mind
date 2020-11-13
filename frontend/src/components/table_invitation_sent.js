@@ -100,7 +100,7 @@ export default function StickyHeadTable() {
       }
         const result = await response.json();
         const newRows = [];
-        if( (response.status == 200) && (result.invitations.length >0) ){
+        if( (response.status == 200) && (result.invitations) ){
           //for loop method
           console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){
