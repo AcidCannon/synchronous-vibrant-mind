@@ -16,9 +16,9 @@ export default class Header extends Component{
         this.state = {
             // navigate:false
         };
-        this.results = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
-        this.x = unescape(this.results[2]);
-        this.y = this.x.slice(9,-2);
+        // this.results = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
+        // this.x = unescape(this.results[2]);
+        // this.y = this.x.slice(9,-2);
     }
 
     logout=()=>{
@@ -39,7 +39,7 @@ export default class Header extends Component{
                     <img src={logo} className="header_logo" alt="logo" />
                     <Grid container justify="flex-end" direction="rows">
                         <p className={"header_text1"}>Logged in as</p>
-                        <p className={"header_text2"}> {this.y}</p>
+                        {/*<p className={"header_text2"}> {this.y}</p>*/}
                         <p className={"header_text3"}>. </p>
                         {/*<ListItemLink button className="header_button" onClick={()=> {this.logout()}} href="/login">Logout</ListItemLink>*/}
                         <Button className="header_button" onClick={()=> {this.logout()}} href="/login">Logout</Button>

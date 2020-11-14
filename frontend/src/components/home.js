@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid';
@@ -53,58 +53,74 @@ async function sendInvitation(my_email, player_email, game_start_time){
         });
 }
 
-export default function Home() {
+class Home extends Component {
     // const classes = useStyles();
-    return (
-        <div>
-            <Grid  
-            justify="center" 
-            item 
-            xs={12} 
-            alignItems="center" 
-            direction="column" 
-            >
-            {/*<Paper className={classes.paper}>*/}
-                <Paper 
-                style={styles.paper}
+    state = {
+        selectedDate:new Date(),
+        single:''
+    }
+
+    dateCallback = (date) =>{
+        this.setState({selectedDate:date})
+    }
+
+    newPlayerCallback = (name) =>{
+        this.setState({single:name})
+    }
+
+    render(){
+        return (
+            <div>
+                <Grid  
+                justify="center" 
+                item 
+                xs={12} 
+                alignItems="center" 
+                direction="column" 
                 >
-                    <Grid 
-                    container
-                    xs={12} 
-                    sm={12}
-                    alignItems="center" 
-                    direction="column" 
-                    justify="space-between"
-                    style={{color: "#3291ff" }}
+                {/*<Paper className={classes.paper}>*/}
+                    <Paper 
+                    style={styles.paper}
                     >
-                        <div />
-                        <div>
-                            <Grid container justify="center">
-                                <h1>Send Invitation</h1>
-                            </Grid>
-                            <div style={{height: 20}} />
-                            <h3>Add a player</h3>
-                            <Divider/>
-                            <div style={{height: 20}} />
-                            <IntegrationAutosuggest />
-                            <h3>Select the start time</h3>
-                            <Divider/>
-                            <InlineTimePickerDemo/>
-                             
-                        </div>
-                        
-                        
+                        <Grid 
+                        container
+                        xs={12} 
+                        sm={12}
+                        alignItems="center" 
+                        direction="column" 
+                        justify="space-between"
+                        style={{color: "#3291ff" }}
+                        >
+                            <div />
+                            <div>
+                                <Grid container justify="center">
+                                    <h1>Send Invitation</h1>
+                                </Grid>
+                                <div style={{height: 20}} />
+                                <h3>Add a player</h3>
+                                <Divider/>
+                                <div style={{height: 20}} />
+                                <IntegrationAutosuggest newPlayerCallback={this.newPlayerCallback} single={this.state.single}/>
+                                <h3>Select the start time</h3>
+                                <Divider/>
+                                <InlineTimePickerDemo dateCallback={this.dateCallback} selectedDate={this.state.selectedDate}/>
+                                 
+                            </div>
+                            
+                            
+                        </Grid>
+                    
+                    <Grid container justify="flex-end">
+                        <Button variant="contained" color="primary" onClick={()=> {console.log(this.state.single)}}>Sent</Button>
                     </Grid>
-                
-                <Grid container justify="flex-end">
-                    <Button variant="contained" color="primary" onClick={()=> {sendInvitation()}}>Sent</Button>
+                    
+                    </Paper>
+                    
                 </Grid>
-                
-                </Paper>
-                
-            </Grid>
-        
-        </div>
-        
-    );
+            
+            </div>
+            
+        );
+    }
 }
+export default Home;
