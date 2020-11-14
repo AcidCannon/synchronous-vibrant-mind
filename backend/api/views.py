@@ -331,3 +331,27 @@ def isTimeConflict(request):
             return JsonResponse(json, safe=False)
         else:
             return JsonResponse({'status':'success', 'conflict' : True}, safe=False)
+
+@api_view(["GET"])
+def getAllPlayer(request):
+        players = Player.objects.filter(~Q(name = "XXX"))
+        serializer = PlayerSerializer(players, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+@api_view(["POST"])
+def checkPlayerExist(request):
+    try:
+        email = request.data["email"]
+        query = Q(email = email)
+        query.add(~Q(name = "XXX"), Q.AND)
+        players = Player.objects.filter(query)
+        if(not players):
+            return JsonResponse({'status':'success', 'exist' : False}, safe=False)
+    except Exception as e:
+        json = {
+            'status': 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        return JsonResponse({'status':'success', 'exist' : True}, safe=False)
