@@ -16,9 +16,9 @@ export default class Header extends Component{
         this.state = {
             // navigate:false
         };
-        // this.results = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
-        // this.x = unescape(this.results[2]);
-        // this.y = this.x.slice(9,-2);
+        this.results = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
+        this.x = unescape(this.results[2]);
+        this.y = this.x.slice(9,-2);
     }
 
     logout=()=>{
