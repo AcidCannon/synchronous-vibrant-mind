@@ -354,4 +354,5 @@ def checkPlayerExist(request):
         }
         return JsonResponse(json, safe=False)
     else:
-        return JsonResponse({'status':'success', 'exist' : True}, safe=False)
+        serializer = PlayerSerializer(players[0])
+        return JsonResponse({'status':'success', 'exist' : True, 'info': serializer.data}, safe=False)
