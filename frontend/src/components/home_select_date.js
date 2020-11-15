@@ -2,9 +2,17 @@ import React, { Component, Fragment, useState } from "react";
 import DateFnsUtils from '@date-io/date-fns';
 import {  KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Grid } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import { render } from "@testing-library/react";
 
+const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Comfortaa',
+            'cursive',
+        ].join(','),
+    },});
 
 class InlineTimePickerDemo extends Component {
     
@@ -14,6 +22,7 @@ class InlineTimePickerDemo extends Component {
     
     render(){
         return (
+            <ThemeProvider theme={theme}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid 
                 container 
@@ -68,6 +77,7 @@ class InlineTimePickerDemo extends Component {
                
                 
             </MuiPickersUtilsProvider>
+                </ThemeProvider>
         
         );
     }

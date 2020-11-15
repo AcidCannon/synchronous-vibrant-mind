@@ -1,15 +1,34 @@
 import React, { Component } from "react";
 import { Grid, InputAdornment, TextField } from "@material-ui/core";
+import { ThemeProvider, withStyles, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import logo from './logo.png';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "./uofa.png";
-import {BrowserRouter as Router, Redirect, Switch, Route, Link} from 'react-router-dom';
-import Home from "./components/home";
-import { render } from "@testing-library/react";
-import axios from "axios";
-import { AUTH_LOGIN } from 'react-admin';
+import {Redirect} from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
+import './css/Login.css';
+
+const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Comfortaa',
+            'cursive',
+        ].join(','),
+    },});
+
+const button = createMuiTheme({
+    typography: {
+        button: {
+            fontSize: '1rem',
+            textTransform: 'none',
+            fontFamily: [
+                'Comfortaa',
+                'cursive',
+            ].join(','),
+        },
+    },});
+
 
 export default class Login extends Component {
     constructor() {
@@ -32,57 +51,7 @@ export default class Login extends Component {
           [event.target.name]: event.target.value
         });
       }
-    
-      // handleSubmit(event) {
-      //   const { username, password } = this.state;
-      // }
-    
-    // This is the old version
-    // auth(){
-    //   fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
-    //     method: "POST",
-    //     headers: { 
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ username: this.state.username, password: this.state.password })
-    //   }).then((response) => {
-    //     response.json().then((result) => {
-    //         this.setState({clicked: true});
-    //         console.warn("result", result);
-    //         localStorage.setItem('login', JSON.stringify({
-    //         login: true,
-    //         token: result.token,
-    //         email: this.state.email
-    //       }));
-    //       if(response.status == 200){
-    //         this.setState({login: true, email: result.user.participant_info.email});
-    //         this.addPlayer();
-    //         console.log("state", this.state);
-    //       }
-    //     })
-    //   })
-    // }
 
-    // addPlayer(){
-    //     fetch("http://localhost/api/addPlayer", {
-    //           method: "POST",
-    //           headers: { 
-    //             'Content-Type': 'application/json'
-    //           },
-    //           body: JSON.stringify({ name: this.state.username, email: this.state.email })
-    //         }).then((response) => {
-    //             console.log("This is body", JSON.stringify({ name: this.state.username, email: this.state.email }));
-    //             response.json().then((result) => {
-    //                 if(response.status == 200){
-    //                     console.log("successful", response)
-    //                 }
-                    
-    //             })
-    //         })  
-    // }
-
-
-    // This is async await version
     async auth(){
         const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
                 method: "POST",
@@ -115,17 +84,6 @@ export default class Login extends Component {
                 this.setState({loginErrors:true});
                 console.error('There was an error!', error);
             });
-
-        
-
-
-        // const json = await response.json();
-        // await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-        // if (response.ok){
-        //     this.setState({login: true, email: json.user.participant_info.email});
-        //     this.addPlayer();
-        //     console.log("state", this.state);
-        // }
       }
 
     async addPlayer(){
@@ -155,60 +113,8 @@ export default class Login extends Component {
             this.setState({loginErrors:true});
             console.error('There was an error!', error);
         });
-
-
-        // const json = await response.json();
-        // await new Promise((resolve, reject) => setTimeout(resolve, 5000));
-        // if (response.ok){
-        //     console.log("successful", json);
-        //     console.log("state", this.state);
-        // }
         
     }
-
-    // // This is the promise version
-    // async auth() {
-    //     // read our JSON
-    //     let response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
-    //         method: "POST",
-    //         headers: { 
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ username: this.state.username, password: this.state.password })
-    //         })
-    //     let result = await response.json();
-    //     // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
-    //     console.log("successful result", result);
-    //     // read addPlayer
-    //     let addPlayerResponse = await fetch("http://localhost/api/addPlayer", {
-    //         method: "POST",
-    //         headers: { 
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ name: result.user.username, email: result.user.participant_info.email })
-    //         })
-
-
-    //     let addPlayerresult = await addPlayerResponse.json();
-
-    //     // let addPlayer = await response.json();
-    //     if (addPlayerresult.status == "success"){
-    //         console.log("successful addPlayer");
-    //     }
-        
-
-    //     // show the avatar
-    //     // this.setState({login: true, email: result.user.participant_info.email, clicked: true});
-      
-    //     // wait 3 seconds
-    //     await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-    //     this.setState({login: true, email: result.user.participant_info.email, clicked: true});
-      
-    //   }
-
-
-
-    
 
     displayError(props){
         const isLogin = props.isLogin
@@ -221,10 +127,10 @@ export default class Login extends Component {
             );
         }
     }
-        
 
     render(){
         return(
+            <ThemeProvider theme={theme}>
             <div style={{ height: 'auto !important',  width: 'auto !important'}}>
                 <Grid container style={{minHeight: "100vh"}}>
                     <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
@@ -253,7 +159,7 @@ export default class Login extends Component {
                                 }}
                                 >
                                     <Grid container justify="flex-start">
-                                        <h2>Log in</h2>
+                                        <h2 className="login">Log in</h2>
                                     </Grid>
 
                                     <TextField 
@@ -295,11 +201,12 @@ export default class Login extends Component {
                                     />
                                     <div style={{height: 20}} />
 
-                                    <Button color="primary" variant="contained" onClick={()=> {this.auth()}}>Log in</Button>
+                                    <ThemeProvider theme={button}>
+                                    <Button className="button" variant="contained" onClick={()=> {this.auth()}}>Log in</Button>
+                                        </ThemeProvider>
 
                                     {this.state.login && <Redirect from='/login' to='/vibrant-minds-together/home'></Redirect>}
-                                    
-                                    
+
                                     <div style={{height: 20}} />
 
                                     { this.state.loginErrors &&
@@ -320,6 +227,7 @@ export default class Login extends Component {
                     </Grid>
                 </Grid>
             </div>
+                </ThemeProvider>
 
         );
     }

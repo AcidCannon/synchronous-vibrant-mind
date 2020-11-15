@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,40 +10,35 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
 
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Comfortaa',
+      'cursive',
+    ].join(','),
+  },});
+
 const columns = [
   {
     id: 'content',
     label: 'Content',
     minWidth: 170,
     align: 'left',
-    // format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'time',
     label: 'Time',
     minWidth: 170,
     align: 'left',
-    // format: (value) => value.toLocaleString('en-US'),
   },
 
 ];
 
 function createData(content, time) {
-  // const density = game_start_time / size;
   return {content, time};
 }
 
 const rows = [];
-
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
 
 export default function StickyHeadTable() {
   const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
@@ -53,7 +48,6 @@ export default function StickyHeadTable() {
   const x_email = unescape(email[2]);
   const y_email = x_email.slice(10,-2);
 
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, updateRows] = React.useState([]);
@@ -98,8 +92,9 @@ export default function StickyHeadTable() {
   }, []);
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <ThemeProvider theme={theme}>
+        <Paper>
+          <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -142,5 +137,6 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+      </ThemeProvider>
   );
 }
