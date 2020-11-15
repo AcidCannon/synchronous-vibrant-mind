@@ -60,7 +60,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ username: inviter, invitation_id: id, content: player_content})
     }).then(async response => {
       const data = await response.json();
-      console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
+      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -82,7 +82,7 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ invitation_id: id, status: clicked_status})
     }).then(async response => {
       const data = await response.json();
-      console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
+      // console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -92,7 +92,7 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
 
       // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       sentNotification(inviter, invitee, clicked_status, id);
-      console.log('successful', response.status);
+      // console.log('successful', response.status);
       refreshPage() 
 
   }).catch(error => {
@@ -156,7 +156,7 @@ export default function StickyHeadTable() {
         const newRows = [];
         if( (response.status == 200) && (result.invitations)){
           //for loop method
-          console.log("this is the response of bdong", result.invitations);
+          // console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){ 
             if (row.state == "PENDING"){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
@@ -172,11 +172,11 @@ export default function StickyHeadTable() {
                   )
                   );
 
-                console.log("this is the newRows", newRows);
+                // console.log("this is the newRows", newRows);
 
             }
           }
-          console.log("this is the newRows", newRows);
+          // console.log("this is the newRows", newRows);
         }
         updateRows(newRows);
       }
@@ -202,7 +202,7 @@ export default function StickyHeadTable() {
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              console.log("row id:", row);
+              // console.log("row id:", row);
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {

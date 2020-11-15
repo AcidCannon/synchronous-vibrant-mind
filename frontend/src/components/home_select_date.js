@@ -11,8 +11,6 @@ class InlineTimePickerDemo extends Component {
     // state = {
     //     selectedDate:new Date()
     // }
-
-    
     
     render(){
         return (
@@ -30,7 +28,6 @@ class InlineTimePickerDemo extends Component {
                     id="date-picker-inline"
                     label="Date"
                     value={this.props.selectedDate}
-                    placeholder="10/10/2018"
                     onChange={date => this.props.dateCallback(date)}
                     minDate={new Date()}
                     format="yyyy-MM-dd"
