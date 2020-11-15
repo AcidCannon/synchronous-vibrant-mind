@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Webrtc.css";
 import Peer from "peerjs";
-
+import Jitsi from "./Jitsi.js"
 
 export default class Webrtc extends Component {
     constructor(props) {
@@ -17,6 +17,7 @@ export default class Webrtc extends Component {
         this.conn = null;
         this.localStream = null;
         /////////////////////
+        // canvas related, placeholder
         this.context = null;
         this.started = false;
         this.buffer = [];
@@ -64,6 +65,7 @@ export default class Webrtc extends Component {
             }.bind(this));
         }
         ////////////////////
+        // canvas related, placeholder
         var demoCanvas = document.getElementById("game");
         var context = demoCanvas.getContext("2d");
 
@@ -110,7 +112,6 @@ export default class Webrtc extends Component {
             }.bind(this));
             document.getElementById("post").style.display="block";
             document.getElementById("pre").style.display="none";
-            //this.startVideo();
             this.peer.on("call", function(incoming) {
                 incoming.answer(this.localStream);
                 incoming.on("stream", function(stream) {
@@ -134,14 +135,13 @@ export default class Webrtc extends Component {
                 <div id="pre">
                     <button onClick={this.ready.bind(this)}>I am ready</button>
                 </div>
-
                 <div id="post">
                     <div id="chat">
                         Your message: <input id="msg" type="text"></input>
                         <button onClick={this.send.bind(this)}>send</button><br></br>
                     </div>
                     <div id="left">
-                        <video id="video" autoPlay controls>Your browser does not support video.</video>
+                        <Jitsi id="video" roomName={this.getQueryVariable("roomName")}>Your browser does not Jitsi.</Jitsi>
                         <video id="capture" autoPlay controls>Your browser does not support video.</video>
                     </div>
                     <div id="right">
@@ -149,7 +149,6 @@ export default class Webrtc extends Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }
