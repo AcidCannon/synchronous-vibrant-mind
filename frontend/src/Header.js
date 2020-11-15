@@ -35,7 +35,9 @@ export default class Header extends Component{
                         <p className={"header_text1"}>Logged in as</p>
                         <p className={"header_text2"}> {this.y}</p>
                         <p className={"header_text3"}>. </p>
+                        <p>
                         <Link className="header_link" onClick={()=> {this.logout()}} href="/"> Logout</Link>
+                        </p>
                         <p className={"header_text3"}>. </p>
                     </Grid>
                 </header>
