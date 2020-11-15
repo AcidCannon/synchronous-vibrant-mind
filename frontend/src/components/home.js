@@ -423,7 +423,6 @@ class Home extends Component {
                       player_name = data.info.name;
                   }
 
-                this.setState({player_name: player_name});
                 return { exist : player_exist, name : player_name };
                   
               })
@@ -458,8 +457,9 @@ class Home extends Component {
                   this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_start_time);
               }
               else{
-                  //弹窗提醒
+                  
                   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
+                  //弹窗提醒
                   this.setState({popup: true});
               }
           }
