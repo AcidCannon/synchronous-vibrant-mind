@@ -92,47 +92,6 @@ export default class Webrtc extends Component {
         ////////////////////
     }
 
-    // startVideo() {
-    //     // handle browser prefixes
-    //     navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    //
-    //     // if not support webrtc
-    //     if(!navigator.getUserMedia) {
-    //         console.log("Webrtc is not supported!");
-    //         alert("Webrtc is not supported!");
-    //         return;
-    //     }
-    //
-    //     // get access
-    //     navigator.getUserMedia (
-    //         // request audio and video
-    //         {video: true, audio: true},
-    //         // success callback
-    //         function success(localStream) {
-    //             // do something with localStream
-    //             this.localStream = localStream;
-    //             document.getElementById("capture").srcObject = this.localStream;
-    //
-    //             // call the other end
-    //             var outgoing = this.peer.call(this.targetId, this.localStream);
-    //             outgoing.on("stream", function(stream) {
-    //                 console.log("amd yes");
-    //                 document.getElementById("video").srcObject=stream;
-    //             })
-    //
-    //             // handle incoming
-    //             this.peer.on("call", function(incoming) {
-    //                 incoming.answer(this.localStream);
-    //             })
-    //         }.bind(this),
-    //         // failure callback
-    //         function error(error) {
-    //             // handle error
-    //             console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
-    //         }
-    //     );
-    // }
-
     startCapture() {
         this.localStream = document.getElementById("game").captureStream();
         var outgoing = this.peer.call(this.targetId, this.localStream);
@@ -140,8 +99,6 @@ export default class Webrtc extends Component {
             console.log("received remote stream");
             document.getElementById("capture").srcObject = stream;
         })
-
-
     }
 
     ready() {
