@@ -30,6 +30,7 @@ class InlineTimePickerDemo extends Component {
                     value={this.props.selectedDate}
                     onChange={date => this.props.dateCallback(date)}
                     minDate={new Date()}
+                    minDateMessage="Date should not be before minimal date"
                     format="yyyy-MM-dd"
                 />
     
@@ -56,6 +57,8 @@ class InlineTimePickerDemo extends Component {
                     label="Time"
                     value={this.props.selectedDate}
                     onChange={time => this.props.dateCallback(time)}
+                    format="hh:mm a"
+                    invalidDateMessage="Invalid Date Format"
                     // KeyboardButtonProps={{
                     //     'aria-label': 'change time',
                     //   }}

@@ -201,7 +201,7 @@ export default function IntegrationAutosuggest(props) {
                     classes,
                     id: 'react-autosuggest-simple',
                     label: 'Player',
-                    placeholder: 'Search a player (start with a)',
+                    placeholder: 'Search a player by email',
                     value: state.single,
                     onChange: handleChange('single'),
                 }}

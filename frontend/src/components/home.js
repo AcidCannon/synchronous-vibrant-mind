@@ -434,31 +434,30 @@ class Home extends Component {
       
       
       async sendInvitation(my_name, my_email, player_email, game_start_time){
-          
     
           const result = await this.checkPlayerExist(player_email);
           console.log("result", result);
           console.log("result.exist", result["exist"]);
           console.log("result.name", result["name"]);
-          var gameDate = moment.utc(game_start_time).format('YYYY-MM-DD').toString();
-          var gameTime = moment.utc(game_start_time).format('hh:mm:ss').toString();
+          var gameDate = moment(game_start_time).format('YYYY-MM-DD').toString();
+          var gameTime = moment(game_start_time).format('hh:mm:ss').toString();
           const game_date_time = gameDate + " " + gameTime;
           console.log("gameDate", gameDate);
           console.log("gameTime", gameTime);
           console.log("game_date_time", game_date_time);
-          const my_timeConflict = await this.checkTimeConflict(my_name, my_email, game_start_time);
+          const my_timeConflict = await this.checkTimeConflict(my_name, my_email, game_date_time);
           console.log("my_timeConflict", my_timeConflict);
           console.log("!my_timeConflict", !my_timeConflict);
-          const player_timeConflict = await this.checkTimeConflict(result.name, player_email, game_start_time);
+          const player_timeConflict = await this.checkTimeConflict(result.name, player_email, game_date_time);
           console.log("player_timeConflict", player_timeConflict);
           console.log("!player_timeConflict", !player_timeConflict);
           if(result["exist"]){
               if( !my_timeConflict && !player_timeConflict ){
-                  this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_start_time);
+                  this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
               }
               else{
                   
-                  this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
+                  this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
                   //弹窗提醒
                   this.setState({popup: true});
               }
@@ -547,6 +546,7 @@ class Home extends Component {
                                 <h3>Select the start time</h3>
                                 <Divider/>
                                 <InlineTimePickerDemo dateCallback={this.dateCallback} selectedDate={this.state.selectedDate}/>
+                                
                                  
                             </div>
                         </Grid>
