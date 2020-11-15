@@ -181,7 +181,8 @@ export default function StickyHeadTable() {
           //for loop method
           // console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){ 
-            if (row.state == "PENDING"){
+            var now = moment();
+            if (row.state == "PENDING" && (moment.utc(row.start_time).isAfter(now)) ){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
               var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
               // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();

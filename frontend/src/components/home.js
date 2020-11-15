@@ -493,20 +493,21 @@ class Home extends Component {
             //   const form = ".contact_form_class";
               const user_ID = "user_3KTCwCruCd7oJZeFiJ0RZ";
               //给inviter发邮件
-              emailjs.send(serviceID,templateInviterID,{
+              await emailjs.send(serviceID,templateInviterID,{
                 to_email: my_email,
                 invitee_name: player_email,
                 }, user_ID);
               
               //给invitee发邮件
-              emailjs.send(serviceID,templateInviteeID,{
+              await emailjs.send(serviceID,templateInviteeID,{
                 to_email: player_email,
                 Inviter_name: my_name,
                 }, user_ID);
     
-              this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
+            //   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
           }
-          this.refreshPage();
+          setTimeout(this.refreshPage(), 60000);
+          
       
       
           // const response = await fetch("http://localhost/api/addInvitation", {

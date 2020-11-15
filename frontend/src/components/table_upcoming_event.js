@@ -104,18 +104,23 @@ export default function StickyHeadTable() {
         const newRows = [];
         if( (response.status == 200) && (result.upcoming) ){
           //for loop method
-          console.log("this is the response of bdong", result.invitations);
+          console.log("this is the response of bdong", result.upcoming);
           for (var row of result.upcoming){
             var now = moment();
-            if (moment(row.start_time).isAfter(now)){
+            if (moment.utc(row.start_time).isAfter(now)){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD');
               var game_start_time = moment.utc(row.start_time).format('hh:mm a');
               var title = "Vibraint Minds Together" ;
-              var description = row.player + "will play with me at Vibraint Minds Together";
-              var startTime = moment(row.start_time).calendar();
-              var endTime = moment(row.start_time).add(2, 'hours').calendar();
+              var description = row.player + " will play with me at Vibraint Minds Together";
+              var startTime = moment.utc(row.start_time).add(1, 'day').utcOffset(+10, true).format();
+              var endTime = moment.utc(row.start_time).add(1, 'day').add(2, 'hour').utcOffset(+10, true).format();
               var location = "Will be an link to our website later" ;
-              var event = CreateCalendarEvent(title, description, startTime, endTime, location)
+              var event = CreateCalendarEvent(title, description, startTime, endTime, location);
+              // console.log("row.start_time", row.start_time);
+              // console.log("endTime", endTime);
+              // console.log("startTime", startTime);
+              // console.log("endTime", endTime);
+              // console.log("event", event);
               newRows.push(
                 createData(
                   row.player, 
