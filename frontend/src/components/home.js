@@ -34,7 +34,7 @@ const styles = {
 //       var inviter_content = "You have successfully sent your invitation to " + invitee;
 //       var invitee_content = inviter + " send you an invitation";
 //     }else if (clicked_status == "FAILED"){
-//       var inviter_content = invitee + " is bussy";
+//       var inviter_content = invitee + " is busy";
 //     }
 
 //     // Inviter will receive an notification
@@ -303,7 +303,7 @@ class Home extends Component {
           var inviter_content = "You have successfully sent your invitation to " + invitee;
           var invitee_content = inviter + " send you an invitation";
         }else if (clicked_status == "FAILED"){
-          var inviter_content = invitee + " is bussy";
+          var inviter_content = invitee + " is busy";
         }
     
         // Inviter will receive an notification
@@ -594,7 +594,7 @@ class Home extends Component {
                     { this.state.timeConflict &&
                         <Alert severity="warning">
                         <AlertTitle>Time Conflict</AlertTitle>
-                        This is an time conflict alert, this player is bussy at this time — <strong>Please choose another time!</strong>
+                        This player is busy at this time — <strong>Please choose another time!</strong>
                         </Alert>
                     }
 
