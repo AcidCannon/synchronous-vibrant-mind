@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,13 +9,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import moment from 'moment';
-
-
-// import { Blob } from 'react-blob';
-
 import ICalendarLink from "react-icalendar-link";
+
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Comfortaa',
+      'cursive',
+    ].join(','),
+  },});
 
 const columns = [
   { id: 'player', label: 'Player', minWidth: 170 },
@@ -55,35 +59,8 @@ function createData(player, gamedate, game_start_time, download_calendar, join_m
 function CreateCalendarEvent(title, description, startTime, endTime, location) {
   return { title, description, startTime, endTime, location };
 }
-//This is a temporary event
-const event = {
-  title: "My Title",
-  description: "My Description",
-  startTime: "2018-10-07T10:30:00+10:00",
-  endTime: "2018-10-07T12:00:00+10:00",
-  location: "10 Carlotta St, Artarmon NSW 2064, Australia",
-}
 
-
-const rows = [
-  createData('Alpha', '2020-01-23', 8,<ICalendarLink event={event}>Calendar.ics</ICalendarLink>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>),
-  createData('Bdong', '2020-05-26', 8, <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/", "_blank")}>Join</Button>),
-  createData('Zoe', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>),
-  createData('Zuhao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>),
-  createData('Zijian', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>),
-  createData('Zihao', '2020-06-01', 8, <Link href={dudUrl}>Calendar.ics</Link>, <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>),
-
-];
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
-
+const rows = [];
 
 
 export default function StickyHeadTable() {
@@ -94,7 +71,6 @@ export default function StickyHeadTable() {
   const x_email = unescape(email[2]);
   const y_email = x_email.slice(10,-2);
 
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, updateRows] = React.useState([]);
@@ -126,20 +102,25 @@ export default function StickyHeadTable() {
       }
         const result = await response.json();
         const newRows = [];
-        if( (response.status == 200) && (result.upcoming.length > 0) ){
+        if( (response.status == 200) && (result.upcoming) ){
           //for loop method
-          console.log("this is the response of bdong", result.invitations);
+          console.log("this is the response of bdong", result.upcoming);
           for (var row of result.upcoming){
             var now = moment();
-            if (moment(row.start_time).isAfter(now)){
+            if (moment.utc(row.start_time).isAfter(now)){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD');
               var game_start_time = moment.utc(row.start_time).format('hh:mm a');
               var title = "Vibraint Minds Together" ;
-              var description = row.player + "will play with me at Vibraint Minds Together";
-              var startTime = moment(row.start_time).calendar();
-              var endTime = moment(row.start_time).add(2, 'hours').calendar();
+              var description = row.player + " will play with me at Vibraint Minds Together";
+              var startTime = moment.utc(row.start_time).add(1, 'day').utcOffset(+10, true).format();
+              var endTime = moment.utc(row.start_time).add(1, 'day').add(2, 'hour').utcOffset(+10, true).format();
               var location = "Will be an link to our website later" ;
-              var event = CreateCalendarEvent(title, description, startTime, endTime, location)
+              var event = CreateCalendarEvent(title, description, startTime, endTime, location);
+              // console.log("row.start_time", row.start_time);
+              // console.log("endTime", endTime);
+              // console.log("startTime", startTime);
+              // console.log("endTime", endTime);
+              // console.log("event", event);
               newRows.push(
                 createData(
                   row.player, 
@@ -158,8 +139,9 @@ export default function StickyHeadTable() {
   }, []);
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <ThemeProvider theme={theme}>
+        <Paper>
+          <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -202,5 +184,6 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+      </ThemeProvider>
   );
 }

@@ -22,11 +22,12 @@ class Invitation(models.Model):
 class Meeting(models.Model):
     start_time = models.DateTimeField()
     player1 = models.ForeignKey("Player", on_delete=models.CASCADE, related_name = "player1")
-    player1_login_time = models.DateTimeField()
-    player1_logout_time = models.DateTimeField()
+    player1_login_time = models.DateTimeField(default=None, blank=True, null=True)
+    player1_logout_time = models.DateTimeField(default=None, blank=True, null=True)
     player2 = models.ForeignKey("Player", on_delete=models.CASCADE, related_name = "player2")
-    player2_login_time = models.DateTimeField()
-    player2_logout_time = models.DateTimeField()
+    player2_login_time = models.DateTimeField(default=None, blank=True, null=True)
+    player2_logout_time = models.DateTimeField(default=None, blank=True, null=True)
+    invitation_id = models.IntegerField()
 
 class Notification(models.Model):
     Notification_State = (

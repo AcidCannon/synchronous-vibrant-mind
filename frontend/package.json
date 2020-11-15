@@ -15,9 +15,12 @@
     "@testing-library/user-event": "^7.2.1",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.21.0",
+    "blob": "^0.1.0",
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
-    "ics": "^2.26.0",
+    "emailjs-com": "^2.6.4",
+    "file-saver": "^2.0.2",
+    "ics": "^2.26.1",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
@@ -68,6 +71,7 @@
   },
   "devDependencies": {
     "@material-ui/pickers": "^3.2.10",
+    "@material-ui/styles": "^4.10.0",
     "autosuggest-highlight": "^3.1.1",
     "prop-types": "^15.7.2"
   }

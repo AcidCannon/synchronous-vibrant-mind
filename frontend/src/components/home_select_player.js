@@ -17,7 +17,12 @@ const suggestions = [
     { label: 'alpha@hotmail.com' },
     { label: 'bdong@hotmail.com' },
     { label: 'zoe@hotmail.com' },
+    { label: 'lily@ualberta.ca' },
 ];
+
+function createData(email) {
+    return { label: email };
+  }
 
 function renderInputComponent(inputProps) {
     const { classes, inputRef = () => {}, ref, ...other } = inputProps;
@@ -66,7 +71,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
     );
 }
 
-function getSuggestions(value) {
+function getSuggestions(value, suggestions) {
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
@@ -117,7 +122,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function IntegrationAutosuggest() {
+export default function IntegrationAutosuggest(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [state, setState] = React.useState({
@@ -126,9 +131,45 @@ export default function IntegrationAutosuggest() {
     });
 
     const [stateSuggestions, setSuggestions] = React.useState([]);
+    
+    const [suggestions, updateSuggestions] = React.useState([]);
+
+    React.useEffect(function effectFunction() {
+        async function fetchSuggestions() {
+          const response = await fetch("http://localhost/api/getAllPlayer", {
+            method: "GET",
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify({ inviter_email: y_email  })
+          });
+
+
+          const result = await response.json();
+          // check for error response
+          if (!response.ok) {
+            // get error message from body or default to response status
+            const error = (result && result.message) || response.status;
+            return Promise.reject(error);
+          }
+            
+            const newSuggestions = [];
+            if( (response.status == 200) && (result) ){
+              //for loop method
+              console.log("this is the response of bdong", result);
+              for (var row of result){
+                // var username = row.username;
+                var player_email = row.email
+                newSuggestions.push(createData(player_email));
+              }
+            }
+            updateSuggestions(newSuggestions);
+          }
+          fetchSuggestions();
+      }, []);
 
     const handleSuggestionsFetchRequested = ({ value }) => {
-        setSuggestions(getSuggestions(value));
+        setSuggestions(getSuggestions(value, suggestions));
     };
 
     const handleSuggestionsClearRequested = () => {
@@ -136,6 +177,7 @@ export default function IntegrationAutosuggest() {
     };
 
     const handleChange = name => (event, { newValue }) => {
+        props.newPlayerCallback(newValue)
         setState({
             ...state,
             [name]: newValue,
@@ -159,7 +201,7 @@ export default function IntegrationAutosuggest() {
                     classes,
                     id: 'react-autosuggest-simple',
                     label: 'Player',
-                    placeholder: 'Search a player (start with a)',
+                    placeholder: 'Search a player by email',
                     value: state.single,
                     onChange: handleChange('single'),
                 }}

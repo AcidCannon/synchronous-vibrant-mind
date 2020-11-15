@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './Page.css';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-
+import {Grid} from "@material-ui/core";
 import Home from './components/home';
 import InvitationSent from './components/invitation_sent.js';
 import InvitationReceived from './components/invitation_received';
@@ -11,8 +10,8 @@ import UpcomingEvent from './components/upcoming_event';
 import History from './components/history';
 import Notification from './components/notification';
 import Header from "./Header";
+import './css/Page.css';
 
-import {Grid} from "@material-ui/core";
 
 import Webrtc from "./Webrtc";
 
