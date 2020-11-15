@@ -264,7 +264,9 @@ class Home extends Component {
         this.state = {
             selectedDate:new Date(),
             single:'',
-            popup: false
+            timeConflict: false,
+            invitation_sent: false,
+            player_exist: true
         }
         this.username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
         this.x_username = unescape(this.username[2]);
@@ -282,6 +284,10 @@ class Home extends Component {
     newPlayerCallback = (name) =>{
         this.setState({single:name})
     }
+
+    refreshPage() {
+        window.location.reload(false);
+      }
 
     async sentNotification(inviter, invitee, clicked_status, id){
         if (clicked_status == "PENDING"){
@@ -434,6 +440,11 @@ class Home extends Component {
       
       
       async sendInvitation(my_name, my_email, player_email, game_start_time){
+
+        console.log("this.state.selectedDate", this.state.selectedDate);
+        console.log("game_start_time", game_start_time);
+        var new_game_start_time = moment(game_start_time).format('YYYY-MM-DD hh:mm:ss')
+        console.log("new_game_start_time", new_game_start_time);
     
           const result = await this.checkPlayerExist(player_email);
           console.log("result", result);
@@ -452,17 +463,20 @@ class Home extends Component {
           console.log("player_timeConflict", player_timeConflict);
           console.log("!player_timeConflict", !player_timeConflict);
           if(result["exist"]){
+              this.setState({player_exist: true});
               if( !my_timeConflict && !player_timeConflict ){
                   this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
+                  this.setState({invitation_sent: true});
               }
               else{
                   
                   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
                   //弹窗提醒
-                  this.setState({popup: true});
+                  this.setState({timeConflict: true});
               }
           }
           else{
+              this.setState({player_exist: false});
               //Send Error Emails
               const serviceID = 'gmail';
               const templateInviteeID = 'invitee_error_template';
@@ -471,18 +485,19 @@ class Home extends Component {
               const user_ID = "user_3KTCwCruCd7oJZeFiJ0RZ";
               //给inviter发邮件
               emailjs.send(serviceID,templateInviterID,{
-                to_email: "player_email",
-                invitee_name: "player_email",
+                to_email: my_email,
+                invitee_name: player_email,
                 }, user_ID);
               
               //给invitee发邮件
               emailjs.send(serviceID,templateInviteeID,{
-                to_email: "player_email",
-                Inviter_name: "my_name",
+                to_email: player_email,
+                Inviter_name: my_name,
                 }, user_ID);
     
-              this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
+              this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
           }
+          this.refreshPage();
       
       
           // const response = await fetch("http://localhost/api/addInvitation", {
@@ -555,12 +570,25 @@ class Home extends Component {
                         <Button variant="contained" color="primary" onClick={()=> {this.sendInvitation(this.my_name, this.my_email, this.state.single, this.state.selectedDate)}}>Send</Button>
                     </Grid>
 
+                    
 
-                    { this.state.popup &&
+                    {/* { (!this.state.player_exist) && 
                         <Alert severity="error">
+                        <AlertTitle>No such a player</AlertTitle>
+                        We do not have such a player — <strong>Please choose another player!</strong>
+                        </Alert>
+                    } */}
+
+                    { this.state.timeConflict &&
+                        <Alert severity="warning">
                         <AlertTitle>Time Conflict</AlertTitle>
                         This is an time conflict alert, this player is bussy at this time — <strong>Please choose another time!</strong>
                         </Alert>
+                    }
+
+                    {
+                        this.state.invitation_sent &&
+                        <Alert severity="success">Your invitation has been sent successfully.</Alert>
                     }
                     
                     </Paper>
