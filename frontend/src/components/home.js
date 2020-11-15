@@ -1,17 +1,15 @@
 import React, { Component }  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
-import {Divider} from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Divider } from "@material-ui/core";
 import IntegrationAutosuggest from './home_select_player';
 import InlineTimePickerDemo from "./home_select_date";
 import Button from "@material-ui/core/Button";
-
-import { AccountCircle, LockRounded } from "@material-ui/icons";
-import { Grid, InputAdornment, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import moment from 'moment';
 import * as emailjs from 'emailjs-com';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import '../css/home.css';
 
 const styles = {
     paper:{
@@ -255,6 +253,17 @@ const styles = {
 //       //             console.error('There was an error!', error);
 //       //     });
 // }
+const button = createMuiTheme({
+    typography: {
+        button: {
+            fontSize: '1rem',
+            textTransform: 'none',
+            fontFamily: [
+                'Comfortaa',
+                'cursive',
+            ].join(','),
+        },
+    },});
   
 
 class Home extends Component {
@@ -567,8 +576,10 @@ class Home extends Component {
                         </Grid>
                     
                     <Grid container justify="flex-end">
-                        <Button variant="contained" color="primary" onClick={()=> {this.sendInvitation(this.my_name, this.my_email, this.state.single, this.state.selectedDate)}}>Send</Button>
-                    </Grid>
+                        <ThemeProvider theme={button}>
+                        <Button className="button" variant="contained" onClick={()=> {this.sendInvitation(this.my_name, this.my_email, this.state.single, this.state.selectedDate)}}>Send</Button>
+                            </ThemeProvider>
+                        </Grid>
 
                     
 
