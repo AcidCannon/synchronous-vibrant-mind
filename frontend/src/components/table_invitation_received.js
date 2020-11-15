@@ -46,6 +46,28 @@ function refreshPage() {
   window.location.reload(false);
 }
 
+async function addMeeting(id){
+  const response = await fetch("http://localhost/api/addMeeting", {
+    method: "POST",
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ invitation_id: id})
+    }).then(async response => {
+      const data = await response.json();
+      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
+      // check for error response
+      if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+      }
+  }).catch(error => {
+      console.error('There was an error!', error);
+  });
+ 
+}
+
 async function sentNotification(inviter, invitee, clicked_status, id){
   if (clicked_status == "ACCEPTED"){
     var player_content = invitee + " accepted your invitation";
@@ -92,6 +114,10 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
 
       // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       sentNotification(inviter, invitee, clicked_status, id);
+      if (clicked_status == "ACCEPTED"){
+        addMeeting(id);
+      }
+      
       // console.log('successful', response.status);
       refreshPage() 
 
