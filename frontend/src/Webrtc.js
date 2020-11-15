@@ -13,6 +13,7 @@ export default class Webrtc extends Component {
         this.port = 9000;
         this.path = "/";
         this.debug = 3;
+        this.secure = true;
         this.peer = null;
         this.conn = null;
         this.localStream = null;
@@ -49,7 +50,8 @@ export default class Webrtc extends Component {
                 host: this.host,
                 port: this.port,
                 path: this.path,
-                debug: this.debug
+                debug: this.debug,
+                secure: this.secure
             });
 
             // callback when successfully registered
