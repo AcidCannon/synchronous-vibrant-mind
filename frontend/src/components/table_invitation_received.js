@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,14 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Comfortaa',
+      'cursive',
+    ].join(','),
+  },});
 
 const columns = [
   { id: 'inviter', label: 'Inviter', minWidth: 170},
@@ -101,16 +109,6 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
  
 }
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
-
-
 
 export default function StickyHeadTable() {
   const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
@@ -120,7 +118,6 @@ export default function StickyHeadTable() {
   const x_email = unescape(email[2]);
   const y_email = x_email.slice(10,-2);
 
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, updateRows] = React.useState([]);
@@ -184,8 +181,9 @@ export default function StickyHeadTable() {
   }, []);
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <ThemeProvider theme={theme}>
+        <Paper>
+          <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -255,5 +253,6 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+      </ThemeProvider>
   );
 }

@@ -5,9 +5,14 @@
 }
 
 .header_logo {
-  margin-left: 70px;
-  height: 12vmin;
-  pointer-events: none;
+  vertical-align: middle;
+  border-style: none;
+  border: 0;
+  width: 205px;
+  height: 91px;
+  /*margin-left: 70px;*/
+  /*height: 12vmin;*/
+  /*pointer-events: none;*/
 }
 
 .header_text1{
@@ -23,8 +28,9 @@
   color: black;
 }
 
-.header_button{
-  color: black;
+.header_link{
+  font-family: 'Comfortaa', cursive;
+  color: #3291ff !important;
 }
 
 
@@ -50,9 +56,5 @@
   padding: .5rem 1rem;
   /*font-size: calc(5px + 2vmin);*/
   color: white;
-}
-
-.Top-link {
-  color: #61dafb;
 }
 
