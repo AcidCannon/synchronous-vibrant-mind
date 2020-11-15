@@ -136,14 +136,15 @@ export default function StickyHeadTable() {
             var my_logout_time = moment.utc(row.my_logout).format('hh:mm a');
             var start_time = moment.utc(row.start_time);
             if ( moment.utc(row.p_logout).isAfter(row.my_logout)){
-              var time_seconds = Math.abs(start_time.diff(moment.utc(row.p_logout), "seconds", true));
-              var duration = moment.duration(time_seconds, "seconds");
-              var timePiroid = moment.utc(duration.asMilliseconds()).format("hh:mm")
+              var time_seconds = moment.utc(row.p_logout).diff(moment.utc(start_time));
+              var duration = moment.duration(time_seconds);
+              var timePiroid = Math.floor(duration.asHours()) + moment.utc(time_seconds).format(":mm:ss");
             }else{
-              var time_seconds = Math.abs(start_time.diff(moment.utc(row.my_logout), "seconds", true));
-              var duration = moment.duration(time_seconds, "seconds");
-              var timePiroid = moment.utc(duration.asMilliseconds()).format("h:mm")
+              var time_seconds = moment.utc(row.my_logout).diff(moment.utc(start_time));
+              var duration = moment.duration(time_seconds);
+              var timePiroid = Math.floor(duration.asHours()) + moment.utc(time_seconds).format(":mm:ss");
             }
+            
             newRows.push(createData(row.player, date.toString(), time.toString(), p_login_time.toString(), p_logout_time.toString(), my_login_time.toString(), my_logout_time.toString(),timePiroid.toString()));
           }
         }

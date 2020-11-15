@@ -481,7 +481,7 @@ class Home extends Component {
                 Inviter_name: "my_name",
                 }, user_ID);
     
-              this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
+              this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
           }
       
       
