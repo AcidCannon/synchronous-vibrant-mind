@@ -1,0 +1,15 @@
+.header{
+  font-family: 'Comfortaa', cursive;
+  background-color:#000;
+  height: 50px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.header a{
+  color: #fff;
+  margin-right: 10px;
+  /*a链接在 div内垂直居中写法*/
+  height: 50px;
+  line-height: 50px;
+
+}

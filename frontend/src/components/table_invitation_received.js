@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,14 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Comfortaa',
+      'cursive',
+    ].join(','),
+  },});
 
 const columns = [
   { id: 'inviter', label: 'Inviter', minWidth: 170},
@@ -46,6 +54,28 @@ function refreshPage() {
   window.location.reload(false);
 }
 
+async function addMeeting(id){
+  const response = await fetch("http://localhost/api/addMeeting", {
+    method: "POST",
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ invitation_id: id})
+    }).then(async response => {
+      const data = await response.json();
+      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
+      // check for error response
+      if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+      }
+  }).catch(error => {
+      console.error('There was an error!', error);
+  });
+ 
+}
+
 async function sentNotification(inviter, invitee, clicked_status, id){
   if (clicked_status == "ACCEPTED"){
     var player_content = invitee + " accepted your invitation";
@@ -60,7 +90,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ username: inviter, invitation_id: id, content: player_content})
     }).then(async response => {
       const data = await response.json();
-      console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
+      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -82,7 +112,7 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ invitation_id: id, status: clicked_status})
     }).then(async response => {
       const data = await response.json();
-      console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
+      // console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -92,7 +122,11 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
 
       // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       sentNotification(inviter, invitee, clicked_status, id);
-      console.log('successful', response.status);
+      if (clicked_status == "ACCEPTED"){
+        addMeeting(id);
+      }
+      
+      // console.log('successful', response.status);
       refreshPage() 
 
   }).catch(error => {
@@ -100,16 +134,6 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
   });
  
 }
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
-
 
 
 export default function StickyHeadTable() {
@@ -120,7 +144,6 @@ export default function StickyHeadTable() {
   const x_email = unescape(email[2]);
   const y_email = x_email.slice(10,-2);
 
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, updateRows] = React.useState([]);
@@ -154,11 +177,12 @@ export default function StickyHeadTable() {
       }
         const result = await response.json();
         const newRows = [];
-        if( (response.status == 200) && (result.invitations.length >0)){
+        if( (response.status == 200) && (result.invitations)){
           //for loop method
-          console.log("this is the response of bdong", result.invitations);
+          // console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){ 
-            if (row.state == "PENDING"){
+            var now = moment();
+            if (row.state == "PENDING" && (moment.utc(row.start_time).isAfter(now)) ){
               var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
               var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
               // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
@@ -172,11 +196,11 @@ export default function StickyHeadTable() {
                   )
                   );
 
-                console.log("this is the newRows", newRows);
+                // console.log("this is the newRows", newRows);
 
             }
           }
-          console.log("this is the newRows", newRows);
+          // console.log("this is the newRows", newRows);
         }
         updateRows(newRows);
       }
@@ -184,8 +208,9 @@ export default function StickyHeadTable() {
   }, []);
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <ThemeProvider theme={theme}>
+        <Paper>
+          <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -202,7 +227,7 @@ export default function StickyHeadTable() {
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              console.log("row id:", row);
+              // console.log("row id:", row);
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
@@ -255,5 +280,6 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+      </ThemeProvider>
   );
 }

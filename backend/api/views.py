@@ -65,6 +65,59 @@ def addInvitation(request):
         return JsonResponse(json, safe=False)
 
 @api_view(["POST"])
+def addMeeting(request):
+    try:
+        id = request.data['invitation_id']
+        meeting = Meeting.objects.filter(invitation_id = id)
+        if(not meeting):
+            invitation = Invitation.objects.get(id = id)
+            player1 = invitation.inviter
+            player2 = invitation.invitee
+            start_time = invitation.start_time
+            meeting = Meeting(player1=player1, player2 = player2, start_time = start_time, invitation_id = id)
+            meeting.save()
+    except Exception as e:
+        json = {
+            'status' : 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        json = {
+            'status' : 'success'
+        }
+        return JsonResponse(json, safe=False)
+
+@api_view(["POST"])
+def addMeetingTime(request):
+    try:
+        id = request.data['invitation_id']
+        name = request.data['name']
+        login_time = request.data['login_time']
+        logout_time = request.data['logout_time']
+        meeting = Meeting.objects.get(invitation_id = id)
+        if(meeting.player1.name == name):
+            meeting.player1_login_time = login_time
+            meeting.player1_logout_time = logout_time
+            meeting.save()
+        if(meeting.player2.name == name):
+            meeting.player2_login_time = login_time
+            meeting.player2_logout_time = logout_time
+            meeting.save()
+    except Exception as e:
+        json = {
+            'status' : 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        json = {
+            'status' : 'success'
+        }
+        return JsonResponse(json, safe=False)
+
+
+@api_view(["POST"])
 def getInvitationSent(request):
     try:
         inviter_email = request.data['inviter_email']
@@ -331,3 +384,28 @@ def isTimeConflict(request):
             return JsonResponse(json, safe=False)
         else:
             return JsonResponse({'status':'success', 'conflict' : True}, safe=False)
+
+@api_view(["GET"])
+def getAllPlayer(request):
+        players = Player.objects.filter(~Q(name = "XXX"))
+        serializer = PlayerSerializer(players, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+@api_view(["POST"])
+def checkPlayerExist(request):
+    try:
+        email = request.data["email"]
+        query = Q(email = email)
+        query.add(~Q(name = "XXX"), Q.AND)
+        players = Player.objects.filter(query)
+        if(not players):
+            return JsonResponse({'status':'success', 'exist' : False}, safe=False)
+    except Exception as e:
+        json = {
+            'status': 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        serializer = PlayerSerializer(players[0])
+        return JsonResponse({'status':'success', 'exist' : True, 'info': serializer.data}, safe=False)
