@@ -506,7 +506,7 @@ class Home extends Component {
     
             //   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
           }
-          setTimeout(this.refreshPage(), 60000);
+        //   setTimeout(this.refreshPage(), 60000);
           
       
       

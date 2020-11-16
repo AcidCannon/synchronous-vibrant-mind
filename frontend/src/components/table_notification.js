@@ -82,7 +82,7 @@ export default function StickyHeadTable() {
           //for loop method
           console.log("this is the response of bdong", result.notifications);
           for (var row of result.notifications){
-            var sent_time = moment.utc(row.time).format('YYYY-MM-DD, hh:mm a').toString();
+            var sent_time = moment(row.time).utcOffset(12).format('YYYY-MM-DD, hh:mm a').toString();
             newRows.push(createData(row.content, sent_time));
           }
         }
