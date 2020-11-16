@@ -14,180 +14,111 @@ class MyTest(unittest.TestCase):
 
     #test addPlayer
     def testAddPlayer(self):
-        requests = self.client
-        url1 = '/addPlayer'
-        js1 = {"name": "eee", "email" : "eee@ualberta.ca"}
-        js2 = {"name": "fff", "email" : "fff@ualberta.ca"}
-        js3 = {"nam": "ddd", "email" : "ddd@ualberta.ca"}
-        js4 = {"name": "dd"}
-        js5 = {"email" : "ddd@ualberta.ca"}
-        r1 = requests.post(url1, js1)
-        r2 = requests.post(url1, js2)
-        r3 = requests.post(url1, js3)
-        r4 = requests.post(url1, js4)
-        r5 = requests.post(url1, js5)
+        request = self.client
+        url = '/addPlayer'
+        r1 = request.post(url, {"name": "test1", "email" : "test1@ualberta.ca"})
+        r2 = request.post(url, {"name": "test2", "email" : "test2@ualberta.ca"})
         self.assertEqual(r1.status_code, 200)
-        self.assertEqual(r1.json()['status'], "success")
-        self.assertEqual(r2.json()['status'], "success")
-        self.assertEqual(r3.json()['status'], "fail")
-        self.assertEqual(r4.json()['status'], "fail")
-        self.assertEqual(r5.json()['status'], "fail")
+        self.assertEqual(r2.status_code, 200)
 
-    #test sendInvitation
-    def testSendInvitation(self):
-        requests = self.client
-        t1 = datetime.datetime(2020,10,17,8,0,0,0)
-        t2 = datetime.datetime(2020,10,17,8,20,0,0)
-        t3 = datetime.datetime(2020,10,17,9,10,0,0)
-        t4 = datetime.datetime(2020,10,17,9,20,0,0)
-        t5 = datetime.datetime(2020,10,18,8,10,0,0)
-        t6 = datetime.datetime(2020,10,18,8,11,0,0)
-        t7 = datetime.datetime(2020,10,18,9,0,0,0)
-        t8 = datetime.datetime(2020,10,18,9,10,0,0)
-        t9 = datetime.datetime(2020,11,18,9,10,0,0)
-        t10 = datetime.datetime(2020,12,18,9,10,0,0)
-        t11 = datetime.datetime(2020,12,18,9,20,0,0)
-        url2 = '/sendInvitation'
-        js6 = {"inviter_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js7 = {"invite_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js8 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca", "start_time": t5}
-        js9 = {"invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js10 = {"inviter_email" : "eee@ualberta.ca", "start_time": t1}
-        js11 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca"}
-        r6 = requests.post(url2, js6)
-        r7 = requests.post(url2, js7)
-        r8 = requests.post(url2, js8)
-        r9 = requests.post(url2, js9)
-        r10 = requests.post(url2, js10)
-        r11 = requests.post(url2, js11)
-        self.assertEqual(r6.status_code, 200)
-        self.assertEqual(r6.json()['status'], "success")
-        self.assertEqual(r7.json()['status'],"fail")
-        self.assertEqual(r8.json()['status'],"success")
-        self.assertEqual(r9.json()['status'],"fail")
-        self.assertEqual(r10.json()['status'],"fail")
-        self.assertEqual(r11.json()['status'],"fail")
+    #test addInvitation
+    def testAddInvitation(self):
+        request = self.client
+        url = '/addInvitation'
+        r1 = request.post(url, {"inviter_email" : "test1@ualberta.ca", "invitee_email" : "test2@ualberta.ca", "start_time": "2020-11-1 12:00:00", "status":"PENDING"})
+        r2 = request.post(url, {"inviter_email" : "test1@ualberta.ca", "invitee_email" : "test2@ualberta.ca", "start_time": "2020-11-1 12:00:00", "status":"FAILED"})
+        self.assertEqual(r1.status_code, 200)
+        self.assertEqual(r2.status_code, 200)
 
-
-    #test getInvitationReceived
-    def testGetInvitationReceived(self):
-        requests = self.client
-        requests = self.client
-        url1 = '/addPlayer'
-        js1 = {"name": "eee", "email" : "eee@ualberta.ca"}
-        js2 = {"name": "fff", "email" : "fff@ualberta.ca"}
-        js3 = {"nam": "ddd", "email" : "ddd@ualberta.ca"}
-        js4 = {"name": "dd"}
-        js5 = {"email" : "ddd@ualberta.ca"}
-        r1 = requests.post(url1, js1)
-        r2 = requests.post(url1, js2)
-        r3 = requests.post(url1, js3)
-        r4 = requests.post(url1, js4)
-        r5 = requests.post(url1, js5)
+    #test changeInvitationStatus
+    def testChangeStatus(self):
+        request = self.client
+        url = '/changeInvitationStatus'
+        r1 = request.post(url, {"invitation_id":1, "status":"ACCEPTED"})
+        self.assertEqual(r1.status_code, 200)
         
-        t1 = datetime.datetime(2020,10,17,8,0,0,0)
-        t2 = datetime.datetime(2020,10,17,8,20,0,0)
-        t3 = datetime.datetime(2020,10,17,9,10,0,0)
-        t4 = datetime.datetime(2020,10,17,9,20,0,0)
-        t5 = datetime.datetime(2020,10,18,8,10,0,0)
-        t6 = datetime.datetime(2020,10,18,8,11,0,0)
-        t7 = datetime.datetime(2020,10,18,9,0,0,0)
-        t8 = datetime.datetime(2020,10,18,9,10,0,0)
-        t9 = datetime.datetime(2020,11,18,9,10,0,0)
-        t10 = datetime.datetime(2020,12,18,9,10,0,0)
-        t11 = datetime.datetime(2020,12,18,9,20,0,0)
-        url2 = '/sendInvitation'
-        js6 = {"inviter_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js7 = {"invite_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js8 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca", "start_time": t5}
-        js9 = {"invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js10 = {"inviter_email" : "eee@ualberta.ca", "start_time": t1}
-        js11 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca"}
-        r6 = requests.post(url2, js6)
-        r7 = requests.post(url2, js7)
-        r8 = requests.post(url2, js8)
-        r9 = requests.post(url2, js9)
-        r10 = requests.post(url2, js10)
-        r11 = requests.post(url2, js11)
 
-        url3 = '/getInvitationReceived'
-        
-        js12 = {"inviter_email" : "eee@ualberta.ca"}
-        js13 = {"inviter_email" : "fff@ualberta.ca"}
-        js14 = {"inviter_email" : "no@ualberta.ca"}
-        js15 = {"invite_email" : "eee@ualberta.ca"}
-        js16 = {"inviter_email" : "a@ualberta.ca"}
-        
-        r12 = requests.post(url3, data = js12)
-        r13 = requests.post(url3, data = js13)
-        r14 = requests.post(url3, data = js14)
-        r15 = requests.post(url3, data = js15)
-        r16 = requests.post(url3, data = js16)
-        self.assertEqual(r12.status_code, 200)
-        self.assertEqual(r12.json()['status'],"fail")
-        self.assertEqual(r13.status_code, 200)
-        self.assertEqual(r14.json()['status'],"fail")
-        self.assertEqual(r14.status_code, 200)
-        self.assertEqual(r15.json()['status'],"fail")
-        self.assertEqual(r16.json()['status'],"fail")
+    #test addMeeting
+    def testAddMeeting(self):
+        request = self.client
+        url = '/addMeeting'
+        r1 = request.post(url, {"invitation_id":1})
+        self.assertEqual(r1.status_code, 200)
+
+    #test addMeetingTime
+    def testAddMeetingTime(self):
+        request = self.client
+        url = '/addMeetingTime'
+        r1 = request.post(url, {"invitation_id":1, "name":"test1", "login_time":"2020-11-1 12:00:00","logout_time":"2020-11-1 12:30:00"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test sendNotification
+    def testSendNotification(self):
+        request = self.client
+        url = '/sendNotification'
+        r1 = request.post(url, {"invitation_id":1, "username":"test1", "content":"test"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test changeNotificationStatus
+    def testChangeNotificationStatus(self):
+        request = self.client
+        url = '/changeNotificationStatus'
+        r1 = request.post(url, {"notification_id":1, "status":"READ"})
+        self.assertEqual(r1.status_code, 200)
 
     #test getInvitationSent
     def testGetInvitationSent(self):
-        requests = self.client
-        url1 = '/addPlayer'
-        js1 = {"name": "eee", "email" : "eee@ualberta.ca"}
-        js2 = {"name": "fff", "email" : "fff@ualberta.ca"}
-        js3 = {"nam": "ddd", "email" : "ddd@ualberta.ca"}
-        js4 = {"name": "dd"}
-        js5 = {"email" : "ddd@ualberta.ca"}
-        r1 = requests.post(url1, js1)
-        r2 = requests.post(url1, js2)
-        r3 = requests.post(url1, js3)
-        r4 = requests.post(url1, js4)
-        r5 = requests.post(url1, js5)
-        
-        t1 = datetime.datetime(2020,10,17,8,0,0,0)
-        t2 = datetime.datetime(2020,10,17,8,20,0,0)
-        t3 = datetime.datetime(2020,10,17,9,10,0,0)
-        t4 = datetime.datetime(2020,10,17,9,20,0,0)
-        t5 = datetime.datetime(2020,10,18,8,10,0,0)
-        t6 = datetime.datetime(2020,10,18,8,11,0,0)
-        t7 = datetime.datetime(2020,10,18,9,0,0,0)
-        t8 = datetime.datetime(2020,10,18,9,10,0,0)
-        t9 = datetime.datetime(2020,11,18,9,10,0,0)
-        t10 = datetime.datetime(2020,12,18,9,10,0,0)
-        t11 = datetime.datetime(2020,12,18,9,20,0,0)
-        url2 = '/sendInvitation'
-        js6 = {"inviter_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js7 = {"invite_email" : "eee@ualberta.ca", "invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js8 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca", "start_time": t5}
-        js9 = {"invitee_email" : "fff@ualberta.ca", "start_time": t1}
-        js10 = {"inviter_email" : "eee@ualberta.ca", "start_time": t1}
-        js11 = {"inviter_email" : "fff@ualberta.ca", "invitee_email" : "eee@ualberta.ca"}
-        r6 = requests.post(url2, js6)
-        r7 = requests.post(url2, js7)
-        r8 = requests.post(url2, js8)
-        r9 = requests.post(url2, js9)
-        r10 = requests.post(url2, js10)
-        r11 = requests.post(url2, js11)
+        request = self.client
+        url = '/getInvitationSent'
+        r1 = request.post(url, {"email":"test1@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
 
-        url3 = '/getInvitationSent'
-        
-        js12 = {"inviter_email" : "eee@ualberta.ca"}
-        js13 = {"inviter_email" : "fff@ualberta.ca"}
-        js14 = {"inviter_email" : "no@ualberta.ca"}
-        js15 = {"invite_email" : "eee@ualberta.ca"}
-        js16 = {"inviter_email" : "a@ualberta.ca"}
-        
-        r12 = requests.post(url3, data = js12)
-        r13 = requests.post(url3, data = js13)
-        r14 = requests.post(url3, data = js14)
-        r15 = requests.post(url3, data = js15)
-        r16 = requests.post(url3, data = js16)
-        self.assertEqual(r12.status_code, 200)
-        self.assertEqual(r12.json()['status'], "success")
-        self.assertEqual(r13.json()['status'], "success")
-        # self.assertEqual(r14.json()['status'], "success")
-        self.assertEqual(r15.json()['status'], "fail")
-        self.assertEqual(r16.json()['status'], "fail")
+    #test getInvitationReceived
+    def testGetInvitationReceived(self):
+        request = self.client
+        url = '/getInvitationReceived'
+        r1 = request.post(url, {"email":"test2@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
 
+    #test getNotification
+    def testGetNotification(self):
+        request = self.client
+        url = '/getNotification'
+        r1 = request.post(url, {"email":"test1@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test getMeetingHistory
+    def testGetMeetingHistory(self):
+        request = self.client
+        url = '/getMeetingHistory'
+        r1 = request.post(url, {"email":"test1@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test getUpcomingEvent
+    def testGetUpcomingEvent(self):
+        request = self.client
+        url = '/getUpcomingEvent'
+        r1 = request.post(url, {"email":"test1@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test isTimeConflict
+    def testIsTimeConflict(self):
+        request = self.client
+        url = '/isTimeConflict'
+        r1 = request.post(url, {"name":"test1","email":"test1@ualberta.ca","start_time":"202011-1 12:00:00"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test checkPlayerExist
+    def testCheckPlayerExist(self):
+        request = self.client
+        url = '/checkPlayerExist'
+        r1 = request.post(url, {"email":"test1@ualberta.ca"})
+        self.assertEqual(r1.status_code, 200)
+
+    #test getAllPlayer
+    def testGetAllPlayer(self):
+        request = self.client
+        url = '/getAllPlayer'
+        r1 = request.get(url)
+        self.assertEqual(r1.status_code, 200)
+    #     self.assertEqual(r1.json()['status'],"fail")
