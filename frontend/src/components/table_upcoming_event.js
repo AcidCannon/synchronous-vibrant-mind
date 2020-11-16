@@ -116,6 +116,8 @@ export default function StickyHeadTable() {
               var endTime = moment.utc(row.start_time).add(1, 'day').add(2, 'hour').utcOffset(+10, true).format();
               var location = "Will be an link to our website later" ;
               var event = CreateCalendarEvent(title, description, startTime, endTime, location);
+              var url = "https://localhost/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=" + row.id; 
+              console.log("url", url);
               // console.log("row.start_time", row.start_time);
               // console.log("endTime", endTime);
               // console.log("startTime", startTime);
@@ -127,7 +129,7 @@ export default function StickyHeadTable() {
                   gamedate, 
                   game_start_time, 
                   <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                  <Button variant="contained" color="primary" onClick={()=> window.open("http://vibrant-minds.org/login/", "_blank")}>Join</Button>
+                  <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
                   ));
             }
             

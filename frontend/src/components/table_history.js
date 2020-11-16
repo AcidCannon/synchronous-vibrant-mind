@@ -112,7 +112,7 @@ export default function StickyHeadTable() {
           //for loop method
           console.log("this is the response of bdong", result.history);
           for (var row of result.history){
-            if (row.p_login != null){
+            if ((row.p_login != null) && (row.my_login != null)){
             var date = moment.utc(row.start_time).format('YYYY-MM-DD');
             var time = moment.utc(row.start_time).format('hh:mm a');
             var p_login_time = moment.utc(row.p_login).format('hh:mm a');
