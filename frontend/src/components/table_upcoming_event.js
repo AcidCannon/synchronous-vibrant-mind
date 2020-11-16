@@ -127,7 +127,7 @@ export default function StickyHeadTable() {
                   gamedate, 
                   game_start_time, 
                   <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                  <Button variant="contained" color="primary" onClick={()=> window.open("https://vibrant-minds.org/login/", "_blank")}>Join</Button>
+                  <Button variant="contained" color="primary" onClick={()=> window.open("http://vibrant-minds.org/login/", "_blank")}>Join</Button>
                   ));
             }
             
