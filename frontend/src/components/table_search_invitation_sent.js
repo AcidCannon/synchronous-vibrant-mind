@@ -70,8 +70,8 @@ export default function BasicSearch() {
               for (var row of result.invitations){
                   var moment = require('moment-timezone');
                   // moment.tz.setDefault("America/Boise");
-                  var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
-                  var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
+                  var date = moment.utc(row.start_time).format('YYYY-MM-DD');
+                  var time = moment.utc(row.start_time).format('hh:mm a');
                   newRows.push(createData(row.id, row.invitee, date.toString(), time.toString(), row.state));
               }
             }

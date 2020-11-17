@@ -108,16 +108,17 @@ export default function StickyHeadTable() {
           for (var row of result.upcoming){
             var now = moment();
             if (moment.utc(row.start_time).isAfter(now)){
-              var gamedate = moment(row.start_time).format('YYYY-MM-DD');
-              var game_start_time = moment(row.start_time).utcOffset(10).format('hh:mm a');
+              var gamedate = moment.utc(row.start_time).utcOffset(12).format('YYYY-MM-DD').toString();
+              var game_start_time = moment.utc(row.start_time).utcOffset(12).format('hh:mm a').toString();
               var title = "Vibraint Minds Together" ;
               var description = row.player + " will play with me at Vibraint Minds Together";
-              var startTime = moment.utc(row.start_time).add(1, 'day').utcOffset(+10, true).format();
-              var endTime = moment.utc(row.start_time).add(1, 'day').add(2, 'hour').utcOffset(+10, true).format();
+              var startTime = moment(row.start_time).utcOffset(22).format();
+              var endTime = moment(row.start_time).add(2, 'hour').utcOffset(22).format();
               var location = "Will be an link to our website later" ;
               var event = CreateCalendarEvent(title, description, startTime, endTime, location);
-              var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
-              console.log("url", url);
+              // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
+              // console.log("url", url);
+              var url = "https://vibrant-minds.org/vibrantminds2/start";
               // console.log("row.start_time", row.start_time);
               // console.log("endTime", endTime);
               // console.log("startTime", startTime);

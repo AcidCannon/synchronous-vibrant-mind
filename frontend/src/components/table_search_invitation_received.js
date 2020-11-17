@@ -175,8 +175,8 @@ export default function BasicSearch() {
                 // moment.tz.setDefault("America/Boise");
                 var now = moment();
                 if (row.state == "PENDING" && (moment(row.start_time).isAfter(now)) ){
-                var gamedate = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD').toString();
-                var game_start_time = moment(row.start_time).utcOffset(12).format('hh:mm a').toString();
+                var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
+                var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
                 // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
                 newRows.push(
                   createData(
