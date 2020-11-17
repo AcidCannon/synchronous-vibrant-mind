@@ -104,8 +104,8 @@ export default function BasicSearch() {
               if (moment(row.start_time).isAfter(now)){
                   // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
                   // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
-                var gamedate = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
-                var game_start_time = moment(row.start_time).utcOffset(12).format('hh:mm a');
+                var gamedate = moment(row.start_time).format('YYYY-MM-DD');
+                var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
                 var title = "Vibraint Minds Together" ;
                 var description = row.player + " will play with me at Vibraint Minds Together";
                   var startTime = moment(row.start_time).add(19, 'hour').format();
