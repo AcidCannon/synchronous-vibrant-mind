@@ -64,7 +64,11 @@ export default function BasicSearch() {
             //for loop method
             console.log("this is the response of bdong", result.notifications);
             for (var row of result.notifications){
-              var sent_time = moment.utc(row.time).format('YYYY-MM-DD, hh:mm a').toString();
+                var moment = require('moment-timezone');
+                // moment.tz.setDefault("America/Boise");
+                // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
+                // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
+              var sent_time = moment(row.time).format('YYYY-MM-DD, hh:mm a').toString();
               newRows.push(createData(row.content, sent_time));
             }
           }

@@ -85,8 +85,8 @@ export default function StickyHeadTable() {
           //for loop method
           console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){
-            var date = moment.utc(row.start_time).format('YYYY-MM-DD');
-            var time = moment.utc(row.start_time).format('hh:mm a');
+            var date = moment(row.start_time).format('YYYY-MM-DD');
+            var time = moment().format('hh:mm a');
             newRows.push(createData(row.invitee, date.toString(), time.toString(), row.state));
           }
         }
