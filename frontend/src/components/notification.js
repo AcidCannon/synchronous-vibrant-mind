@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Table from './table_notification';
+// import Table from './table_notification';
+import Table from './table_search_notification';
 import { Grid } from '@material-ui/core';
 
 class Notification extends Component {
