@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import ICalendarLink from "react-icalendar-link";
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import '../css/table_search_upcoming_event.css';
 
 const columns = [
   { 
@@ -65,6 +67,18 @@ function CreateCalendarEvent(title, description, startTime, endTime, location) {
 
 const rows = [];
 
+const join_button = createMuiTheme({
+    typography: {
+        button: {
+            fontSize: '1rem',
+            textTransform: 'none',
+            fontFamily: [
+                'Comfortaa',
+                'cursive',
+            ].join(','),
+        },
+    },});
+
 export default function BasicSearch() {
     const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
     const x_username = unescape(username[2]);
@@ -104,13 +118,15 @@ export default function BasicSearch() {
               if (moment(row.start_time).isAfter(now)){
                   // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
                   // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
-                var gamedate = moment(row.start_time).format('YYYY-MM-DD');
-                var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
+                // var gamedate = moment(row.start_time).format('YYYY-MM-DD');
+                //   var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
+                  var gamedate = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
+                  var game_start_time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
                 var title = "Vibraint Minds Together" ;
                 var description = row.player + " will play with me at Vibraint Minds Together";
-                  var startTime = moment(row.start_time).add(19, 'hour').format();
+                  var startTime = moment(row.start_time).add(7, 'hour').format();
                   // var startTime = moment(row.start_time).add(1, 'day').utcOffset(5).format();
-                  var endTime = moment(row.start_time).add(21, 'hour').format();
+                  var endTime = moment(row.start_time).add(9, 'hour').format();
                 // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
                 var location = "Will be an link to our website later" ;
                 var event = CreateCalendarEvent(title, description, startTime, endTime, location);
@@ -173,13 +189,15 @@ export default function BasicSearch() {
           ]}
           components={{
             Action: props => (
-              <Button 
-              variant="contained" 
-              color="primary"
+                <ThemeProvider theme={join_button}>
+              <Button
+                  className="join_button"
+              variant="contained"
               onClick={(event) => props.action.onClick(event, props.data)}
               >
               Join
               </Button>
+                    </ThemeProvider>
             )
           }}
       />

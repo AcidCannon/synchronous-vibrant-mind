@@ -5,6 +5,8 @@ import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import '../css/table_search_invitation_received.css';
 
 
 // const columns = [
@@ -135,6 +137,18 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
  
 }
 
+const button = createMuiTheme({
+    typography: {
+        button: {
+            fontSize: '1rem',
+            textTransform: 'none',
+            fontFamily: [
+                'Comfortaa',
+                'cursive',
+            ].join(','),
+        },
+    },});
+
 
 
 export default function BasicSearch() {
@@ -252,24 +266,28 @@ export default function BasicSearch() {
             Action: props => {
                 if (props.action.icon === 'edit'){
                   return(
+                      <ThemeProvider theme={button}>
                     <Button
-                    variant="contained" 
-                    color="primary" 
-                    onClick={(event)=> props.action.onClick(event, props.data)}
+                        className="accept_button"
+                        variant="contained"
+                        onClick={(event)=> props.action.onClick(event, props.data)}
                     >
-                    ACCEPT
+                    Accept
                     </Button>
+                      </ThemeProvider>
                     )
                 }
                 if(props.action.icon === 'save'){
                   return(
+                      <ThemeProvider theme={button}>
                       <Button
-                      onClick={(event) => props.action.onClick(event, props.data)}
-                      variant="contained" 
-                      color="primary" 
+                          className="decline_button"
+                          onClick={(event) => props.action.onClick(event, props.data)}
+                          variant="contained"
                       >
-                      DECLINE
+                      Decline
                       </Button>
+                      </ThemeProvider>
                   )
               }
             }
