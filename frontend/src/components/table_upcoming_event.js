@@ -116,7 +116,7 @@ export default function StickyHeadTable() {
               var endTime = moment.utc(row.start_time).add(1, 'day').add(2, 'hour').utcOffset(+10, true).format();
               var location = "Will be an link to our website later" ;
               var event = CreateCalendarEvent(title, description, startTime, endTime, location);
-              var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
+              var url = "https://[2605:fd00:4:1001:f816:3eff:feb2:3536]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
               console.log("url", url);
               // console.log("row.start_time", row.start_time);
               // console.log("endTime", endTime);
