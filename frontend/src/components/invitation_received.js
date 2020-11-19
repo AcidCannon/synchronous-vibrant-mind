@@ -1,7 +1,6 @@
 import { Grid } from '@material-ui/core';
 import React, { Component } from 'react';
-// import Table from './table_invitation_received';
-import Table from './table_search_invitation_received';
+import Table from './table_invitation_received';
 
 class InvitationReceived extends Component {
     constructor(props){

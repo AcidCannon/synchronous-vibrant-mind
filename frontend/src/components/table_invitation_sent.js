@@ -66,7 +66,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchInvitationSent() {
-      const response = await fetch("http://localhost/api/getInvitationSent", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getInvitationSent", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'
@@ -85,8 +85,8 @@ export default function StickyHeadTable() {
           //for loop method
           console.log("this is the response of bdong", result.invitations);
           for (var row of result.invitations){
-            var date = moment(row.start_time).format('YYYY-MM-DD');
-            var time = moment().format('hh:mm a');
+            var date = moment.utc(row.start_time).format('YYYY-MM-DD');
+            var time = moment.utc(row.start_time).format('hh:mm a');
             newRows.push(createData(row.invitee, date.toString(), time.toString(), row.state));
           }
         }

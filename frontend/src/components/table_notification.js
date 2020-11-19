@@ -63,7 +63,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchNotification() {
-      const response = await fetch("http://localhost/api/getNotification", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getNotification", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ export default function StickyHeadTable() {
           //for loop method
           console.log("this is the response of bdong", result.notifications);
           for (var row of result.notifications){
-            var sent_time = moment(row.time).utcOffset(12).format('YYYY-MM-DD, hh:mm a').toString();
+            var sent_time = moment.utc(row.time).format('YYYY-MM-DD, hh:mm a').toString();
             newRows.push(createData(row.content, sent_time));
           }
         }

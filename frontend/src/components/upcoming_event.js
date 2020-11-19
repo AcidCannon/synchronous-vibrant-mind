@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import Table from './table_upcoming_event';
-import Table from './table_search_upcomint_event';
+import Table from './table_upcoming_event';
 import { Grid } from '@material-ui/core';
 
 class UpcomingEvent extends Component {
