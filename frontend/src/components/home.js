@@ -307,7 +307,7 @@ class Home extends Component {
         }
     
         // Inviter will receive an notification
-        const response = await fetch("http://localhost/api/sendNotification", {
+        const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/sendNotification", {
           method: "POST",
             headers: { 
               'Content-Type': 'application/json'
@@ -332,7 +332,7 @@ class Home extends Component {
     
         // Invitee will receive an notification if the invitation is sent successfully
         if (clicked_status == "PENDING"){
-            const response = await fetch("http://localhost/api/sendNotification", {
+            const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/sendNotification", {
             method: "POST",
                 headers: { 
                 'Content-Type': 'application/json'
@@ -360,7 +360,7 @@ class Home extends Component {
       }
       
       async checkTimeConflict(player_name, player_email, game_start_time){
-              return await fetch("http://localhost/api/isTimeConflict", {
+              return await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/isTimeConflict", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -388,7 +388,7 @@ class Home extends Component {
           }
       
       async addInvitation(my_email, my_name, player_name, player_email, invitation_status, game_start_time){
-              const response = await fetch("http://localhost/api/addInvitation", {
+              const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/addInvitation", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -416,7 +416,7 @@ class Home extends Component {
           }
       
       async checkPlayerExist(player_email){
-              return  await fetch("http://localhost/api/checkPlayerExist", {
+              return  await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/checkPlayerExist", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -506,8 +506,8 @@ class Home extends Component {
     
             //   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
           }
-          setTimeout(this.refreshPage(), 60000);
-          
+        //   setTimeout(this.refreshPage(), 60000);
+
       
       
           // const response = await fetch("http://localhost/api/addInvitation", {

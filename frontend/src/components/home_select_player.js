@@ -136,7 +136,7 @@ export default function IntegrationAutosuggest(props) {
 
     React.useEffect(function effectFunction() {
         async function fetchSuggestions() {
-          const response = await fetch("http://localhost/api/getAllPlayer", {
+          const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getAllPlayer", {
             method: "GET",
             headers: { 
               'Content-Type': 'application/json'

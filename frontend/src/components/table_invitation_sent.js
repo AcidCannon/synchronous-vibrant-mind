@@ -66,7 +66,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchInvitationSent() {
-      const response = await fetch("http://localhost/api/getInvitationSent", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getInvitationSent", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'

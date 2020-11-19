@@ -87,7 +87,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchUpcomingEvents() {
-      const response = await fetch("http://localhost/api/getUpcomingEvent", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getUpcomingEvent", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'

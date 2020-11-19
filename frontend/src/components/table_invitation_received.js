@@ -55,7 +55,7 @@ function refreshPage() {
 }
 
 async function addMeeting(id){
-  const response = await fetch("http://localhost/api/addMeeting", {
+  const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/addMeeting", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
   }else if (clicked_status == "DECLINED"){
     var player_content = invitee + " is bussy";
   }
-  const response = await fetch("http://localhost/api/sendNotification", {
+  const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/sendNotification", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
 }
 
 async function changeInvitationStatus(inviter, invitee, clicked_status, id){
-  const response = await fetch("http://localhost/api/changeInvitationStatus", {
+  const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/changeInvitationStatus", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -162,7 +162,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchInvitationReceived() {
-      const response = await fetch("http://localhost/api/getInvitationReceived", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getInvitationReceived", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'

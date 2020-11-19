@@ -87,7 +87,7 @@ export default class Login extends Component {
       }
 
     async addPlayer(){
-        const response = await fetch("http://localhost/api/addPlayer", {
+        const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/addPlayer", {
             method: "POST",
             headers: { 
                 'Content-Type': 'application/json'

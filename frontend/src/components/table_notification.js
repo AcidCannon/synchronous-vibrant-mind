@@ -63,7 +63,7 @@ export default function StickyHeadTable() {
 
   React.useEffect(function effectFunction() {
     async function fetchNotification() {
-      const response = await fetch("http://localhost/api/getNotification", {
+      const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getNotification", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'
