@@ -116,6 +116,56 @@ def addMeetingTime(request):
         }
         return JsonResponse(json, safe=False)
 
+@api_view(["POST"])
+def addMeetingLoginTime(request):
+    try:
+        id = request.data['invitation_id']
+        name = request.data['name']
+        login_time = request.data['login_time']
+        meeting = Meeting.objects.get(invitation_id = id)
+        if(meeting.player1.name == name):
+            meeting.player1_login_time = login_time
+            meeting.save()
+        if(meeting.player2.name == name):
+            meeting.player2_login_time = login_time
+            meeting.save()
+    except Exception as e:
+        json = {
+            'status' : 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        json = {
+            'status' : 'success'
+        }
+        return JsonResponse(json, safe=False)
+
+@api_view(["POST"])
+def addMeetingLogoutTime(request):
+    try:
+        id = request.data['invitation_id']
+        name = request.data['name']
+        logout_time = request.data['logout_time']
+        meeting = Meeting.objects.get(invitation_id = id)
+        if(meeting.player1.name == name):
+            meeting.player1_logout_time = logout_time
+            meeting.save()
+        if(meeting.player2.name == name):
+            meeting.player2_logout_time = logout_time
+            meeting.save()
+    except Exception as e:
+        json = {
+            'status' : 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        json = {
+            'status' : 'success'
+        }
+        return JsonResponse(json, safe=False)
+
 
 @api_view(["POST"])
 def getInvitationSent(request):
