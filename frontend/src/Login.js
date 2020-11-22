@@ -34,8 +34,8 @@ export default class Login extends Component {
     constructor() {
         super();
         this.state = {
-            username: null,
-            password: null,
+            username: '',
+            password: '',
             email: null,
             login: false,
             errorMessage: null,
@@ -142,7 +142,7 @@ export default class Login extends Component {
             <div style={{ height: 'auto !important',  width: 'auto !important'}}>
                 <Grid container style={{minHeight: "100vh"}}>
                     <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
-                        <Grid  justify="center">
+                        <Grid>
                         <img src={logo} className="header_logo"  style={{width: 680, height: 300}}  alt="logo" />
                         </Grid>
                     </Grid>

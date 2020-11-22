@@ -38,7 +38,7 @@ class Page extends Component {
                         style={{width: "180px"}}
                         direction="column" 
                         >
-                        <Grid item >
+                        <Grid item>
                             <ListItemLink justify="center" href="/vibrant-minds-together/home">Home</ListItemLink>
                         </Grid>
                             <Divider />
@@ -46,19 +46,19 @@ class Page extends Component {
                                 <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitations Sent</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
+                            <Grid item>
                                 <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitations Received</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
+                            <Grid item>
                                 <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Events</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
+                            <Grid item >
                                 <ListItemLink href='/vibrant-minds-together/history'>History</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
+                            <Grid item>
                                 <ListItemLink href='/vibrant-minds-together/notification'>Notifications</ListItemLink>
                         </Grid>
                         <Divider />

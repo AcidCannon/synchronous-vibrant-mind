@@ -28,8 +28,8 @@ export default class Header extends Component{
     render(){
         return (
             <Router>
-            <div className="Top">
-                <header className="Top-header">
+            <div className="Top" direction="rows">
+                <header className="Top-header" direction="rows">
                     <img src={logo} className="header_logo" alt="logo" />
                     <Grid container justify="flex-end" direction="rows">
                         <p className={"header_text1"}>Logged in as</p>

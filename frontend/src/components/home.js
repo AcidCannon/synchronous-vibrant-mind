@@ -281,6 +281,7 @@ class Home extends Component {
         return (
             <div>
                 <Grid  
+                container
                 justify="center" 
                 item 
                 xs={12} 
@@ -302,7 +303,7 @@ class Home extends Component {
                         >
                             <div />
                             <div>
-                                <Grid container justify="center">
+                                <Grid container justify="center" direction="rows">
                                     <h1>Send Invitations</h1>
                                 </Grid>
                                 <div style={{height: 20}} />
@@ -328,7 +329,7 @@ class Home extends Component {
                             </div>
                         </Grid>
                     
-                    <Grid container justify="flex-end">
+                    <Grid container justify="flex-end" direction="rows">
                         <ThemeProvider theme={button}>
                         <Button className="button" variant="contained" onClick={()=> {this.sendInvitation(this.my_name, this.my_email, this.state.single, this.state.selectedDate)}}>Send</Button>
                             </ThemeProvider>
