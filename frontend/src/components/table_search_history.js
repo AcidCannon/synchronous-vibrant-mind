@@ -118,7 +118,7 @@ export default function BasicSearch() {
           const newRows = [];
           if( (response.status == 200) && (result.history) ){
             //for loop method
-            console.log("this is the response of bdong", result.history);
+            // console.log("this is the response of bdong", result.history);
             for (var row of result.history){
               if ((row.p_login != null) && (row.my_login != null)){
               var date = moment.utc(row.start_time).format('YYYY-MM-DD');
@@ -150,7 +150,7 @@ export default function BasicSearch() {
 
     return (
       <MaterialTable
-        title="Notification"
+        title="Notifications"
         columns={columns}
         data={rows}        
         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}

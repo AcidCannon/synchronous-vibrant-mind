@@ -13,7 +13,7 @@ class UpcomingEvent extends Component {
       return (
         <div>
           <Grid container justify="center" style={{color: "#3291ff" }}>
-            <h1>Upcoming Event</h1>
+            <h1>Upcoming Events</h1>
           </Grid>
           <Table />
         </div>

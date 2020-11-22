@@ -43,15 +43,15 @@ class Page extends Component {
                         </Grid>
                             <Divider />
                             <Grid item>
-                                <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitation Sent</ListItemLink>
+                                <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitations Sent</ListItemLink>
                             </Grid>
                             <Divider />
                             <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitation Received</ListItemLink>
+                                <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitations Received</ListItemLink>
                             </Grid>
                             <Divider />
                             <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Event</ListItemLink>
+                                <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Events</ListItemLink>
                             </Grid>
                             <Divider />
                             <Grid item justify="center">
@@ -59,7 +59,7 @@ class Page extends Component {
                             </Grid>
                             <Divider />
                             <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/notification'>Notification</ListItemLink>
+                                <ListItemLink href='/vibrant-minds-together/notification'>Notifications</ListItemLink>
                         </Grid>
                         <Divider />
                         </Grid>

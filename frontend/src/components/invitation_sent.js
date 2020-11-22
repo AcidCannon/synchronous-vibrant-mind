@@ -14,7 +14,7 @@ class InvitationSent extends Component {
       return (
         <div>
           <Grid container justify="center" style={{color: "#3291ff" }}>
-            <h1>Invitation Sent</h1>
+            <h1>Invitations Sent</h1>
           </Grid>
           <Table />
         </div>

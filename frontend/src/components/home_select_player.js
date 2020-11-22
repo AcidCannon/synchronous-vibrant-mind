@@ -156,7 +156,7 @@ export default function IntegrationAutosuggest(props) {
             const newSuggestions = [];
             if( (response.status == 200) && (result) ){
               //for loop method
-              console.log("this is the response of bdong", result);
+            //   console.log("this is the response of bdong", result);
               for (var row of result){
                 // var username = row.username;
                 var player_email = row.email

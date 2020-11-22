@@ -110,7 +110,7 @@ export default function StickyHeadTable() {
         const newRows = [];
         if( (response.status == 200) && (result.history) ){
           //for loop method
-          console.log("this is the response of bdong", result.history);
+          // console.log("this is the response of bdong", result.history);
           for (var row of result.history){
             if ((row.p_login != null) && (row.my_login != null)){
             var date = moment.utc(row.start_time).format('YYYY-MM-DD');

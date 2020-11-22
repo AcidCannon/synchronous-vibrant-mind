@@ -13,7 +13,7 @@ class Notification extends Component {
       return (
         <div>
           <Grid container justify="center" style={{color: "#3291ff" }}>
-            <h1>Notification</h1>
+            <h1>Notifications</h1>
           </Grid>
           <Table />
         </div>

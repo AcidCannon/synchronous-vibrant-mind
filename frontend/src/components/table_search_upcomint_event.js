@@ -110,7 +110,7 @@ export default function BasicSearch() {
           const newRows = [];
           if( (response.status == 200) && (result.upcoming) ){
             //for loop method
-            console.log("this is the response of bdong", result.upcoming);
+            // console.log("this is the response of bdong", result.upcoming);
             for (var row of result.upcoming){
                 var moment = require('moment-timezone');
                 // moment.tz.setDefault("America/Boise");
@@ -152,7 +152,7 @@ export default function BasicSearch() {
 
     return (
       <MaterialTable
-        title="Notification"
+        title="Upcoming Events"
         columns={columns}
         data={rows}        
         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}

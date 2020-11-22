@@ -217,7 +217,7 @@ export default function BasicSearch() {
 
     return (
       <MaterialTable
-        title="Invitation Received"
+        title="Invitations Received"
         columns={columns}
         data={rows}        
         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
