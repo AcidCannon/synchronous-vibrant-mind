@@ -44,6 +44,7 @@ export default class Login extends Component {
     
         // this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.keyPress = this.keyPress.bind(this);
       }
     
       handleChange(event) {
@@ -51,6 +52,13 @@ export default class Login extends Component {
           [event.target.name]: event.target.value
         });
       }
+
+      keyPress(e){
+        if(e.keyCode == 13){
+           // put the login here
+           this.auth();
+        }
+     }
 
     async auth(){
         const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
@@ -197,6 +205,7 @@ export default class Login extends Component {
                                         placeholder="Password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
+                                        onKeyDown={this.keyPress}
                                         required
                                     />
                                     <div style={{height: 20}} />

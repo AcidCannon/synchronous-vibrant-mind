@@ -130,15 +130,15 @@ export default function BasicSearch() {
                 // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
                 var location = "Will be an link to our website later" ;
                 var event = CreateCalendarEvent(title, description, startTime, endTime, location);
-                var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
-                console.log("url", url);
+                // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
+                // console.log("url", url);
                 newRows.push(
                   createData(
                     row.player, 
                     gamedate, 
                     game_start_time, 
                     <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                    <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
+                    // <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
                     ));
               }
               

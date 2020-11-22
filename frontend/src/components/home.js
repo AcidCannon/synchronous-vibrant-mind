@@ -404,7 +404,7 @@ class Home extends Component {
                       return Promise.reject(error);
                   }
       
-                  this.sentNotification(my_name, player_name, invitation_status, data.invitation_id);
+                  await this.sentNotification(my_name, player_name, invitation_status, data.invitation_id);
                   console.log("successful addInvitation", data);
                   
                   
@@ -474,18 +474,18 @@ class Home extends Component {
           if(result["exist"]){
               this.setState({player_exist: true});
               if( !my_timeConflict && !player_timeConflict ){
-                  this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
-                  this.setState({invitation_sent: true});
+                  await this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
+                  await this.setState({invitation_sent: true});
               }
               else{
                   
-                  this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
+                  await this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
                   //弹窗提醒
-                  this.setState({timeConflict: true});
+                  await this.setState({timeConflict: true});
               }
           }
           else{
-              this.setState({player_exist: false});
+              await this.setState({player_exist: false});
               //Send Error Emails
               const serviceID = 'gmail';
               const templateInviteeID = 'invitee_error_template';
@@ -506,7 +506,7 @@ class Home extends Component {
     
             //   this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_start_time);
           }
-          setTimeout(this.refreshPage(), 60000);
+          setTimeout(this.refreshPage(), 80000);
           
       
       

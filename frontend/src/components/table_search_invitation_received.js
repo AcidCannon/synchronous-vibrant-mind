@@ -123,13 +123,16 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       }
 
       // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-      sentNotification(inviter, invitee, clicked_status, id);
+      await sentNotification(inviter, invitee, clicked_status, id);
       if (clicked_status == "ACCEPTED"){
-        addMeeting(id);
+        await addMeeting(id);
       }
       
       // console.log('successful', response.status);
-      refreshPage() 
+      // refreshPage() 
+      // setTimeout(refreshPage(), 100000);
+      setTimeout(refreshPage(), 80000);
+      
 
   }).catch(error => {
       console.error('There was an error!', error);
@@ -186,9 +189,7 @@ export default function BasicSearch() {
             // console.log("this is the response of bdong", result.invitations);
             for (var row of result.invitations){
                 var moment = require('moment-timezone');
-                // moment.tz.setDefault("America/Boise");
-                var now = moment();
-                if (row.state == "PENDING" && (moment(row.start_time).isAfter(now)) ){
+                if (row.state == "PENDING"){
                 var gamedate = moment.utc(row.start_time).format('YYYY-MM-DD').toString();
                 var game_start_time = moment.utc(row.start_time).format('hh:mm a').toString();
                 // var start_time = moment.utc(row.start_time).format("YYYY-MM-DD hh:mm:ss").toString();
