@@ -8,28 +8,6 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../css/table_search_invitation_received.css';
 
-
-// const columns = [
-//     { field: 'id', title: 'ID', width: 100 , align: 'center', searchable: true},
-//     { field: 'invitee', title: 'Invitee', width: 150, align: 'center' , searchable: true},
-//     { field: 'gamedate', title: 'Game date', width: 170, align: 'center', searchable: true},
-//     {
-//       field: 'game_start_time',
-//       title: 'Game start time',
-//       width: 170,
-//       align: 'center',
-//       searchable: true,
-//       format: (value) => value.toLocaleString('en-US')
-//     },
-//     {
-//       field: 'invitation_state',
-//       title: 'Invitation State',
-//       sorting: false,
-//       width: 150,
-//       align: 'center',
-//       searchable: true
-//     }
-//   ];
   
   const columns = [
     { field: 'id', title: 'ID', width: 100 , align: 'center', searchable: true},
