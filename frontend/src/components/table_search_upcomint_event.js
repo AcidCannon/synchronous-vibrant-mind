@@ -49,14 +49,15 @@ const columns = [
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_join_meeting) {
+function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_join_meeting, id) {
   // const density = game_start_time / size;
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
     game_start_time: data_game_start_time, 
     download_calendar: data_download_calendar, 
-    join_meeting: data_join_meeting 
+    join_meeting: data_join_meeting,
+    id:id
   };
 }
   
@@ -65,7 +66,7 @@ function CreateCalendarEvent(title, description, startTime, endTime, location) {
   return { title, description, startTime, endTime, location };
 }
 
-const rows = [];
+
 
 const join_button = createMuiTheme({
     typography: {
@@ -78,6 +79,43 @@ const join_button = createMuiTheme({
             ].join(','),
         },
     },});
+
+function getTimeStamp() {
+  var now = new Date();
+  return ( now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + (now.getDate()) + " " + now.getHours() + ':'
+                + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now
+                .getSeconds()) : (now.getSeconds())));
+}
+
+
+async function addMeetingLoginTime(id, name, loginTime){
+  const response = await fetch("http://localhost/api/addMeetingLoginTime", {
+    method: "POST",
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ invitation_id: id, name:name, login_time:loginTime})
+    }).then(async response => {
+      const data = await response.json();
+      //console.log(JSON.stringify({ invitation_id: 1, name:name, login_time:loginTime}));
+      if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+      }
+  }).catch(error => {
+      console.error('There was an error when adding login time!', error);
+  });
+  
+}
+
+function recordJoin(rowData, y_username) {
+  //window.open("https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
+  window.open("http://localhost:3000/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
+  const join_time = getTimeStamp();
+  addMeetingLoginTime(rowData.id, y_username, join_time)
+  
+}
 
 export default function BasicSearch() {
     const username = document.cookie.match('(^|;) ?' + "User name" + '=([^;]*)(;|$)');
@@ -138,6 +176,7 @@ export default function BasicSearch() {
                     gamedate, 
                     game_start_time, 
                     <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
+                    row.id
                     // <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
                     ));
               }
@@ -184,7 +223,7 @@ export default function BasicSearch() {
             {
               icon: 'save',
               tooltip: 'Save User',
-              onClick: (event, rowData)=> window.open("https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
+              onClick: (event, rowData)=> recordJoin(rowData, y_username)
             }
           ]}
           components={{
