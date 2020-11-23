@@ -14,7 +14,6 @@ urlpatterns = [
     path("changeInvitationStatus", views.changeInvitationStatus),
     path("changeNotificationStatus", views.changeNotificationStatus),
     path("isTimeConflict", views.isTimeConflict),
-    path("getId", views.getId),
     path("getAllPlayer", views.getAllPlayer),
     path("checkPlayerExist", views.checkPlayerExist),
     path("addMeeting", views.addMeeting),

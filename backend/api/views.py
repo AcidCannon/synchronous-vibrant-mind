@@ -354,28 +354,28 @@ def changeInvitationStatus(request):
     else:
         return JsonResponse({'status':'success'}, safe=False)
 
-@api_view(["GET"])
-def getId(request):
-    try:
-        # invitation_id = request.data['invitation_id']
-        # email = request.data['email']
-        email = request.GET.get('p', '')
-        start_time = dateparser.parse(request.GET.get['t'])
-        player = Player.objects.get(email = email)
-        query = Q(invitee = player)
-        query.add(Q(inviter = player), Q.OR)
-        query.add(Q(state = "ACCEPTED"), Q.AND)
-        query.add(Q(start_time = start_time), Q.AND)
-        invitations = Invitation.objects.filter(query)
-        id = invitations[0].id
-    except Exception as e:
-        json = {
-            'status': 'fail',
-            'msg' : str(e).strip("'")
-        }
-        return JsonResponse(json, safe=False)
-    else:
-        return JsonResponse({'status':'success', 'id' : id}, safe=False)
+# @api_view(["GET"])
+# def getId(request):
+#     try:
+#         # invitation_id = request.data['invitation_id']
+#         # email = request.data['email']
+#         email = request.GET.get('p', '')
+#         start_time = dateparser.parse(request.GET.get('t',''))
+#         player = Player.objects.get(email = email)
+#         query = Q(invitee = player)
+#         query.add(Q(inviter = player), Q.OR)
+#         query.add(Q(state = "ACCEPTED"), Q.AND)
+#         query.add(Q(start_time = start_time), Q.AND)
+#         invitations = Invitation.objects.filter(query)
+#         id = invitations[0].id
+#     except Exception as e:
+#         json = {
+#             'status': 'fail',
+#             'msg' : str(e).strip("'")
+#         }
+#         return JsonResponse(json, safe=False)
+#     else:
+#         return JsonResponse({'status':'success', 'id' : id}, safe=False)
 
 
 @api_view(["POST"])
