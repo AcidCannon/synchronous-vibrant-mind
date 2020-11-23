@@ -5,6 +5,11 @@ import {Button, Grid} from "@material-ui/core";
 import Link from '@material-ui/core/Link';
 import './css/Header.css';
 
+// function refreshPage() {
+//     window.location.reload(false);
+// }
+// setTimeout(refreshPage(), 80000);
+
 
 
 export default class Header extends Component{
@@ -31,7 +36,7 @@ export default class Header extends Component{
             <div className="Top" direction="rows">
                 <header className="Top-header" direction="rows">
                     <img src={logo} className="header_logo" alt="logo" />
-                    <Grid container justify="flex-end" direction="rows">
+                    <Grid container justify="flex-end" direction="row">
                         <p className={"header_text1"}>Logged in as</p>
                         <p className={"header_text2"}> {this.y}</p>
                         <p className={"header_text3"}>. </p>

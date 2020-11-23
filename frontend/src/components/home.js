@@ -295,6 +295,7 @@ class Home extends Component {
                     >
                         <Grid 
                         container
+                        item={true}
                         xs={12} 
                         sm={12}
                         alignItems="center" 
@@ -304,7 +305,7 @@ class Home extends Component {
                         >
                             <div />
                             <div>
-                                <Grid container justify="center" direction="rows">
+                                <Grid container justify="center" direction="row">
                                     <h1>Send Invitations</h1>
                                 </Grid>
                                 <div style={{height: 20}} />
@@ -330,7 +331,7 @@ class Home extends Component {
                             </div>
                         </Grid>
                     
-                    <Grid container justify="flex-end" direction="rows">
+                    <Grid container justify="flex-end" direction="row">
                         <ThemeProvider theme={button}>
                         <Button className="button" variant="contained" onClick={()=> {this.sendInvitation(this.my_name, this.my_email, this.state.single, this.state.selectedDate)}}>Send</Button>
                             </ThemeProvider>

@@ -8,19 +8,12 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/core/styles';
-
-
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import { InputAdornment } from "@material-ui/core";
 
-const host = "localhost";
 
-const suggestions = [
-    { label: 'alpha@hotmail.com' },
-    { label: 'bdong@hotmail.com' },
-    { label: 'zoe@hotmail.com' },
-    { label: 'lily@ualberta.ca' },
-];
+
+const host = "localhost";
 
 function createData(email) {
     return { label: email };
@@ -190,7 +183,7 @@ export default function IntegrationAutosuggest(props) {
         renderInputComponent,
         suggestions: stateSuggestions,
         onSuggestionsFetchRequested: handleSuggestionsFetchRequested,
-        // onSuggestionsClearRequested: handleSuggestionsClearRequested,
+        onSuggestionsClearRequested: handleSuggestionsClearRequested,
         getSuggestionValue,
         renderSuggestion,
     };
