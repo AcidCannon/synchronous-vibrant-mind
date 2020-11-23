@@ -145,7 +145,7 @@ class Home extends Component {
       
                 //   console.log("game_start_time", game_start_time);
                 //   console.log("isConflict", data);
-                  return data.conflict
+                  return data.conflict;
                   
               })
               .catch(error => {
@@ -242,37 +242,44 @@ class Home extends Component {
               this.setState({player_exist: true});
               if( !my_timeConflict && !player_timeConflict ){
                   await this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
-                  await this.setState({invitation_sent: true});
+                  this.setState({invitation_sent: true});
               }
               else{
                   
                   await this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
                   //弹窗提醒
-                  await this.setState({timeConflict: true});
+                this.setState({timeConflict: true});
               }
           }
           else{
-              await this.setState({player_exist: false});
+              this.setState({player_exist: false});
               //Send Error Emails
               const serviceID = 'gmail';
               const templateInviteeID = 'invitee_error_template';
               const templateInviterID = 'inviter_error_template';
             //   const form = ".contact_form_class";
-              const user_ID = "user_3KTCwCruCd7oJZeFiJ0RZ";
-              //给inviter发邮件
-              await emailjs.send(serviceID,templateInviterID,{
-                to_email: my_email,
-                invitee_name: player_email,
+            //   const user_ID = "user_3KTCwCruCd7oJZeFiJ0RZ";
+            const user_ID = "user_JfrETpyhDWla4LwOWWLM4";
+            console.log("my_email", my_email);
+            console.log("this.my_email", this.my_email);
+            console.log("player_email", player_email);
+            console.log("this.state.single", this.state.single);
+            //   console.log("player_email", player_email);
+
+            //给inviter发邮件
+             await emailjs.send(serviceID,templateInviterID,{
+                to_email: this.my_email,
+                invitee_name: this.state.single,
                 }, user_ID);
               
-              //给invitee发邮件
-              await emailjs.send(serviceID,templateInviteeID,{
-                to_email: player_email,
-                Inviter_name: my_name,
+            //给invitee发邮件
+             await emailjs.send(serviceID,templateInviteeID,{
+                to_email: this.state.single,
+                Inviter_name: this.my_name,
                 }, user_ID);
     
           }
-          setTimeout(this.refreshPage(), 80000);
+          setTimeout(this.refreshPage(), 200000);
           
     }
 

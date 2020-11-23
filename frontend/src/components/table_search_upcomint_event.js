@@ -49,14 +49,14 @@ const columns = [
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_join_meeting) {
+function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, id) {
   // const density = game_start_time / size;
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
     game_start_time: data_game_start_time, 
     download_calendar: data_download_calendar, 
-    join_meeting: data_join_meeting 
+    id: id
   };
 }
   
@@ -191,9 +191,9 @@ export default function BasicSearch() {
             Action: props => (
                 <ThemeProvider theme={join_button}>
               <Button
-                  className="join_button"
-              variant="contained"
-              onClick={(event) => props.action.onClick(event, props.data)}
+                className="join_button"
+                variant="contained"
+                onClick={(event) => props.action.onClick(event, props.data)}
               >
               Join
               </Button>

@@ -150,7 +150,7 @@ export default function BasicSearch() {
 
     return (
       <MaterialTable
-        title="Notifications"
+        title="History"
         columns={columns}
         data={rows}        
         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
