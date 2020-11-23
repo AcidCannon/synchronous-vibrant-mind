@@ -34,8 +34,8 @@ export default class Login extends Component {
     constructor() {
         super();
         this.state = {
-            username: '',
-            password: '',
+            username: null,
+            password: null,
             email: null,
             login: false,
             errorMessage: null,

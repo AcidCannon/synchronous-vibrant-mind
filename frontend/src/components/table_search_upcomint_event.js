@@ -153,32 +153,35 @@ export default function BasicSearch() {
                 var moment = require('moment-timezone');
                 // moment.tz.setDefault("America/Boise");
                 var now = moment();
-              if (moment(row.start_time).isAfter(now)){
+                console.log("moment(row.start_time).add(1,'hour').isAfter(now)", moment(row.start_time).add(8,'hour').isAfter(now));
+                console.log("now", now.format("YYYY-MM-DD hh:mm a").toString());
+                console.log("moment(row.start_time).add(1,'hour')", moment(row.start_time).add(8,'hour').format("YYYY-MM-DD hh:mm a").toString());
+              if (moment.utc(row.start_time).add(8,'hour').isAfter(now)){
                   // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
                   // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
-                // var gamedate = moment(row.start_time).format('YYYY-MM-DD');
-                //   var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
+                  // var gamedate = moment(row.start_time).format('YYYY-MM-DD');
+                  //   var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
                   var gamedate = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
                   var game_start_time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
-                var title = "Vibraint Minds Together" ;
-                var description = row.player + " will play with me at Vibraint Minds Together";
+                  var title = "Vibraint Minds Together" ;
+                  var description = row.player + " will play with me at Vibraint Minds Together";
                   var startTime = moment(row.start_time).add(7, 'hour').format();
                   // var startTime = moment(row.start_time).add(1, 'day').utcOffset(5).format();
                   var endTime = moment(row.start_time).add(9, 'hour').format();
-                // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
-                var location = "Will be an link to our website later" ;
-                var event = CreateCalendarEvent(title, description, startTime, endTime, location);
-                // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
-                // console.log("url", url);
-                newRows.push(
-                  createData(
-                    row.player, 
-                    gamedate, 
-                    game_start_time, 
-                    <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                    row.id
-                    // <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
-                    ));
+                  // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
+                  var location = "Will be an link to our website later" ;
+                  var event = CreateCalendarEvent(title, description, startTime, endTime, location);
+                  // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
+                  // console.log("url", url);
+                  newRows.push(
+                    createData(
+                      row.player, 
+                      gamedate, 
+                      game_start_time, 
+                      <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
+                      row.id
+                      // <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
+                      ));
               }
               
             }
