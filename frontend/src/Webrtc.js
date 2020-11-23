@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Webrtc.css";
 import Peer from "peerjs";
-import Jitsi from "./Jitsi.js"
+import Jitsi from "./Jitsi.js";
+import Header from "./Header";
 
 async function addMeetingLogoutTime(id, name, logoutTime){
         
@@ -176,6 +177,7 @@ export default class Webrtc extends Component {
     render(){
         return(
             <div>
+                <Header />
                 <div id="pre">
                     <button onClick={this.ready.bind(this)}>I am ready</button>
                 </div>
