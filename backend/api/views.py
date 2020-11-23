@@ -170,7 +170,8 @@ def addMeetingLogoutTime(request):
 @api_view(["GET"])
 def getInvitationSent(request):
     try:
-        inviter_email = request.data['inviter_email']
+        # inviter_email = request.data['inviter_email']
+        inviter_email = request.GET.get('p', '')
         inviter = Player.objects.get(email = inviter_email)
         invitations = Invitation.objects.filter(inviter = inviter)
     except Exception as e:
@@ -190,7 +191,8 @@ def getInvitationSent(request):
 @api_view(["GET"])
 def getInvitationReceived(request):
     try:
-        invitee_email = request.data['invitee_email']
+        # invitee_email = request.data['invitee_email']
+        invitee_email = request.GET.get('p', '')
         invitee = Player.objects.get(email = invitee_email)
         invitations = Invitation.objects.filter(invitee = invitee)
     except Exception as e:
@@ -233,7 +235,8 @@ def sendNotification(request):
 @api_view(["GET"])
 def getNotification(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         notifications = Notification.objects.filter(player = player)
     except Exception as e:
@@ -254,7 +257,8 @@ def getNotification(request):
 @api_view(["GET"])
 def getMeetingHistory(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         history = Meeting.objects.filter(Q(player1=player) | Q(player2=player))
     except Exception as e:
@@ -292,7 +296,8 @@ def getMeetingHistory(request):
 @api_view(["GET"])
 def getUpcomingEvent(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         query = Q(inviter = player)
         query.add(Q(invitee = player), Q.OR)
@@ -353,8 +358,9 @@ def changeInvitationStatus(request):
 def getId(request):
     try:
         # invitation_id = request.data['invitation_id']
-        email = request.data['email']
-        start_time = dateparser.parse(request.data['start_time'])
+        # email = request.data['email']
+        email = request.GET.get('p', '')
+        start_time = dateparser.parse(request.GET.get['t'])
         player = Player.objects.get(email = email)
         query = Q(invitee = player)
         query.add(Q(inviter = player), Q.OR)
