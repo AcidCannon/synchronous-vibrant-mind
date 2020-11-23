@@ -1,0 +1,127 @@
+The front-end UI tests consist of 9 independent tests using Selenium framework and Python unittest module.
+
+These tests were performed on my local machine (Ubuntu20, 64 bits, Linux) and loaded with FireFox WebDriver.
+
+Here below is the output of my python shell during the testing process:
+
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_login.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.519s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_logout.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 8.995s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_home.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.196s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_invitation_sent.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.405s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_invitation_received.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.662s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_upcoming_event.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.391s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_history.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.609s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_notification.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.169s
+
+OK
+zuhao@ubuntu:~/Desktop/synchronous-vibrant-mind/frontend/src/frontend_tests$ python3 test_video_mainscreen.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.213s
+
+OK
+
+As you can see above, all of the 9 tests passed within some reasonable time.
+
+There is also a self-generated log by Selenium WebDriver, which is named geckodriver.log. Here below is its content:
+
+1606040210381	geckodriver	INFO	Listening on 127.0.0.1:41427
+1606040210385	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMCNFXA"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040213554	Marionette	INFO	Listening on port 40223
+1606040213624	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040216442	Marionette	INFO	Stopped listening on port 40223
+1606040224094	geckodriver	INFO	Listening on 127.0.0.1:49471
+1606040224153	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile8TMpeh"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040227032	Marionette	INFO	Listening on port 37557
+1606040227090	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040232639	Marionette	INFO	Stopped listening on port 37557
+
+
+1606040242880	geckodriver	INFO	Listening on 127.0.0.1:54813
+1606040242893	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile2IBPtB"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040245602	Marionette	INFO	Listening on port 37479
+1606040245645	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040252650	Marionette	INFO	Stopped listening on port 37479
+1606040264652	geckodriver	INFO	Listening on 127.0.0.1:36601
+1606040264657	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilefwXx65"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040267407	Marionette	INFO	Listening on port 39005
+1606040267504	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040273537	Marionette	INFO	Stopped listening on port 39005
+1606040281413	geckodriver	INFO	Listening on 127.0.0.1:57317
+1606040281417	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile45TllH"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040284407	Marionette	INFO	Listening on port 44815
+1606040284482	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040290517	Marionette	INFO	Stopped listening on port 44815
+
+
+1606040308859	geckodriver	INFO	Listening on 127.0.0.1:52029
+1606040308864	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJxJr2m"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040311550	Marionette	INFO	Listening on port 34885
+1606040311601	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040317823	Marionette	INFO	Stopped listening on port 34885
+
+
+1606040329664	geckodriver	INFO	Listening on 127.0.0.1:53289
+1606040329668	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileG2CElG"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040332424	Marionette	INFO	Listening on port 39297
+1606040332507	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040338804	Marionette	INFO	Stopped listening on port 39297
+1606040347479	geckodriver	INFO	Listening on 127.0.0.1:45037
+1606040347484	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileARNsCA"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040350211	Marionette	INFO	Listening on port 43059
+1606040350342	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040356234	Marionette	INFO	Stopped listening on port 43059
+1606040559471	geckodriver	INFO	Listening on 127.0.0.1:54453
+1606040559476	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0ElAtj"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606040562282	Marionette	INFO	Listening on port 40803
+1606040562320	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606040569040	Marionette	INFO	Stopped listening on port 40803
+
+As you can see above, there is no error message generated, which also indicates all of the provided tests have successfully passed.
