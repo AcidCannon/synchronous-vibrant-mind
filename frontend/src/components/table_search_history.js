@@ -5,6 +5,7 @@ import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
 
+const host = "localhost";
 
   const columns = [
     { 
@@ -101,12 +102,12 @@ export default function BasicSearch() {
 
     React.useEffect(function effectFunction() {
       async function fetchHistory() {
-        const response = await fetch("http://localhost/api/getMeetingHistory", {
-          method: "POST",
+        const response = await fetch("http://"+host+"/api/getMeetingHistory?p="+y_email, {
+          method: "GET",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ player_email: y_email  })
+          // body: JSON.stringify({ player_email: y_email  })
         });
         // check for error response
         if (!response.ok) {

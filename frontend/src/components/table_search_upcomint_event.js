@@ -9,6 +9,7 @@ import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPag
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../css/table_search_upcoming_event.css';
 
+const host = "localhost";
 const columns = [
   { 
     field: 'player', 
@@ -89,7 +90,7 @@ function getTimeStamp() {
 
 
 async function addMeetingLoginTime(id, name, loginTime){
-  const response = await fetch("http://localhost/api/addMeetingLoginTime", {
+  const response = await fetch("http://"+host+"/api/addMeetingLoginTime", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -131,12 +132,12 @@ export default function BasicSearch() {
 
     React.useEffect(function effectFunction() {
       async function fetchUpcomingEvents() {
-        const response = await fetch("http://localhost/api/getUpcomingEvent", {
-          method: "POST",
+        const response = await fetch("http://"+host+"/api/getUpcomingEvent?p="+y_email, {
+          method: "GET",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ player_email: y_email  })
+          // body: JSON.stringify({ player_email: y_email  })
         });
         // check for error response
         if (!response.ok) {
@@ -153,10 +154,10 @@ export default function BasicSearch() {
                 var moment = require('moment-timezone');
                 // moment.tz.setDefault("America/Boise");
                 var now = moment();
-                console.log("moment(row.start_time).add(1,'hour').isAfter(now)", moment(row.start_time).add(8,'hour').isAfter(now));
-                console.log("now", now.format("YYYY-MM-DD hh:mm a").toString());
-                console.log("moment(row.start_time).add(1,'hour')", moment(row.start_time).add(8,'hour').format("YYYY-MM-DD hh:mm a").toString());
-              if (moment.utc(row.start_time).add(8,'hour').isAfter(now)){
+                // console.log("moment(row.start_time).add(1,'hour').isAfter(now)", moment(row.start_time).add(8,'hour').isAfter(now));
+                // console.log("now", now.format("YYYY-MM-DD hh:mm a").toString());
+                // console.log("moment(row.start_time).add(1,'hour')", moment(row.start_time).add(8,'hour').format("YYYY-MM-DD hh:mm a").toString());
+              if (moment(row.start_time).add(8,'hour').isAfter(now)){
                   // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
                   // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
                   // var gamedate = moment(row.start_time).format('YYYY-MM-DD');

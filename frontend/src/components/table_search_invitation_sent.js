@@ -5,6 +5,7 @@ import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
 
+const host = "localhost";
 const columns = [
     { field: 'id', title: 'ID', width: 10 , align: 'center', searchable: true},
     { field: 'invitee', title: 'Invitee', width: 150, align: 'center' , searchable: true},
@@ -49,12 +50,12 @@ export default function BasicSearch() {
 
     React.useEffect(function effectFunction() {
         async function fetchInvitationSent() {
-          const response = await fetch("http://localhost/api/getInvitationSent", {
-            method: "POST",
+          const response = await fetch("http://"+host+"/api/getInvitationSent?p="+y_email, {
+            method: "GET",
             headers: { 
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ inviter_email: y_email  })
+            // body: JSON.stringify({ inviter_email: y_email  })
           });
           // check for error response
           if (!response.ok) {

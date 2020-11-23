@@ -11,6 +11,8 @@ import * as emailjs from 'emailjs-com';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import '../css/home.css';
 
+const host = "localhost";
+
 const styles = {
     paper:{
         marginTop:10,
@@ -39,7 +41,7 @@ class Home extends Component {
         super();
         this.state = {
             selectedDate:new Date(),
-            single:'',
+            single:null,
             timeConflict: false,
             invitation_sent: false,
             player_exist: true
@@ -74,7 +76,7 @@ class Home extends Component {
         }
     
         // Inviter will receive an notification
-        const response = await fetch("http://localhost/api/sendNotification", {
+        const response = await fetch("http://"+host+"/api/sendNotification", {
           method: "POST",
             headers: { 
               'Content-Type': 'application/json'
@@ -99,7 +101,7 @@ class Home extends Component {
     
         // Invitee will receive an notification if the invitation is sent successfully
         if (clicked_status == "PENDING"){
-            const response = await fetch("http://localhost/api/sendNotification", {
+            const response = await fetch("http://"+host+"/api/sendNotification", {
             method: "POST",
                 headers: { 
                 'Content-Type': 'application/json'
@@ -127,7 +129,7 @@ class Home extends Component {
       }
       
       async checkTimeConflict(player_name, player_email, game_start_time){
-              return await fetch("http://localhost/api/isTimeConflict", {
+              return await fetch("http://"+host+"/api/isTimeConflict", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -155,7 +157,7 @@ class Home extends Component {
           }
       
       async addInvitation(my_email, my_name, player_name, player_email, invitation_status, game_start_time){
-              const response = await fetch("http://localhost/api/addInvitation", {
+              const response = await fetch("http://"+host+"/api/addInvitation", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -183,7 +185,7 @@ class Home extends Component {
           }
       
       async checkPlayerExist(player_email){
-              return  await fetch("http://localhost/api/checkPlayerExist", {
+              return  await fetch("http://"+host+"/api/checkPlayerExist", {
                   method: "POST",
                   headers: { 
                       'Content-Type': 'application/json'
@@ -222,7 +224,7 @@ class Home extends Component {
         var new_game_start_time = moment(game_start_time).format('YYYY-MM-DD hh:mm:ss')
         // console.log("new_game_start_time", new_game_start_time);
     
-          const result = await this.checkPlayerExist(player_email);
+        const result = await this.checkPlayerExist(player_email);
         //   console.log("result", result);
         //   console.log("result.exist", result["exist"]);
         //   console.log("result.name", result["name"]);
@@ -242,16 +244,16 @@ class Home extends Component {
               this.setState({player_exist: true});
               if( !my_timeConflict && !player_timeConflict ){
                   await this.addInvitation(my_email, my_name, result["name"], player_email, "PENDING", game_date_time);
-                  await this.setState({invitation_sent: true});
+                  this.setState({invitation_sent: true});
               }
               else{
                   
                   await this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
-                  await this.setState({timeConflict: true});
+                  this.setState({timeConflict: true});
               }
           }
           else{
-              await this.setState({player_exist: false});
+              this.setState({player_exist: false});
               //Send Error Emails
               const serviceID = 'gmail';
               const templateInviteeID = 'invitee_error_template';

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../css/table_search_invitation_received.css';
 
+const host = "localhost";
   
   const columns = [
     { field: 'id', title: 'ID', width: 100 , align: 'center', searchable: true},
@@ -35,7 +36,7 @@ function createData(data_id, data_inviter, data_invitee, data_gamedate, data_gam
 }
 
 async function addMeeting(id){
-  const response = await fetch("http://localhost/api/addMeeting", {
+  const response = await fetch("http://"+host+"/api/addMeeting", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -62,7 +63,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
   }else if (clicked_status == "DECLINED"){
     var player_content = invitee + " is bussy";
   }
-  const response = await fetch("http://localhost/api/sendNotification", {
+  const response = await fetch("http://"+host+"/api/sendNotification", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -84,7 +85,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
 }
 
 async function changeInvitationStatus(inviter, invitee, clicked_status, id){
-  const response = await fetch("http://localhost/api/changeInvitationStatus", {
+  const response = await fetch("http://"+host+"/api/changeInvitationStatus", {
     method: "POST",
       headers: { 
         'Content-Type': 'application/json'
@@ -147,12 +148,12 @@ export default function BasicSearch() {
 
     React.useEffect(function effectFunction() {
       async function fetchInvitationReceived() {
-        const response = await fetch("http://localhost/api/getInvitationReceived", {
-          method: "POST",
+        const response = await fetch("http://"+host+"/api/getInvitationReceived?p="+y_email, {
+          method: "GET",
           headers: { 
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ invitee_email: y_email })
+          // body: JSON.stringify({ invitee_email: y_email })
         });
         // check for error response
         if (!response.ok) {
