@@ -1,0 +1,321 @@
+{% load static %}
+<!doctype html>
+<html lang='en'>
+    <head>
+        <title>Mahjong</title>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+
+        <link rel='stylesheet' type='text/css' href='{% static 'mahjong/css/mahform.css' %}'>
+
+        <script type='text/javascript' src='{% static 'wam/Phasers/phaser.minX.js' %}'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/gameSession.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/gameStats.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/lobby.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/game.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/Button.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/tilenode.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/layout.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/board.js' %}'></script>
+        <script type='text/javascript' src='{% static 'mahjong/JavaScript/timer.js' %}'></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="{% static 'wam/css/index.css' %}?v=1.1" rel='stylesheet' type='text/css'>
+        <link href="{% static 'wam/css/help.css' %}?v=1.1" rel='stylesheet' type='text/css'>
+        <link href="{% static 'bejeweled/css/game.css' %}?v=1.1" rel='stylesheet' type='text/css'>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+        <script>window.onload=initLobby</script>
+
+        <style>
+
+            .hidden{
+                visibility: hidden;
+            }
+            .input{
+                width: 50%;
+                border-radius: 0px !important;
+            }
+            .question_button{
+                position: relative;
+                z-index:1000;
+            }
+
+            canvas{
+                z-index:0;
+            }
+
+            #gameDiv{
+                z-index:0;
+                left:15%;
+            }
+
+            .btn{
+                z-index:1000;
+            }
+
+            .question_mark{
+                z-index:1000;
+                color: #000000;
+                text-decoration: none;
+                background-color: transparent;
+                -webkit-text-decoration-skip: objects;
+            }
+
+            .question_mark:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+
+            .btn_transparent{
+                background: white;
+                border-width:0px !important;
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            p {
+                text-align: left !important;
+            }
+
+            h1{
+                text-align: left !important;
+            }
+
+            .modal-left{
+                align-items: baseline;
+            }
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div><span class="close" id="close_modal">&times;</span></div>
+                <div class="modal-left">
+                <h1>Mahjong:</h1>
+                <p>A popular pattern matching game, of Chinese origin.</p>
+
+                <p>Goal: Matching pairs of similar tiles to remove them from the board, in order to empty the board completely.</p>
+
+                <p>Instructions:
+                    <ol>
+                    <li>Only tiles on the edges of the board can be removed, so the process have to start from the outer tiles to the inward ones.</li>
+                    <li>To match two tiles, you have to click on them; once clicked, a tiles is highlighted. Then you have to click on another tile with the same symbol to match it. The matched pair of tiles will be removed from the layout.</li>
+                    <li>If you click on a tile twice, the highlighting disappears.</li>
+                    <li>Upon finished matching all the tiles, you will be moved to the next level. Some levels may have a multi-layer board. You may touch and match tile from any layer as long as a tile does not have another tile over it, and the tiles are from an outer right or left edge of a layer.</li>
+                    <li>If it is impossible to match two tiles, the game will shuffle the tiles, and you may continue until a level is complete, i.e., the board is empty.</li>
+                    </ol>
+                </p>
+
+                <p>
+                    <button style="font-size:10;" id="videoBtn" class="btn btn-warning">Watch Demo</button>
+                </p>
+                </div>
+            </div>
+        </div>
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <div><span class="close" id="video_close_modal">&times;</span></div>
+                <div style="text-align: center">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/_OYFqV3lOR4?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+    <main id='main'>
+            <div class="question_button btns" style="float:left">
+            </div>
+            <div class="question_button" style="float:right">
+                <button style="margin-right:10px; margin-top:10px;" class="btn" id="myBtn" type="button">How to play?</button>
+            </div>
+            <footer class="btns" style="position:absolute;bottom:0px;right:0px;">
+                <div>
+                    <div style="float:left">
+                        <button class="btn btn_transparent question_mark" id="toohard">
+                            <i class="fa fa-hand-o-down fa-2x" aria-hidden="true"></i>
+                            <div>Level <br />Too Hard?</div>
+                        </button>
+                    </div>
+                    <div style="float:right">
+                        <button class="btn btn_transparent question_mark" id="tooeasy">
+                            <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
+                            <div>Level <br />Too Easy?</div>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+
+            <div id = 'outergame'>
+                    <div class='game' id='gameDiv'>
+                    </div>
+                </div>
+        <div class='lobby', id='lobbyDiv'>
+        <form method='get' action ='/mahjong'>
+            <button class="hidden" id = 'logout-lobby' >Log Out</button>
+        </form>
+        <form id='gameSetup'>
+            <div class='dropdown hidden'>
+                <select class = 'gridoption' type='text' id='packageDropBox' onchange='changePackage(this.value)' ></select>
+                <label class = 'largeLabel' for='packageDropBox'>Layout Package:</label>
+            </div>
+            <div class='dropdown hidden'>
+                <select class = 'gridoption' type='text' id='layoutDropBox' ></select>
+                <label class = 'largeLabel' for='layoutDropBox'>Layout:</label>
+            </div>
+            <div class='dropdown hidden'>
+                <select class = 'gridoption' type='text' id='tilesetDropBox' ></select>
+                <label class = 'largeLabel' for='tilesetDropBox'>Tileset:</label>
+            </div>
+            <div class='dropdown hidden'>
+                <select class = 'gridoption' type='text' id='themeDropBox' ></select>
+                <label class = 'largeLabel' for='themeDropBox'>Game Theme:</label>
+            </div>
+            <div class = 'start_real'>
+                <input class = 'startgame' type='button' name='startGame' onclick='showGame(false)' value='Start Game 1' >
+            </div>
+            <div class = 'bottom'>
+                <p><div class='option hidden' id='timerDiv'>
+                    <h3 class = 'centered' id='timerText'>Session Time Limit</h3>
+                    <label for='timerMinuteField'>MM:</label>
+                    <input class = 'time' type='number' id='timerMinuteField' min='1' max='59' value='15' >
+                    <label for='timerSecondField'>SS:</label>
+                    <input class = 'time' type='number' id='timerSecondField' min='0' max='59' value='0' >
+                </div>
+                <p><div class='option hidden' id='hardDiv'>
+                    <h3 class = 'centered' id='hardText'>Enable Hard Mode</h3>
+                    <input type='checkbox' id='hardCheck' >
+                </div>
+                <div class='option hidden' id='hintDiv'>
+                    <h3 class = 'centered' id='hintText'>Enable Hints</h3>
+                    <input type='checkbox' id='hintCheck' >
+                </div>
+            </div>
+        </form>
+    </body>
+
+    <script>
+            var staff = "{{staff}}"
+            var participant = "{{participant}}";
+            var organization = "{{organization}}";
+            var token = "{{token}}";
+            var BASE_URL = window.location.origin;
+
+        </script>
+
+        <script>
+            //taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+            // Get the <span> element that closes the modal
+            var span = document.getElementById("close_modal");
+            //same thing but with video buttons
+            var video_modal = document.getElementById("videoModal");
+            var video_btn = document.getElementById("videoBtn");
+            var video_span = document.getElementById("video_close_modal");
+            var btn_easy = document.getElementById("tooeasy");
+            var btn_hard = document.getElementById("toohard");
+            var feedback = false;
+
+            btn_easy.onclick = function() {
+                if(!feedback){
+                    alert("Thank you for your feedback");
+                }
+                else{
+                    alert("Changed feedback to 'Too easy'")
+                }
+                feedback = "Too Easy";
+            }
+
+            btn_hard.onclick = function() {
+                if(!feedback){
+                    alert("Thank you for your feedback");
+                }
+                else{
+                    alert("Changed feedback to 'Too hard'")
+                }
+                feedback = "Too Hard";
+            }
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+            video_btn.onclick = function() {
+                video_modal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            video_span.onclick = function() {
+                video_modal.style.display = "none";
+                $("#videoModal iframe").attr("src", $("#videoModal iframe").attr("src"));
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == video_modal) {
+                    video_modal.style.display = "none";
+                    $("#videoModal iframe").attr("src", $("#videoModal iframe").attr("src"));
+                }
+                if (event.target == modal) {
+                modal.style.display = "none";
+                }
+            }
+        </script>
+        <script>
+            var formSubmitting = false;
+            var setFormSubmitting = function() { formSubmitting = true; };
+
+            $(window).bind('beforeunload', function(){
+                if(participant == "" || participant == "None"){
+                    return undefined;
+                }
+                else{
+                    return 'Are you sure you want to leave?';
+                }
+            });
+        </script>
+</html>

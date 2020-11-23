@@ -1,0 +1,33 @@
+.container {
+    text-align: center;
+}
+
+.svg_container {
+    margin-top: 50px;
+    display: inline-block;
+    width: 75%;
+    /*margin-top: 50%;*/
+    /*margin: auto;*/
+    /*position: relative;*/
+    /*vertical-align: center;*/
+    /*overflow: hidden;*/
+}
+
+input {
+    border: 0;
+    font-size: 3em;
+    outline: 0;
+    
+}
+
+.input_settings{
+    width: 10% !important;
+    height: 20% !important;
+    font-size: 30px!important;
+
+}
+
+#start_button_text{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size:60px;
+}

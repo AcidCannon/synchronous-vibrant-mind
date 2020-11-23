@@ -9,7 +9,7 @@ export default class Webrtc extends Component {
         this.state = {};
         this.srcId = null;
         this.targetId = null;
-        this.host = "[2605:fd00:4:1001:f816:3eff:fef1:58d0]";
+        this.host = "192.168.2.149";
         this.port = 9000;
         this.path = "/";
         this.debug = 3;
