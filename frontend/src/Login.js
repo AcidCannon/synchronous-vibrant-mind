@@ -141,7 +141,7 @@ export default class Login extends Component {
             <div style={{ height: 'auto !important',  width: 'auto !important'}}>
                 <Grid container style={{minHeight: "100vh"}}>
                     <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
-                        <Grid  justify="center">
+                        <Grid container justify="center">
                         <img src={logo} className="header_logo"  style={{width: 680, height: 300}}  alt="logo" />
                         </Grid>
                     </Grid>
@@ -183,7 +183,7 @@ export default class Login extends Component {
                                         type="username"
                                         name="username"
                                         placeholder="Username"
-                                        value={this.state.username}
+                                        value={this.state.username || ''}
                                         onChange={this.handleChange}
                                         required
                                     />
@@ -202,7 +202,7 @@ export default class Login extends Component {
                                         type="password"
                                         name="password"
                                         placeholder="Password"
-                                        value={this.state.password}
+                                        value={this.state.password || ''}
                                         onChange={this.handleChange}
                                         onKeyDown={this.keyPress}
                                         required
