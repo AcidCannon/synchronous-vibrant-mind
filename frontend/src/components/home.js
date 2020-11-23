@@ -247,7 +247,6 @@ class Home extends Component {
               else{
                   
                   await this.addInvitation(my_email, my_name, result["name"], player_email, "FAILED", game_date_time);
-                  //弹窗提醒
                   await this.setState({timeConflict: true});
               }
           }
@@ -261,13 +260,11 @@ class Home extends Component {
             //   const user_ID = "user_3KTCwCruCd7oJZeFiJ0RZ";
                 // const user_ID = "user_JfrETpyhDWla4LwOWWLM4";
                 const user_ID = "user_rZs3U2okgM07FTu3VEKkJ";
-              //给inviter发邮件
               await emailjs.send(serviceID,templateInviterID,{
                 to_email: my_email,
                 invitee_name: player_email,
                 }, user_ID);
               
-              //给invitee发邮件
               await emailjs.send(serviceID,templateInviteeID,{
                 to_email: player_email,
                 Inviter_name: my_name,

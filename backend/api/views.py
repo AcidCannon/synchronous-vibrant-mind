@@ -167,7 +167,7 @@ def addMeetingLogoutTime(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getInvitationSent(request):
     try:
         inviter_email = request.data['inviter_email']
@@ -187,7 +187,7 @@ def getInvitationSent(request):
         }
         return JsonResponse(json, safe=False)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getInvitationReceived(request):
     try:
         invitee_email = request.data['invitee_email']
@@ -230,7 +230,7 @@ def sendNotification(request):
         }
         return JsonResponse(json, safe=False)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getNotification(request):
     try:
         player_email = request.data['player_email']
@@ -251,7 +251,7 @@ def getNotification(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getMeetingHistory(request):
     try:
         player_email = request.data['player_email']
@@ -289,7 +289,7 @@ def getMeetingHistory(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getUpcomingEvent(request):
     try:
         player_email = request.data['player_email']
@@ -349,7 +349,7 @@ def changeInvitationStatus(request):
     else:
         return JsonResponse({'status':'success'}, safe=False)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getId(request):
     try:
         # invitation_id = request.data['invitation_id']
