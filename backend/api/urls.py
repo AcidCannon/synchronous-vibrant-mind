@@ -14,10 +14,10 @@ urlpatterns = [
     path("changeInvitationStatus", views.changeInvitationStatus),
     path("changeNotificationStatus", views.changeNotificationStatus),
     path("isTimeConflict", views.isTimeConflict),
-    path("getId", views.getId),
     path("getAllPlayer", views.getAllPlayer),
     path("checkPlayerExist", views.checkPlayerExist),
     path("addMeeting", views.addMeeting),
-    path("addMeetingTime", views.addMeetingTime)
+    path("addMeetingTime", views.addMeetingTime),
+    path("addMeetingLoginTime", views.addMeetingLoginTime),
+    path("addMeetingLogoutTime", views.addMeetingLogoutTime)
 ]
-

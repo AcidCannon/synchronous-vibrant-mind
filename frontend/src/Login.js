@@ -44,6 +44,7 @@ export default class Login extends Component {
     
         // this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.keyPress = this.keyPress.bind(this);
       }
     
       handleChange(event) {
@@ -51,6 +52,13 @@ export default class Login extends Component {
           [event.target.name]: event.target.value
         });
       }
+
+      keyPress(e){
+        if(e.keyCode == 13){
+           // put the login here
+           this.auth();
+        }
+     }
 
     async auth(){
         const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:fe56:29db]/vibrantminds2/api/token_login", {
@@ -70,9 +78,9 @@ export default class Login extends Component {
                     return Promise.reject(error);
                 }
                 this.setState({ email: result.user.participant_info.email});
-                this.addPlayer();
-                console.log("login successful");
-                console.log("login token", result.token);
+                await this.addPlayer();
+                // console.log("login successful");
+                // console.log("login token", result.token);
 
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+1);
@@ -105,8 +113,8 @@ export default class Login extends Component {
             }
             
             this.setState({login: true});
-            console.log("successful addPlayer", data);
-            console.log("state", this.state);
+            // console.log("successful addPlayer", data);
+            // console.log("state", this.state);
         })
         .catch(error => {
             this.setState({ errorMessage: error.toString() });
@@ -134,7 +142,7 @@ export default class Login extends Component {
             <div style={{ height: 'auto !important',  width: 'auto !important'}}>
                 <Grid container style={{minHeight: "100vh"}}>
                     <Grid container item xs={6} sm={12} justify="center" style={{backgroundColor: 'white'}}>
-                        <Grid  justify="center">
+                        <Grid>
                         <img src={logo} className="header_logo"  style={{width: 680, height: 300}}  alt="logo" />
                         </Grid>
                     </Grid>
@@ -197,6 +205,7 @@ export default class Login extends Component {
                                         placeholder="Password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
+                                        onKeyDown={this.keyPress}
                                         required
                                     />
                                     <div style={{height: 20}} />

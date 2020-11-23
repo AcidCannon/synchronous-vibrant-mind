@@ -38,28 +38,28 @@ class Page extends Component {
                         style={{width: "180px"}}
                         direction="column" 
                         >
-                        <Grid item >
+                        <Grid item>
                             <ListItemLink justify="center" href="/vibrant-minds-together/home">Home</ListItemLink>
                         </Grid>
                             <Divider />
                             <Grid item>
-                                <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitation Sent</ListItemLink>
+                                <ListItemLink href='/vibrant-minds-together/invitation_sent'>Invitations Sent</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitation Received</ListItemLink>
+                            <Grid item>
+                                <ListItemLink href='/vibrant-minds-together/invitation_received'>Invitations Received</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Event</ListItemLink>
+                            <Grid item>
+                                <ListItemLink href='/vibrant-minds-together/upcoming_event'>Upcoming Events</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
+                            <Grid item >
                                 <ListItemLink href='/vibrant-minds-together/history'>History</ListItemLink>
                             </Grid>
                             <Divider />
-                            <Grid item justify="center">
-                                <ListItemLink href='/vibrant-minds-together/notification'>Notification</ListItemLink>
+                            <Grid item>
+                                <ListItemLink href='/vibrant-minds-together/notification'>Notifications</ListItemLink>
                         </Grid>
                         <Divider />
                         </Grid>

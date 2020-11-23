@@ -3,6 +3,30 @@ import "./Webrtc.css";
 import Peer from "peerjs";
 import Jitsi from "./Jitsi.js"
 
+async function addMeetingLogoutTime(id, name, logoutTime){
+        
+    const response = await fetch("http://localhost/api/addMeetingLogoutTime", {
+        method: "POST",
+            headers: { 
+            'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify({ invitation_id:id, name:name, logout_time:logoutTime})
+        }).then(async response => {
+            const data = await response.json();
+            
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+        }).catch(error => {
+            console.error('There was an error when adding logout time!', error);
+        });
+    
+}
+
 export default class Webrtc extends Component {
     constructor(props) {
         super(props);
@@ -25,6 +49,29 @@ export default class Webrtc extends Component {
         ///////////////////////
     }
 
+    getTimeStamp() {
+        var now = new Date();
+        return ( now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + (now.getDate()) + " " + now.getHours() + ':'
+                      + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now
+                      .getSeconds()) : (now.getSeconds())));
+      }
+
+    
+
+    recordLeave() {
+        
+        window.addEventListener("beforeunload", (param)=>
+        {
+            const leave_time = this.getTimeStamp()
+            var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' )
+            id = parseInt(id)
+            const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '')
+            addMeetingLogoutTime(id, y_username, leave_time)
+            
+        });
+        
+    }
+
     getQueryVariable(variable)
     {
         var query = window.location.search.substring(1);
@@ -38,11 +85,13 @@ export default class Webrtc extends Component {
         return(false);
     }
 
+
     componentDidMount() {
+        
         // get parameter from url
         this.srcId = this.getQueryVariable("srcId");
         this.targetId = this.getQueryVariable("targetId");
-
+        this.recordLeave()
         // if no peer exist
         if (!this.peer) {
             // create peer instance

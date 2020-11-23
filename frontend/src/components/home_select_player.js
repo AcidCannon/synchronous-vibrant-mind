@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import { InputAdornment } from "@material-ui/core";
 
+const host = "localhost";
+
 const suggestions = [
     { label: 'alpha@hotmail.com' },
     { label: 'bdong@hotmail.com' },
@@ -136,7 +138,7 @@ export default function IntegrationAutosuggest(props) {
 
     React.useEffect(function effectFunction() {
         async function fetchSuggestions() {
-          const response = await fetch("http://localhost/api/getAllPlayer", {
+          const response = await fetch("http://"+host+"/api/getAllPlayer", {
             method: "GET",
             headers: { 
               'Content-Type': 'application/json'
@@ -156,7 +158,7 @@ export default function IntegrationAutosuggest(props) {
             const newSuggestions = [];
             if( (response.status == 200) && (result) ){
               //for loop method
-              console.log("this is the response of bdong", result);
+            //   console.log("this is the response of bdong", result);
               for (var row of result){
                 // var username = row.username;
                 var player_email = row.email
