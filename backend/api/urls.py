@@ -18,6 +18,7 @@ urlpatterns = [
     path("getAllPlayer", views.getAllPlayer),
     path("checkPlayerExist", views.checkPlayerExist),
     path("addMeeting", views.addMeeting),
-    path("addMeetingTime", views.addMeetingTime)
+    path("addMeetingTime", views.addMeetingTime),
+    path("addMeetingLoginTime", views.addMeetingLoginTime),
+    path("addMeetingLogoutTime", views.addMeetingLogoutTime)
 ]
-
