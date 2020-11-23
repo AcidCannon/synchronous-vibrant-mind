@@ -297,8 +297,9 @@ def getUpcomingEvent(request):
         query = Q(inviter = player)
         query.add(Q(invitee = player), Q.OR)
         query.add(Q(state = "ACCEPTED"), Q.AND)
-        now = datetime.now()
-        query.add(Q(start_time__gte = now), Q.AND)
+        # now = datetime.now()
+        # now = now-timedelta(hours=7, minutes=30)
+        # query.add(Q(start_time__gte = now), Q.AND)
         invitations = Invitation.objects.filter(query)
     except Exception as e:
         json = {

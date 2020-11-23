@@ -49,14 +49,13 @@ const columns = [
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_join_meeting, id) {
+function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, id) {
   // const density = game_start_time / size;
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
     game_start_time: data_game_start_time, 
-    download_calendar: data_download_calendar, 
-    join_meeting: data_join_meeting,
+    download_calendar: data_download_calendar,
     id:id
   };
 }
