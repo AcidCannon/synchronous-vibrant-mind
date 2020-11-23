@@ -33,7 +33,7 @@ export default class Webrtc extends Component {
         this.state = {};
         this.srcId = null;
         this.targetId = null;
-        this.host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
+        this.host = "[2605:fd00:4:1001:f816:3eff:fef1:58d0]";
         this.port = 9000;
         this.path = "/";
         this.debug = 3;
@@ -185,7 +185,7 @@ export default class Webrtc extends Component {
                         <video id="capture" autoPlay controls>Your browser does not support video.</video>
                     </div>
                     <div id="right">
-                        <iframe id="mahjong" src="https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/mahjongGame">Your browser does not support iframe.</iframe>
+                        <iframe id="mahjong" src="https://[2605:fd00:4:1001:f816:3eff:feb2:3536]/mahjongGame">Your browser does not support iframe.</iframe>
                         <canvas id="placeholder">Your browser does not support canvas.</canvas>
                     </div>
                 </div>
