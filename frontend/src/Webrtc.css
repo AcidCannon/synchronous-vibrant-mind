@@ -24,7 +24,7 @@
     float: bottom;
 }
 
-#game {
+#mahjong {
     display: block;
     width: 100%;
     height: 100vh;
@@ -42,6 +42,8 @@
     display: none;
 }
 
-#chat {
-    display: none;
+#placeholder {
+    display: block;
+    width: 0;
+    height: 0;
 }

@@ -33,7 +33,7 @@ export default class Webrtc extends Component {
         this.state = {};
         this.srcId = null;
         this.targetId = null;
-        this.host = "192.168.2.149";
+        this.host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
         this.port = 9000;
         this.path = "/";
         this.debug = 3;
@@ -41,12 +41,7 @@ export default class Webrtc extends Component {
         this.peer = null;
         this.conn = null;
         this.localStream = null;
-        /////////////////////
-        // canvas related, placeholder
-        this.context = null;
-        this.started = false;
-        this.buffer = [];
-        ///////////////////////
+        this.interval = null;
     }
 
     getTimeStamp() {
@@ -59,7 +54,7 @@ export default class Webrtc extends Component {
     
 
     recordLeave() {
-        
+
         window.addEventListener("beforeunload", (param)=>
         {
             const leave_time = this.getTimeStamp()
@@ -69,7 +64,7 @@ export default class Webrtc extends Component {
             addMeetingLogoutTime(id, y_username, leave_time)
             
         });
-        
+
     }
 
     getQueryVariable(variable)
@@ -115,43 +110,48 @@ export default class Webrtc extends Component {
                 }.bind(this));
             }.bind(this));
         }
-        ////////////////////
-        // canvas related, placeholder
-        var demoCanvas = document.getElementById("game");
-        var context = demoCanvas.getContext("2d");
-
-        demoCanvas.onmousedown = function(e) {
-            e.preventDefault();
-            context.strokeStyle = '#00f';
-            context.beginPath();
-            this.started = true;
-            this.buffer.push({"x": e.offsetX, "y": e.offsetY});
-        }.bind(this);
-
-        demoCanvas.onmousemove = function (e) {
-            if (this.started) {
-                context.lineTo(e.offsetX, e.offsetY);
-                context.stroke();
-                this.buffer.push({ "x": e.offsetX, "y": e.offsetY });
-            }
-        }.bind(this);
-
-        demoCanvas.onmouseup = function (e) {
-            if (this.started) {
-                this.started = false;
-                this.buffer = [];
-            }
-        }.bind(this);
-        ////////////////////
     }
 
     startCapture() {
-        this.localStream = document.getElementById("game").captureStream();
-        var outgoing = this.peer.call(this.targetId, this.localStream);
-        outgoing.on("stream", function(stream) {
-            console.log("received remote stream");
-            document.getElementById("capture").srcObject = stream;
-        })
+        // we do not know if your mate start the game yet, so we need a placeholder
+        // here localStream is just a null object, but we will establish streaming connection first
+        // and handle with the real stream later
+        this.localStream = document.getElementById("placeholder").captureStream();
+        if (!this.interval) {
+            clearInterval(this.interval);
+            this.interval=null;
+        }
+        this.interval = setInterval(function() {
+            console.log("step in")
+            var iframeObj = document.getElementById("mahjong");
+            if (!iframeObj) {
+                console.log("iframe is null");
+                return;
+            }
+            var canvasSet = iframeObj.contentDocument.getElementsByTagName("canvas");
+            if (canvasSet.length === 0) {
+                console.log("canvas set is null");
+                return;
+            }
+            var canvasObj = canvasSet[0];
+            if (!canvasObj) {
+                console.log("canvas obj is null");
+                return;
+            }
+            console.log("before")
+            this.localStream = canvasObj.captureStream();
+            console.log("after")
+            if (this.localStream) {
+                clearInterval(this.interval);
+                this.interval = null;
+                var outgoing = this.peer.call(this.targetId, this.localStream);
+                outgoing.on("stream", function(stream) {
+                    console.log("received remote stream");
+                    document.getElementById("capture").srcObject = stream;
+                })
+                console.log("clear interval")
+            }
+        }.bind(this), 500);
     }
 
     ready() {
@@ -173,13 +173,6 @@ export default class Webrtc extends Component {
         }
     }
 
-    send() {
-        var msg = document.getElementById("msg").value;
-        if (this.conn.open) {
-            this.conn.send(this.srcId + " said: " + msg);
-        }
-    }
-
     render(){
         return(
             <div>
@@ -187,16 +180,13 @@ export default class Webrtc extends Component {
                     <button onClick={this.ready.bind(this)}>I am ready</button>
                 </div>
                 <div id="post">
-                    <div id="chat">
-                        Your message: <input id="msg" type="text"></input>
-                        <button onClick={this.send.bind(this)}>send</button><br></br>
-                    </div>
                     <div id="left">
                         <Jitsi id="video" roomName={this.getQueryVariable("roomName")}>Your browser does not Jitsi.</Jitsi>
                         <video id="capture" autoPlay controls>Your browser does not support video.</video>
                     </div>
                     <div id="right">
-                        <canvas id="game">Your browser does not support canvas.</canvas>
+                        <iframe id="mahjong" src="https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/mahjongGame">Your browser does not support iframe.</iframe>
+                        <canvas id="placeholder">Your browser does not support canvas.</canvas>
                     </div>
                 </div>
             </div>
