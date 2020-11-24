@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import Table from './table_history';
-import Table from './table_search_history';
+import Table from '../tables/table_search_history';
 import { Grid } from '@material-ui/core';
 
 class History extends Component {

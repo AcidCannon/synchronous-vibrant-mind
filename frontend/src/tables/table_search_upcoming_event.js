@@ -228,12 +228,11 @@ export default function BasicSearch() {
             ResetSearch: Close
           }}
           actions={[
-            rowData=> ({
+            {
               icon: 'save',
               tooltip: 'Save User',
-              onClick: (event, rowData)=> recordJoin(rowData, y_username),
-              disabled: moment(rowData.gamedate.toString()).isAfter(moment())
-            })
+              onClick: (event, rowData)=> recordJoin(rowData, y_username)
+            }
           ]}
           components={{
             Action: props => (

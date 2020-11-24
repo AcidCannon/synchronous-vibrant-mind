@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Grid, InputAdornment, TextField } from "@material-ui/core";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import logo from './logo.png';
+import logo from '../logo.png';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, LockRounded } from "@material-ui/icons";
-import uofalogo from "./uofa.png";
+import uofalogo from "../uofa.png";
 import {Redirect} from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
-import './css/Login.css';
+import '../css/Login.css';
 
 const host = "localhost";
 const theme = createMuiTheme({
