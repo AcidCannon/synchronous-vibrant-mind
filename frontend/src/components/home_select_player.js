@@ -8,17 +8,12 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/core/styles';
-
-
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import { InputAdornment } from "@material-ui/core";
 
-const suggestions = [
-    { label: 'alpha@hotmail.com' },
-    { label: 'bdong@hotmail.com' },
-    { label: 'zoe@hotmail.com' },
-    { label: 'lily@ualberta.ca' },
-];
+
+
+const host = "localhost";
 
 function createData(email) {
     return { label: email };
@@ -136,7 +131,11 @@ export default function IntegrationAutosuggest(props) {
 
     React.useEffect(function effectFunction() {
         async function fetchSuggestions() {
+<<<<<<< HEAD
+          const response = await fetch("http://"+host+"/api/getAllPlayer", {
+=======
           const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/getAllPlayer", {
+>>>>>>> origin/stable
             method: "GET",
             headers: { 
               'Content-Type': 'application/json'
@@ -156,7 +155,7 @@ export default function IntegrationAutosuggest(props) {
             const newSuggestions = [];
             if( (response.status == 200) && (result) ){
               //for loop method
-              console.log("this is the response of bdong", result);
+            //   console.log("this is the response of bdong", result);
               for (var row of result){
                 // var username = row.username;
                 var player_email = row.email
@@ -188,7 +187,7 @@ export default function IntegrationAutosuggest(props) {
         renderInputComponent,
         suggestions: stateSuggestions,
         onSuggestionsFetchRequested: handleSuggestionsFetchRequested,
-        // onSuggestionsClearRequested: handleSuggestionsClearRequested,
+        onSuggestionsClearRequested: handleSuggestionsClearRequested,
         getSuggestionValue,
         renderSuggestion,
     };

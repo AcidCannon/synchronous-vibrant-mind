@@ -1,0 +1,20 @@
+{% extends 'base_game_login.html' %}
+{% load static %}
+
+{% block title %} Mahjong {% endblock title %}
+
+{% block extracss %}
+{% endblock %}
+
+{% block logo %}
+    <img src="{% static 'mahjong/imgs/mahjong.svg'%}" alt="vibrantminds2" width="200" height="200">
+{% endblock %}
+
+{% block game_description %}
+    <p style="padding-top:100px">Mahjong is a game of skill, strategy, and calculation and involves a degree of chance.</p>
+    <p>The main objective of mahjong solitaire is for the player to remove all the tiles from the board.</p>
+{% endblock %}
+
+{% block game_title %}Mahjong{% endblock %}
+{% block game_url_quick %}{% url 'mahjong:game' %}{% endblock %}
+{% block game_url %}{% url 'mahjong:game' %}{% endblock %}

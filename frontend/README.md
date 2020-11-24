@@ -66,3 +66,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Frontend UI Tests
+The source code for frontend UI tests can be found in /src directory.
+
+### Framework
+We used python's unittest module and Selenium as our testing framework.
+
+### Local Testing Setup Instructions:
+Local testing supports Linux, MacOS and Windows.
+There are four Selenium WebDrivers available: Chrome, Edge, Firefox and Safari.
+For more information, please refer to [Selenium Official Documentation](https://selenium-python.readthedocs.io/installation.html).
+
+### Remote Testing
+If you want to use a remote WebDriver, you should have Selenium server running.
+For more details, please refer to: https://selenium-python.readthedocs.io/getting-started.html#selenium-remote-webdriver

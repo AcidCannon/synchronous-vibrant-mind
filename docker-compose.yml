@@ -48,6 +48,15 @@ services:
     volumes:
       - syncvm_database1_volume:/var/lib/postgresql/data
 
+  mahjong_game:
+    build: mahjong
+    container_name: ext-mahjong-release
+    ports: 
+      - "8082:8082"
+    command:
+      "python manage.py runserver 0.0.0.0:8082"
+    depends_on: 
+      - nginx
 volumes:
   static_volume:
   syncvm_database1_volume:

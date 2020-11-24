@@ -1,0 +1,396 @@
+#bejcolorstrip_vertical {
+	width: 50%;
+	height: 100%;
+	top:0;
+	left:0;
+	position:absolute;
+	font-family: 'Comfortaa', cursive;
+	border-style: solid;
+	border-color: #2b2b2b;
+	background-color: #2b2b2b;
+	color:white;
+}
+
+.button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+  }
+
+.button4 {border-radius: 12px;
+	font-family: 'Comfortaa', cursive;}
+
+
+.font_web{
+	font-family: 'Comfortaa', cursive;
+}
+
+h1 {
+    font-size: 2em;
+	font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2{
+    font-size: 1.5em;
+	font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+h3{
+    font-size: 1.2em;
+	font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+p {
+    text-align: center;
+}
+
+.mainbutton {
+    width: 50%;
+    background-color: #3291ff;
+    border: none;
+    text-align: center;
+    padding: 25px 36px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+input {
+    width: 50%;
+    border-radius: 5px;
+}
+
+input[type="login"] {
+    background-color: #3291ff;
+    text-align: center;
+    padding: 25px 36px;
+    font-size: 24px;
+    color: #ffffff;
+    width: 20%;
+    
+}
+
+input[type="submit"] {
+    background-color: #3291ff;
+    text-align: center;
+    padding: 25px 36px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+input[type="text"] {
+    font-size: 20px;
+    padding-left: 5px;
+	font-family: 'Comfortaa', cursive;
+}
+
+input[type="password"] {
+    font-size: 20px;
+    padding-left: 5px;
+	font-family: 'Comfortaa', cursive;
+}
+
+/* set background*/
+.main {
+    background-size: cover;
+}
+
+#player_filter {
+    display: inline;
+}
+
+button {
+    background-color: #3291ff;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.lobby {
+    border-radius: 25px;
+    background: white;
+    padding: 10px 20px 20px 20px;
+    width: auto;
+    max-width: 1000px;
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+.statspage {
+    border-radius: 25px;
+    background: white;
+    padding: 20px 20px 20px 20px;
+    min-width: 70%;
+    width: 70%;
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* NOTE: Only works for non-floated block elements */
+    display: block;
+    float: none;
+}
+
+.dropdown {
+    padding: 10px;
+    margin-bottom:50px;
+    
+}
+
+.option {
+    width: 30%;
+    padding: 16px 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100%;
+	font-family: 'Comfortaa', cursive;
+    float: left;
+   
+}
+
+
+.start {
+    background-color: #3291ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+.gridoption{
+    background-color: #3291ff;
+    border: none;
+    color: white;
+    padding: 16px 16px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 16px;
+    width: 50%;
+    float: right;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
+.largeLabel{
+    font-size: 1.5em;
+	font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    text-align: right;
+    display: inline-block;
+    width: 300px;
+    float: right;
+}
+
+.startgame{
+    background-color: #3291ff;
+    text-align: center;
+    padding: 1.2em;
+    font-size: 1.5em;
+	font-family: 'Comfortaa', cursive;
+    color: #ffffff;
+    width: 100%;
+}
+
+.bottom{
+    align: center;
+    margin-left: 12%;
+    text-align:center;
+}
+
+input[type="checkbox"] {
+    transform:scale(2, 2);
+}
+
+#logout-researcher{
+    float: right;
+    vertical-align: top;
+    display: inline-block;
+    border-radius: 10px;
+    position: relative;
+    font-size: 1em;
+}
+
+.time{
+	font-family: 'Comfortaa', cursive;
+    width:20%;
+    padding: 8px 8px;
+
+}
+
+#outergame{
+    width: 100%;
+    text-align: center;
+}
+
+.game{
+    margin: 0 auto;
+}
+
+.start_real{
+    width: 70%;
+    display: inline-block;
+}
+
+.practice{
+    width: 30%;
+    float: left;
+    display: inline-block;
+}
+
+.language{
+    background-color: #3291ff;
+    border: none;
+    text-align: center;
+    padding: 8px 8px;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+select.language option {
+    background-repeat:no-repeat;
+    background-position:bottom left;
+    padding-left:30px;
+}
+
+#logout-lobby{
+    float: right;
+    vertical-align: top;
+    display: inline;
+    border-radius: 10px;
+    position: relative;
+    top: 8px;
+    right: 12px;
+    font-size: 14px;
+}
+
+.loginDiv{
+    width:50%
+}
+
+.small {
+    background-color: #3291ff;
+    text-align: center;
+    padding: 25px 36px;
+    font-size: 24px;
+    color: #ffffff;
+    width: 25%;
+    float: left;
+}
+
+.leftButton{
+    margin-left: 25%;
+}
+
+.centerDiv{
+  margin-top: 125px;
+}
+
+.genericLabel{
+    font-size: 100%;
+	font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.loginCheck{
+    width: 5%;
+    margin-left: 24%;
+}
+
+.alert {
+    position: relative;
+    left:25%;
+    background-color: #f44336;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 14px 36px;
+    width: 45%;
+}
+
+#filter_button{
+    padding: 1em 1.5em;
+    border-radius: 10px;
+    margin-left: 1em;
+}
+
+#export{
+    padding: 1em 1.5em;
+    border-radius: 10px;
+    margin-left: 1em;
+}
+
+#filter_text {
+    margin: 0;
+    padding: 0;
+    text-indent: 1em;
+}
+
+.padding{
+    margin-top: 16px;
+}
+
+.filterDiv {
+   float: left;
+   padding-top: 1em;
+   padding-bottom: 2em;
+   padding-right: 2em;
+   font-size: 1.2em;
+   width:100%;
+}
+
+#filter {
+    width:20%
+}
+
+.researchPadding{
+    padding-top: 4em;
+}
+
+.centered{
+    text-align: center;
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  height: 75%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+

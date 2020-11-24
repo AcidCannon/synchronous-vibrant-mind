@@ -140,6 +140,35 @@ def addMeetingLoginTime(request):
             'status' : 'success'
         }
         return JsonResponse(json, safe=False)
+<<<<<<< HEAD
+=======
+
+@api_view(["POST"])
+def addMeetingLogoutTime(request):
+    try:
+        id = request.data['invitation_id']
+        name = request.data['name']
+        logout_time = request.data['logout_time']
+        meeting = Meeting.objects.get(invitation_id = id)
+        if(meeting.player1.name == name):
+            meeting.player1_logout_time = logout_time
+            meeting.save()
+        if(meeting.player2.name == name):
+            meeting.player2_logout_time = logout_time
+            meeting.save()
+    except Exception as e:
+        json = {
+            'status' : 'fail',
+            'msg' : str(e).strip("'")
+        }
+        return JsonResponse(json, safe=False)
+    else:
+        json = {
+            'status' : 'success'
+        }
+        return JsonResponse(json, safe=False)
+
+>>>>>>> origin/stable
 
 @api_view(["POST"])
 def addMeetingLogoutTime(request):
@@ -167,10 +196,11 @@ def addMeetingLogoutTime(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getInvitationSent(request):
     try:
-        inviter_email = request.data['inviter_email']
+        # inviter_email = request.data['inviter_email']
+        inviter_email = request.GET.get('p', '')
         inviter = Player.objects.get(email = inviter_email)
         invitations = Invitation.objects.filter(inviter = inviter)
     except Exception as e:
@@ -187,10 +217,11 @@ def getInvitationSent(request):
         }
         return JsonResponse(json, safe=False)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getInvitationReceived(request):
     try:
-        invitee_email = request.data['invitee_email']
+        # invitee_email = request.data['invitee_email']
+        invitee_email = request.GET.get('p', '')
         invitee = Player.objects.get(email = invitee_email)
         invitations = Invitation.objects.filter(invitee = invitee)
     except Exception as e:
@@ -230,10 +261,11 @@ def sendNotification(request):
         }
         return JsonResponse(json, safe=False)
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getNotification(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         notifications = Notification.objects.filter(player = player)
     except Exception as e:
@@ -251,10 +283,11 @@ def getNotification(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getMeetingHistory(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         history = Meeting.objects.filter(Q(player1=player) | Q(player2=player))
     except Exception as e:
@@ -289,16 +322,18 @@ def getMeetingHistory(request):
         return JsonResponse(json, safe=False)
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 def getUpcomingEvent(request):
     try:
-        player_email = request.data['player_email']
+        # player_email = request.data['player_email']
+        player_email = request.GET.get('p', '')
         player = Player.objects.get(email = player_email)
         query = Q(inviter = player)
         query.add(Q(invitee = player), Q.OR)
         query.add(Q(state = "ACCEPTED"), Q.AND)
-        now = datetime.now()
-        query.add(Q(start_time__gte = now), Q.AND)
+        # now = datetime.now()
+        # now = now-timedelta(hours=7, minutes=30)
+        # query.add(Q(start_time__gte = now), Q.AND)
         invitations = Invitation.objects.filter(query)
     except Exception as e:
         json = {
@@ -348,27 +383,28 @@ def changeInvitationStatus(request):
     else:
         return JsonResponse({'status':'success'}, safe=False)
 
-@api_view(["POST"])
-def getId(request):
-    try:
-        # invitation_id = request.data['invitation_id']
-        email = request.data['email']
-        start_time = dateparser.parse(request.data['start_time'])
-        player = Player.objects.get(email = email)
-        query = Q(invitee = player)
-        query.add(Q(inviter = player), Q.OR)
-        query.add(Q(state = "ACCEPTED"), Q.AND)
-        query.add(Q(start_time = start_time), Q.AND)
-        invitations = Invitation.objects.filter(query)
-        id = invitations[0].id
-    except Exception as e:
-        json = {
-            'status': 'fail',
-            'msg' : str(e).strip("'")
-        }
-        return JsonResponse(json, safe=False)
-    else:
-        return JsonResponse({'status':'success', 'id' : id}, safe=False)
+# @api_view(["GET"])
+# def getId(request):
+#     try:
+#         # invitation_id = request.data['invitation_id']
+#         # email = request.data['email']
+#         email = request.GET.get('p', '')
+#         start_time = dateparser.parse(request.GET.get('t',''))
+#         player = Player.objects.get(email = email)
+#         query = Q(invitee = player)
+#         query.add(Q(inviter = player), Q.OR)
+#         query.add(Q(state = "ACCEPTED"), Q.AND)
+#         query.add(Q(start_time = start_time), Q.AND)
+#         invitations = Invitation.objects.filter(query)
+#         id = invitations[0].id
+#     except Exception as e:
+#         json = {
+#             'status': 'fail',
+#             'msg' : str(e).strip("'")
+#         }
+#         return JsonResponse(json, safe=False)
+#     else:
+#         return JsonResponse({'status':'success', 'id' : id}, safe=False)
 
 
 @api_view(["POST"])
