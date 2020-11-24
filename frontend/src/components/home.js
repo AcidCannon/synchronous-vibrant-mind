@@ -286,7 +286,7 @@ class Home extends Component {
                 justify="center" 
                 item 
                 xs={12} 
-                alignItems="center" 
+                alignItems="stretch" 
                 direction="column" 
                 >
                 {/*<Paper className={classes.paper}>*/}
