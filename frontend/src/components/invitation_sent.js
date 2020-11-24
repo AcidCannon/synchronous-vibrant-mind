@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 // import Table from './table_invitation_sent';
 // import Table from './table_sort_invitation_sent';
 import Table from '../tables/table_search_invitation_sent';
+=======
+import Table from './table_invitation_sent';
+>>>>>>> origin/stable
 import { Grid } from '@material-ui/core';
 
 class InvitationSent extends Component {

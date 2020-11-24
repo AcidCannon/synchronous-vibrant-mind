@@ -21,3 +21,4 @@ urlpatterns = [
     path("addMeetingLoginTime", views.addMeetingLoginTime),
     path("addMeetingLogoutTime", views.addMeetingLogoutTime)
 ]
+

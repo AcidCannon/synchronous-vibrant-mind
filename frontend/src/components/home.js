@@ -229,7 +229,7 @@ class Home extends Component {
         //   console.log("result.exist", result["exist"]);
         //   console.log("result.name", result["name"]);
           var gameDate = moment(game_start_time).format('YYYY-MM-DD').toString();
-          var gameTime = moment(game_start_time).format('HH:mm:ss').toString();
+          var gameTime = moment(game_start_time).format('hh:mm:ss').toString();
           const game_date_time = gameDate + " " + gameTime;
         //   console.log("gameDate", gameDate);
         //   console.log("gameTime", gameTime);
