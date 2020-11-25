@@ -94,11 +94,7 @@ export default class Login extends Component {
       }
 
     async addPlayer(){
-<<<<<<< HEAD:frontend/src/components/Login.js
         const response = await fetch("http://"+host+"/api/addPlayer", {
-=======
-        const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/addPlayer", {
->>>>>>> origin/stable:frontend/src/Login.js
             method: "POST",
             headers: { 
                 'Content-Type': 'application/json'
