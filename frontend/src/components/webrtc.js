@@ -65,7 +65,7 @@ export default class Webrtc extends Component {
             var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' )
             id = parseInt(id)
             const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '')
-            addMeetingLogoutTime(id, y_username, leave_time)
+            await addMeetingLogoutTime(id, y_username, leave_time)
             
         });
 
