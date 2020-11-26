@@ -1,0 +1,39 @@
+#gameDiv{    
+    position: absolute;
+    z-index:0;
+}
+
+.question_button{
+    position: relative;
+    z-index:1000;
+}
+
+canvas{
+    z-index:0;
+}
+
+#gameDiv{    
+    position: absolute;
+    z-index:0;
+}
+
+.btn{
+    z-index:1000;
+}
+
+.question_mark{
+    z-index:1000;
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.question_mark:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.btn_transparent{
+    background: white;
+}

@@ -1,0 +1,49 @@
+#left {
+    width: 30%;
+    height: 100vh;
+    float: left;
+}
+
+#right {
+    width: 70%;
+    height: 100vh;
+    float: right;
+}
+
+#video {
+    display: block;
+    width: 99%;
+    height: 50vh;
+    float: top;
+}
+
+#capture {
+    display: block;
+    width: 99%;
+    height: 50vh;
+    float: bottom;
+}
+
+#mahjong {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    float: top;
+}
+
+#pre {
+    /*display: block;*/
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90vh;
+}
+
+#post {
+    display: none;
+}
+
+#placeholder {
+    display: block;
+    width: 0;
+    height: 0;
+}
