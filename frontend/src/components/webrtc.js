@@ -4,9 +4,11 @@ import Peer from "peerjs";
 import Jitsi from "../jitsi.js";
 import Header from "./header";
 
+const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
+
 async function addMeetingLogoutTime(id, name, logoutTime){
         
-    const response = await fetch("http://localhost/api/addMeetingLogoutTime", {
+    const response = await fetch("http://"+host+"/api/addMeetingLogoutTime", {
         method: "POST",
             headers: { 
             'Content-Type': 'application/json'

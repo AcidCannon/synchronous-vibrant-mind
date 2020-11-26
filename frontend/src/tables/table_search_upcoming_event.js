@@ -159,7 +159,7 @@ export default function BasicSearch() {
                 // console.log("moment(row.start_time).add(1,'hour').isAfter(now)", moment(row.start_time).add(8,'hour').isAfter(now));
                 // console.log("now", now.format("YYYY-MM-DD hh:mm a").toString());
                 // console.log("moment(row.start_time).add(1,'hour')", moment(row.start_time).add(8,'hour').format("YYYY-MM-DD hh:mm a").toString());
-              if (moment(row.start_time).add(8,'hour').isAfter(now)){
+              if (moment(row.start_time).add(9,'hour').isAfter(now)){
                   // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
                   // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
                   // var gamedate = moment(row.start_time).format('YYYY-MM-DD');
