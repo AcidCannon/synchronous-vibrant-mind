@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
@@ -9,7 +9,9 @@ import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPag
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../css/table_search_upcoming_event.css';
 
-const host = "localhost";
+// const host = "localhost";
+const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
+
 const columns = [
   { 
     field: 'player', 

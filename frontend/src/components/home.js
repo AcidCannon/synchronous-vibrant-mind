@@ -11,7 +11,8 @@ import * as emailjs from 'emailjs-com';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import '../css/home.css';
 
-const host = "localhost";
+// const host = "localhost";
+const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
 
 const styles = {
     paper:{

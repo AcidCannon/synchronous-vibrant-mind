@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useState, Component} from 'react';
-import './css/App.css';
+import './css/app.css';
 import { BrowserRouter as Router, Route,Link } from 'react-router-dom'; //引入路由模块
-import Page from './components/Page';
-import Login from './components/Login';
+import Page from './components/page';
+import Login from './components/login';
 // import ReactResizeDetector from 'react-resize-detector'
-import Webrtc from "./components/Webrtc";
+import Webrtc from "./components/webrtc";
 
 export default class App extends Component{
   constructor() {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../css/Webrtc.css";
+import "../css/webrtc.css";
 import Peer from "peerjs";
-import Jitsi from "../Jitsi.js";
-import Header from "./Header";
+import Jitsi from "../jitsi.js";
+import Header from "./header";
 
 async function addMeetingLogoutTime(id, name, logoutTime){
         

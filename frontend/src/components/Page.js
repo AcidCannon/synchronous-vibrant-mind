@@ -9,11 +9,11 @@ import InvitationReceived from './invitation_received';
 import UpcomingEvent from './upcoming_event';
 import History from './history';
 import Notification from './notification';
-import Header from "./Header";
-import '../css/Page.css';
+import Header from "./header";
+import '../css/page.css';
 
 
-import Webrtc from "./Webrtc";
+import Webrtc from "./webrtc";
 
 function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;

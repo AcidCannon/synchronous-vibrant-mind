@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../css/table_search_invitation_received.css';
 
-const host = "localhost";
+// const host = "localhost";
+const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
   
   const columns = [
     { field: 'id', title: 'ID', width: 100 , align: 'center', searchable: true},

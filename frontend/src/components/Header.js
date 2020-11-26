@@ -3,7 +3,7 @@ import logo from '../logo.png';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Button, Grid} from "@material-ui/core";
 import Link from '@material-ui/core/Link';
-import '../css/Header.css';
+import '../css/header.css';
 
 // function refreshPage() {
 //     window.location.reload(false);

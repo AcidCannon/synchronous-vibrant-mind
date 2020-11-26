@@ -7,9 +7,11 @@ import { AccountCircle, LockRounded } from "@material-ui/icons";
 import uofalogo from "../uofa.png";
 import {Redirect} from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
-import '../css/Login.css';
+import '../css/login.css';
 
-const host = "localhost";
+// const host = "localhost";
+const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
+
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
