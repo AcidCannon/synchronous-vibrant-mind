@@ -111,7 +111,7 @@ async function addMeetingLoginTime(id, name, loginTime){
   
 }
 
-function recordJoin(rowData, y_username) {
+async function recordJoin(rowData, y_username) {
   //window.open("https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   window.open("https://"+host+"/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   const join_time = getTimeStamp();

@@ -59,13 +59,14 @@ export default class Webrtc extends Component {
 
     recordLeave() {
 
-        window.addEventListener("beforeunload", (param)=>
+        window.addEventListener  ("beforeunload", (param) =>
         {
-            const leave_time = this.getTimeStamp()
-            var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' )
-            id = parseInt(id)
-            const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '')
-            await addMeetingLogoutTime(id, y_username, leave_time)
+            const leave_time = this.getTimeStamp();
+            var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' );
+            id = parseInt(id);
+            const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '');
+            addMeetingLogoutTime(id, y_username, leave_time);
+            setTimeout(80000);
             
         });
 
@@ -90,7 +91,7 @@ export default class Webrtc extends Component {
         // get parameter from url
         this.srcId = this.getQueryVariable("srcId");
         this.targetId = this.getQueryVariable("targetId");
-        this.recordLeave()
+        this.recordLeave();
         // if no peer exist
         if (!this.peer) {
             // create peer instance
