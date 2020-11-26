@@ -11,7 +11,6 @@ import '../css/login.css';
 
 // const host = "localhost";
 const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
-
 const theme = createMuiTheme({
     typography: {
         fontFamily: [

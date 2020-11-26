@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-// import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
@@ -11,7 +11,6 @@ import '../css/table_search_upcoming_event.css';
 
 // const host = "localhost";
 const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
-
 const columns = [
   { 
     field: 'player', 
@@ -167,7 +166,7 @@ export default function BasicSearch() {
                   var gamedate = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
                   var game_start_time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
                   var title = "Vibraint Minds Together" ;
-                  var description = row.player + " http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/";
+                  var description = row.player + " will play with me at Vibraint Minds Together";
                   var startTime = moment(row.start_time).add(7, 'hour').format();
                   // var startTime = moment(row.start_time).add(1, 'day').utcOffset(5).format();
                   var endTime = moment(row.start_time).add(9, 'hour').format();
@@ -176,10 +175,10 @@ export default function BasicSearch() {
                   var event = CreateCalendarEvent(title, description, startTime, endTime, location);
                   // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
                   // console.log("url", url);
-                  // console.log("gamedate:", gamedate);
-                  // console.log("gamedate.toString():", gamedate.toString());
-                  // console.log("moment(gamedate.toString()):", moment(gamedate.toString()));
-                  // console.log("moment(gamedate.toString()).isAfter(moment()):", moment(gamedate.toString()).isAfter(moment()));
+                  console.log("gamedate:", gamedate);
+                  console.log("gamedate.toString():", gamedate.toString());
+                  console.log("moment(gamedate.toString()):", moment(gamedate.toString()));
+                  console.log("moment(gamedate.toString()).isAfter(moment()):", moment(gamedate.toString()).isAfter(moment()));
                   newRows.push(
                     createData(
                       row.player, 

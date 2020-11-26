@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-// import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
