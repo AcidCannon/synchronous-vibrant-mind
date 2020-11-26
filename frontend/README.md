@@ -68,7 +68,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ## Frontend UI Tests
-The source code for frontend UI tests can be found in /src directory.
+The source code for frontend UI tests can be found in /src/frontend_tests directory.
 
 ### Framework
 We used python's unittest module and Selenium as our testing framework.
