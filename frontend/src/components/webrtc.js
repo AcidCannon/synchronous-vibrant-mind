@@ -6,7 +6,7 @@ import Header from "./header";
 
 async function addMeetingLogoutTime(id, name, logoutTime){
         
-    const response = await fetch("http://localhost/api/addMeetingLogoutTime", {
+    const response = await fetch("http://[2605:fd00:4:1001:f816:3eff:feb2:3536]/api/addMeetingLogoutTime", {
         method: "POST",
             headers: { 
             'Content-Type': 'application/json'
