@@ -31,17 +31,17 @@ peerjs deployed @ https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]:9000
 ```chmod +x start-peerjs.sh```
 
 ### For running Selenium tests ###
-1. Clone this repo
+1. Clone this repo<br/>
 ```git clone https://github.com/UAlberta-CMPUT401/synchronous-vibrant-mind.git```
-2. Change directory to the repo you just cloned
+2. Change directory to the repo you just cloned<br/>
 ```cd synchronous-vibrant-mind```
-3. Make sure you are on the branch "master"
+3. Make sure you are on the branch "master"<br/>
 ```git branch```
-4. Install Selenium
-```pip3 install selenium``` (for Linux, MacOS users)  
-```C:\Python35\Scripts\pip.exe install selenium``` (for Windows users, make sure you have Python 3.6 installed)
+4. Install Selenium<br/>
+```pip3 install selenium``` (for Linux, MacOS users)<br/>  
+```C:\Python35\Scripts\pip.exe install selenium``` (for Windows users, make sure you have Python 3.6 installed)<br/>
 ```C:\Python35\python.exe C:\my_selenium_script.py```
-5. Install geckodriver
+5. Install geckodriver<br/>
 Go to ```https://github.com/mozilla/geckodriver/releases``` (make sure it’s in your PATH, e. g., place it in /usr/bin or /usr/local/bin)
 6. Run your local tests  
 ```python3 [filename]``` (for Linux, MacOS users)  
@@ -57,8 +57,8 @@ This is due to the self-signed SSL certificate is not trusted by your browser, y
 suppose you have address https://[...]/webrtc?srcId=xxx&targetId=xxx&roomName=xxx,
 you should first access https://[...]:9000 and allow your browser to trust.  
 **3. Why my left bottom streaming box is always buffering?(there is a running loop)**  
-This is because NAT traversal failed, and our connection is peer to peer.
-**4. Can I use another webdriver other than geckodriver?**
-Our front-end UI tests are loaded with Firefox webdriver by default. You can choose your own webdriver though, but you have to modify our source code (setUp() in each python test script) to reflect this change.
-**5. Can I use a remote webdriver other than a local one?**
+This is because NAT traversal failed, and our connection is peer to peer.<br/>
+**4. Can I use another webdriver other than geckodriver?**<br/>
+Our front-end UI tests are loaded with Firefox webdriver by default. You can choose your own webdriver though, but you have to modify our source code (setUp() in each python test script) to reflect this change.<br/>
+**5. Can I use a remote webdriver other than a local one?**<br/>
 Of course! More information for using a remote webdriver is [here](https://selenium-python.readthedocs.io/getting-started.html#selenium-remote-webdriver).
