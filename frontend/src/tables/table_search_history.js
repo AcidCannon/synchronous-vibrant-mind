@@ -122,22 +122,32 @@ export default function BasicSearch() {
             //for loop method
             // console.log("this is the response of bdong", result.history);
             for (var row of result.history){
-              if ((row.p_login != null) && (row.my_login != null)){
-              var date = moment.utc(row.start_time).format('YYYY-MM-DD');
-              var time = moment.utc(row.start_time).format('hh:mm a');
-              var p_login_time = moment.utc(row.p_login).format('hh:mm a');
-              var p_logout_time = moment.utc(row.p_logout).format('hh:mm a');
-              var my_login_time = moment.utc(row.my_login).format('hh:mm a');
-              var my_logout_time = moment.utc(row.my_logout).format('hh:mm a');
-              var start_time = moment.utc(row.start_time);
-              if ( moment.utc(row.p_logout).isAfter(row.my_logout)){
-                var time_seconds = moment.utc(row.p_logout).diff(moment.utc(start_time));
+              if ((row.p_login != null) && (row.p_logout != null) && (row.my_login != null) && (row.my_logout != null)){
+              var date = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
+              var time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
+              var p_login_time = moment(row.p_login).add(7, 'hour').format('hh:mm a');
+              var p_logout_time = moment(row.p_logout).add(7, 'hour').format('hh:mm a');
+              var my_login_time = moment(row.my_login).add(7, 'hour').format('hh:mm a');
+              var my_logout_time = moment(row.my_logout).add(7, 'hour').format('hh:mm a');
+              // var start_time = moment(row.start_time).add(7, 'hour');
+              if ( moment(row.p_logout).add(7, 'hour').isAfter(moment(row.my_logout).add(7, 'hour'))){
+                if (moment(row.p_login).add(7, 'hour').isAfter(moment(row.my_login).add(7, 'hour'))){
+                  var time_seconds = moment(row.p_logout).add(7, 'hour').diff(moment(row.my_login).add(7, 'hour'));
+                }else{
+                  var time_seconds = moment(row.p_logout).add(7, 'hour').diff(moment(row.p_login).add(7, 'hour'));
+                }
+                // var time_seconds = moment(row.p_logout).add(7, 'hour').diff(start_time);
                 var duration = moment.duration(time_seconds);
-                var timePiroid = Math.floor(duration.asHours()) + moment.utc(time_seconds).format(":mm:ss");
+                var timePiroid = Math.floor(duration.asHours()) + moment(time_seconds).add(7, 'hour').format(":mm:ss");
               }else{
-                var time_seconds = moment.utc(row.my_logout).diff(moment.utc(start_time));
+                if (moment(row.p_login).add(7, 'hour').isAfter(moment(row.my_login).add(7, 'hour'))){
+                  var time_seconds = moment(row.my_logout).add(7, 'hour').diff(moment(row.my_login).add(7, 'hour'));
+                }else{
+                  var time_seconds = moment(row.my_logout).add(7, 'hour').diff(moment(row.p_login).add(7, 'hour'));
+                }
+                // var time_seconds = moment(row.my_logout).add(7, 'hour').diff(start_time);
                 var duration = moment.duration(time_seconds);
-                var timePiroid = Math.floor(duration.asHours()) + moment.utc(time_seconds).format(":mm:ss");
+                var timePiroid = Math.floor(duration.asHours()) + moment(time_seconds).add(7, 'hour').format(":mm:ss");
               }
               
               newRows.push(createData(row.player, date.toString(), time.toString(), p_login_time.toString(), p_logout_time.toString(), my_login_time.toString(), my_logout_time.toString(),timePiroid.toString()));
