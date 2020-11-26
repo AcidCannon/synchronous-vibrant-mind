@@ -175,10 +175,10 @@ export default function BasicSearch() {
                   var event = CreateCalendarEvent(title, description, startTime, endTime, location);
                   // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
                   // console.log("url", url);
-                  console.log("gamedate:", gamedate);
-                  console.log("gamedate.toString():", gamedate.toString());
-                  console.log("moment(gamedate.toString()):", moment(gamedate.toString()));
-                  console.log("moment(gamedate.toString()).isAfter(moment()):", moment(gamedate.toString()).isAfter(moment()));
+                  // console.log("gamedate:", gamedate);
+                  // console.log("gamedate.toString():", gamedate.toString());
+                  // console.log("moment(gamedate.toString()):", moment(gamedate.toString()));
+                  // console.log("moment(gamedate.toString()).isAfter(moment()):", moment(gamedate.toString()).isAfter(moment()));
                   newRows.push(
                     createData(
                       row.player, 

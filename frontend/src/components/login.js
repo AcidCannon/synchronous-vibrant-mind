@@ -79,8 +79,8 @@ export default class Login extends Component {
                 }
                 this.setState({ email: result.user.participant_info.email});
                 this.addPlayer();
-                console.log("login successful");
-                console.log("login token", result.token);
+                // console.log("login successful");
+                // console.log("login token", result.token);
 
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+1);
@@ -113,8 +113,8 @@ export default class Login extends Component {
             }
             
             this.setState({login: true});
-            console.log("successful addPlayer", data);
-            console.log("state", this.state);
+            // console.log("successful addPlayer", data);
+            // console.log("state", this.state);
         })
         .catch(error => {
             this.setState({ errorMessage: error.toString() });
