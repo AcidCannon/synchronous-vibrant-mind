@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-// import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import moment from 'moment';
 import MaterialTable from 'material-table';
 import {Close, Search, ArrowDownward, Clear, Check, SaveAlt,FilterList, FirstPage, LastPage, ChevronRight, ChevronLeft, Remove} from '@material-ui/icons';
@@ -62,7 +62,7 @@ async function sentNotification(inviter, invitee, clicked_status, id){
   if (clicked_status == "ACCEPTED"){
     var player_content = invitee + " accepted your invitation";
   }else if (clicked_status == "DECLINED"){
-    var player_content = invitee + " is bussy";
+    var player_content = invitee + " is busy";
   }
   const response = await fetch("http://"+host+"/api/sendNotification", {
     method: "POST",
