@@ -59,7 +59,7 @@ export default class Webrtc extends Component {
 
     recordLeave() {
 
-        window.addEventListener  ("beforeunload", (param) =>
+        window.addEventListener  ("beforeunload", async (param) =>
         {
             const leave_time = this.getTimeStamp();
             var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' );
