@@ -38,7 +38,7 @@ peerjs deployed @ https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]:9000
 3. Make sure you are on the branch "master"<br/>
 ```git branch```
 4. Install Selenium<br/>
-```pip3 install selenium``` (for Linux, MacOS users)
+```pip3 install selenium``` (for Linux, MacOS users)<br/>
 ```C:\Python35\Scripts\pip.exe install selenium``` (for Windows users, make sure you have Python 3.6 installed)<br/>
 ```C:\Python35\python.exe C:\my_selenium_script.py```
 5. Install geckodriver<br/>
