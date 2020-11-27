@@ -171,7 +171,7 @@ export default function BasicSearch() {
                   // var startTime = moment(row.start_time).add(1, 'day').utcOffset(5).format();
                   var endTime = moment(row.start_time).add(9, 'hour').format();
                   // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
-                  var location = "Will be an link to our website later" ;
+                  var location = "Please sign up here: http://[2605:fd00:4:1001:f816:3eff:feb2:3536]" ;
                   var event = CreateCalendarEvent(title, description, startTime, endTime, location);
                   // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
                   // console.log("url", url);
