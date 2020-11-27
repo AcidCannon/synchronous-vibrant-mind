@@ -111,11 +111,11 @@ async function addMeetingLoginTime(id, name, loginTime){
   
 }
 
-function recordJoin(rowData, y_username) {
+async function recordJoin(rowData, y_username) {
   //window.open("https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   window.open("https://"+host+"/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   const join_time = getTimeStamp();
-  addMeetingLoginTime(rowData.id, y_username, join_time)
+  await addMeetingLoginTime(rowData.id, y_username, join_time);
   
 }
 
@@ -136,7 +136,7 @@ export default function BasicSearch() {
         const response = await fetch("http://"+host+"/api/getUpcomingEvent?p="+y_email, {
           method: "GET",
           headers: { 
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json'	    
           },
           // body: JSON.stringify({ player_email: y_email  })
         });

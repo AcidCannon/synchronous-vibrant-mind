@@ -8,7 +8,7 @@ const host = "[2605:fd00:4:1001:f816:3eff:feb2:3536]";
 
 async function addMeetingLogoutTime(id, name, logoutTime){
 
-    const response = await fetch("http://"+host+"/api/addMeetingLogoutTime", {
+    const response =await fetch("https://"+host+"/api/addMeetingLogoutTime", {
 
         method: "POST",
             headers: { 
@@ -46,6 +46,7 @@ export default class Webrtc extends Component {
         this.conn = null;
         this.localStream = null;
         this.interval = null;
+	this.intervalLogout = null;
     }
 
     getTimeStamp() {
@@ -59,15 +60,12 @@ export default class Webrtc extends Component {
 
     recordLeave() {
 
-        window.addEventListener  ("beforeunload", async (param) =>
+        window.addEventListener  ("onbeforeunload", async (param) =>
         {
-            const leave_time = this.getTimeStamp();
-            var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' );
-            id = parseInt(id);
-            const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '');
-            await addMeetingLogoutTime(id, y_username, leave_time);
-         
-            
+            if (!this.intervalLogout) {
+            	clearInterval(this.intervalLogout);
+            	this.intervalLogout=null;
+            }
         });
 
     }
@@ -115,6 +113,13 @@ export default class Webrtc extends Component {
                 }.bind(this));
             }.bind(this));
         }
+	this.intervalLogout = setInterval(function() {
+    		const leave_time = this.getTimeStamp()
+    		var id = this.getQueryVariable("roomName").replace( /[^\d.]/g, '' )
+    		id = parseInt(id)
+    		const y_username = this.getQueryVariable("srcId").replace(/\d+/g, '')
+    		addMeetingLogoutTime(id, y_username, leave_time);
+	}.bind(this), 1000);
     }
 
     startCapture() {
