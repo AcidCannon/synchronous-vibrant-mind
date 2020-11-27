@@ -7,22 +7,28 @@ site deployed @ http://[2605:fd00:4:1001:f816:3eff:feb2:3536]
 peerjs deployed @ https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]:9000
 
 ## Setup Instructions:  
-### For site ### 
+### For site deployment 
 1. Clone this repo
 ```git clone https://github.com/UAlberta-CMPUT401/synchronous-vibrant-mind.git```
 2. Change directory to the repo you just cloned
 ```cd synchronous-vibrant-mind```
-3. Make sure you are on the branch "stable"
-```git checkout stable```
+3. Make sure you are on the branch "master"
+```git branch```
 4. Use docker-compose to build docker containers
-```docker-compose up --build -d```  
+```docker-compose up --build -d```
+5. For development purpose, you have to go further by entering /frontend directory<br/>
+```cd frontend```
+6. Use npm commands to install all the dependencies and start the front-end app<br/>
+```npm install```<br/>
+```npm start```
+
 ### For peerjs server ###
 1. Clone this repo
 ```git clone https://github.com/UAlberta-CMPUT401/synchronous-vibrant-mind.git```
 2. Change directory to the repo you just cloned
 ```cd synchronous-vibrant-mind```
-3. Make sure you are on the branch "stable"
-```git checkout stable```
+3. Make sure you are on the branch "master"
+```git branch```
 4. install peerjs server(you probably need sudo)  
 ```npm install peer -g```(if not work, try the following)  
 ```sudo npm install peer -g```  
@@ -49,7 +55,7 @@ Go to https://github.com/mozilla/geckodriver/releases. (make sure it’s in your
 
 For more information, please refer to: https://selenium-python.readthedocs.io/installation.html.
 
-### FAQ ###
+### FAQ (troubleshooting steps) ###
 **1. Why I cannot login?**  
 Please check if you have an IPv6 address first.  
 **2. Why I click "I am ready" button, but no responding?**  
@@ -62,3 +68,9 @@ This is because NAT traversal failed, and our connection is peer to peer.<br/>
 Our front-end UI tests are loaded with Firefox webdriver by default. You can choose your own webdriver though, but you have to modify our source code (setUp() in each python test script) to reflect this change.<br/>
 **5. Can I use a remote webdriver other than a local one?**<br/>
 Of course! More information for using a remote webdriver is [here](https://selenium-python.readthedocs.io/getting-started.html#selenium-remote-webdriver).
+
+## End-user Manual
+[Check this out!](https://github.com/UAlberta-CMPUT401/synchronous-vibrant-mind/wiki/Storyboarding)
+
+## APIs Documentation
+[Check this out!](https://docs.google.com/document/d/14JNNcsNwSdO8bsn4xl_vpxaT6NtAxeh4AfrnCnGDkfE)
