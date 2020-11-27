@@ -33,7 +33,6 @@ const columns = [
 const rows = [];
 
 function createData(data_id, data_invitee, data_gamedate, data_game_start_time, data_invitation_state) {
-    // const density = game_start_time / size;
     return { id: data_id, invitee: data_invitee, gamedate: data_gamedate, game_start_time: data_game_start_time, invitation_state: data_invitation_state };
   }
 
@@ -56,7 +55,6 @@ export default function BasicSearch() {
             headers: { 
               'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({ inviter_email: y_email  })
           });
           // check for error response
           if (!response.ok) {
@@ -68,12 +66,8 @@ export default function BasicSearch() {
             const newRows = [];
             if( (response.status == 200) && (result.invitations) ){
               //for loop method
-              // console.log("this is the response of bdong", result.invitations);
               for (var row of result.invitations){
                   var moment = require('moment-timezone');
-                  // moment.tz.setDefault("America/Boise");
-                  // var date = moment.utc(row.start_time).format('YYYY-MM-DD');
-                  // var time = moment.utc(row.start_time).format('hh:mm a');
                   var date = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
                   var time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
                   newRows.push(createData(row.id, row.invitee, date.toString(), time.toString(), row.state));

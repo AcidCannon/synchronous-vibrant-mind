@@ -108,7 +108,6 @@ export default function BasicSearch() {
           headers: { 
             'Content-Type': 'application/json'
           },
-          // body: JSON.stringify({ player_email: y_email  })
         });
         // check for error response
         if (!response.ok) {
@@ -120,7 +119,6 @@ export default function BasicSearch() {
           const newRows = [];
           if( (response.status == 200) && (result.history) ){
             //for loop method
-            // console.log("this is the response of bdong", result.history);
             for (var row of result.history){
               if ((row.p_login != null) && (row.p_logout != null) && (row.my_login != null) && (row.my_logout != null)){
               var date = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
@@ -129,14 +127,12 @@ export default function BasicSearch() {
               var p_logout_time = moment(row.p_logout).add(7, 'hour').format('hh:mm a');
               var my_login_time = moment(row.my_login).add(7, 'hour').format('hh:mm a');
               var my_logout_time = moment(row.my_logout).add(7, 'hour').format('hh:mm a');
-              // var start_time = moment(row.start_time).add(7, 'hour');
               if ( moment(row.p_logout).add(7, 'hour').isAfter(moment(row.my_logout).add(7, 'hour'))){
                 if (moment(row.p_login).add(7, 'hour').isAfter(moment(row.my_login).add(7, 'hour'))){
                   var time_seconds = moment(row.p_logout).add(7, 'hour').diff(moment(row.my_login).add(7, 'hour'));
                 }else{
                   var time_seconds = moment(row.p_logout).add(7, 'hour').diff(moment(row.p_login).add(7, 'hour'));
                 }
-                // var time_seconds = moment(row.p_logout).add(7, 'hour').diff(start_time);
                 var duration = moment.duration(time_seconds);
                 var timePiroid = Math.floor(duration.asHours()) + moment(time_seconds).add(7, 'hour').format(":mm:ss");
               }else{
@@ -145,7 +141,6 @@ export default function BasicSearch() {
                 }else{
                   var time_seconds = moment(row.my_logout).add(7, 'hour').diff(moment(row.p_login).add(7, 'hour'));
                 }
-                // var time_seconds = moment(row.my_logout).add(7, 'hour').diff(start_time);
                 var duration = moment.duration(time_seconds);
                 var timePiroid = Math.floor(duration.asHours()) + moment(time_seconds).add(7, 'hour').format(":mm:ss");
               }

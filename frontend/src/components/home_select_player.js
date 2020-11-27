@@ -137,7 +137,6 @@ export default function IntegrationAutosuggest(props) {
             headers: { 
               'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({ inviter_email: y_email  })
           });
 
 
@@ -154,7 +153,6 @@ export default function IntegrationAutosuggest(props) {
               //for loop method
             //   console.log("this is the response of bdong", result);
               for (var row of result){
-                // var username = row.username;
                 var player_email = row.email
                 newSuggestions.push(createData(player_email));
               }

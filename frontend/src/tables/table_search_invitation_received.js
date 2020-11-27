@@ -45,7 +45,6 @@ async function addMeeting(id){
       body: JSON.stringify({ invitation_id: id})
     }).then(async response => {
       const data = await response.json();
-      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -72,7 +71,6 @@ async function sentNotification(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ username: inviter, invitation_id: id, content: player_content})
     }).then(async response => {
       const data = await response.json();
-      // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: player_content}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -94,7 +92,6 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
       body: JSON.stringify({ invitation_id: id, status: clicked_status})
     }).then(async response => {
       const data = await response.json();
-      // console.log('this is the changeInvitationState json', JSON.stringify({ invitation_id: id, status: clicked_status}));
       // check for error response
       if (!response.ok) {
           // get error message from body or default to response status
@@ -102,15 +99,11 @@ async function changeInvitationStatus(inviter, invitee, clicked_status, id){
           return Promise.reject(error);
       }
 
-      // await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       await sentNotification(inviter, invitee, clicked_status, id);
       if (clicked_status == "ACCEPTED"){
         await addMeeting(id);
       }
       
-      // console.log('successful', response.status);
-      // refreshPage() 
-      // setTimeout(refreshPage(), 100000);
       setTimeout(refreshPage(), 80000);
       
 

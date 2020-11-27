@@ -65,7 +65,6 @@ class Page extends Component {
                         </Grid>
                     </div>
                     <div className='right'>
-                        {/* 父目录的动态写法：this.props.match.url 在此处=/user/ */}
                         <Route path='/vibrant-minds-together/home' component={Home} />
                         <Route path='/vibrant-minds-together/invitation_sent' component={InvitationSent} />
                         <Route path='/vibrant-minds-together/invitation_received' component={InvitationReceived} />
