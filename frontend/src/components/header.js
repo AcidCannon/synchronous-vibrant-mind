@@ -5,12 +5,6 @@ import {Button, Grid} from "@material-ui/core";
 import Link from '@material-ui/core/Link';
 import '../css/header.css';
 
-// function refreshPage() {
-//     window.location.reload(false);
-// }
-// setTimeout(refreshPage(), 80000);
-
-
 
 export default class Header extends Component{
     constructor() {

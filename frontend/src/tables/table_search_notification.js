@@ -52,7 +52,6 @@ export default function BasicSearch() {
           headers: { 
             'Content-Type': 'application/json'
           },
-          // body: JSON.stringify({ player_email: y_email  })
         });
         // check for error response
         if (!response.ok) {
@@ -67,11 +66,8 @@ export default function BasicSearch() {
             // console.log("this is the response of bdong", result.notifications);
             for (var row of result.notifications){
                 var moment = require('moment-timezone');
-                // moment.tz.setDefault("America/Boise");
-                // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
-                // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
-              var sent_time = moment(row.time).format('YYYY-MM-DD, hh:mm a').toString();
-              newRows.push(createData(row.content, sent_time));
+                var sent_time = moment(row.time).format('YYYY-MM-DD, hh:mm a').toString();
+                newRows.push(createData(row.content, sent_time));
             }
           }
           updateRows(newRows);

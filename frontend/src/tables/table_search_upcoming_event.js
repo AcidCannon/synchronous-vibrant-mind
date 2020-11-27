@@ -52,7 +52,6 @@ const columns = [
 const dudUrl = 'javascript:;';
 
 function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, id) {
-  // const density = game_start_time / size;
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
@@ -112,7 +111,6 @@ async function addMeetingLoginTime(id, name, loginTime){
 }
 
 async function recordJoin(rowData, y_username) {
-  //window.open("https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   window.open("https://"+host+"/webrtc?srcId="+ y_username + rowData.id + "&targetId=" + rowData.player + rowData.id + "&roomName=VibrantMindsTogether" + rowData.id, "_blank")
   const join_time = getTimeStamp();
   await addMeetingLoginTime(rowData.id, y_username, join_time);
@@ -138,7 +136,6 @@ export default function BasicSearch() {
           headers: { 
             'Content-Type': 'application/json'	    
           },
-          // body: JSON.stringify({ player_email: y_email  })
         });
         // check for error response
         if (!response.ok) {
@@ -150,19 +147,10 @@ export default function BasicSearch() {
           const newRows = [];
           if( (response.status == 200) && (result.upcoming) ){
             //for loop method
-            // console.log("this is the response of bdong", result.upcoming);
             for (var row of result.upcoming){
                 var moment = require('moment-timezone');
-                // moment.tz.setDefault("America/Boise");
                 var now = moment();
-                // console.log("moment(row.start_time).add(1,'hour').isAfter(now)", moment(row.start_time).add(8,'hour').isAfter(now));
-                // console.log("now", now.format("YYYY-MM-DD hh:mm a").toString());
-                // console.log("moment(row.start_time).add(1,'hour')", moment(row.start_time).add(8,'hour').format("YYYY-MM-DD hh:mm a").toString());
               if (moment(row.start_time).add(9,'hour').isAfter(now)){
-                  // var date = moment(row.start_time).utcOffset(12).format('YYYY-MM-DD');
-                  // var time = moment(row.start_time).utcOffset(12).format('hh:mm a');
-                  // var gamedate = moment(row.start_time).format('YYYY-MM-DD');
-                  //   var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
                   var gamedate = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
                   var game_start_time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
                   var title = "Vibrant Minds Together" ;
@@ -173,20 +161,13 @@ export default function BasicSearch() {
                   // var endTime = moment(row.start_time).format('YYYY-MM-DD, hh:mm a');
                   var location = "Please sign in here: http://[2605:fd00:4:1001:f816:3eff:feb2:3536]" ;
                   var event = CreateCalendarEvent(title, description, startTime, endTime, location);
-                  // var url = "https://[2605:fd00:4:1001:f816:3eff:fef1:58d0]/webrtc?srcId="+ y_username + row.id + "&targetId=" + row.player + row.id + "&roomName=VibrantMindsTogether" + row.id; 
-                  // console.log("url", url);
-                  // console.log("gamedate:", gamedate);
-                  // console.log("gamedate.toString():", gamedate.toString());
-                  // console.log("moment(gamedate.toString()):", moment(gamedate.toString()));
-                  // console.log("moment(gamedate.toString()).isAfter(moment()):", moment(gamedate.toString()).isAfter(moment()));
                   newRows.push(
                     createData(
                       row.player, 
                       gamedate, 
                       game_start_time, 
                       <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                      row.id
-                      // <Button variant="contained" color="primary" onClick={()=> window.open(url, "_blank")}>Join</Button>
+                      row.ids
                       ));
               }
               

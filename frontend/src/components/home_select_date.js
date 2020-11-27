@@ -16,10 +16,6 @@ const theme = createMuiTheme({
 
 class InlineTimePickerDemo extends Component {
     
-    // state = {
-    //     selectedDate:new Date()
-    // }
-    
     render(){
         return (
             <ThemeProvider theme={theme}>
@@ -44,20 +40,6 @@ class InlineTimePickerDemo extends Component {
                 />
     
                     
-                {/* <KeyboardDatePicker 
-                    disableToolbar
-                    autoOk
-                    variant="inline"
-                    format="yyyy-MM-dd"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                /> */}
                  <div style={{width: 100}} />
     
                 <KeyboardTimePicker
@@ -68,9 +50,6 @@ class InlineTimePickerDemo extends Component {
                     onChange={time => this.props.dateCallback(time)}
                     format="hh:mm a"
                     invalidDateMessage="Invalid Date Format"
-                    // KeyboardButtonProps={{
-                    //     'aria-label': 'change time',
-                    //   }}
                 />
     
                 </Grid>

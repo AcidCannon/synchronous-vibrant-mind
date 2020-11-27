@@ -37,7 +37,6 @@ const button = createMuiTheme({
   
 
 class Home extends Component {
-    // const classes = useStyles();
     constructor() {
         super();
         this.state = {
@@ -85,7 +84,6 @@ class Home extends Component {
             body: JSON.stringify({ username: inviter, invitation_id: id, content: inviter_content})
           }).then(async response => {
             const data = await response.json();
-            // console.log('sendNotification body',JSON.stringify({ username: inviter, invitation_id: id, content: inviter_content}));
             // check for error response
             if (!response.ok) {
                 // get error message from body or default to response status
@@ -93,7 +91,6 @@ class Home extends Component {
                 return Promise.reject(error);
             }
     
-            // console.log("successful Notification", data);
     
     
         }).catch(error => {
@@ -110,15 +107,12 @@ class Home extends Component {
                 body: JSON.stringify({ username: invitee, invitation_id: id, content: invitee_content})
             }).then(async response => {
                 const data = await response.json();
-                // console.log('sendNotification body',JSON.stringify({ username: invitee, invitation_id: id, content: invitee_content}));
                 // check for error response
                 if (!response.ok) {
                     // get error message from body or default to response status
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-    
-                // console.log("successful Notification", data);
     
     
             }).catch(error => {
@@ -146,8 +140,6 @@ class Home extends Component {
                       return Promise.reject(error);
                   }
       
-                //   console.log("game_start_time", game_start_time);
-                //   console.log("isConflict", data);
                   return data.conflict
                   
               })
@@ -175,8 +167,7 @@ class Home extends Component {
                   }
       
                   await this.sentNotification(my_name, player_name, invitation_status, data.invitation_id);
-                //   console.log("successful addInvitation", data);
-                  
+               
                   
               })
               .catch(error => {
@@ -220,27 +211,15 @@ class Home extends Component {
       
       async sendInvitation(my_name, my_email, player_email, game_start_time){
 
-        // console.log("this.state.selectedDate", this.state.selectedDate);
-        // console.log("game_start_time", game_start_time);
+
         var new_game_start_time = moment(game_start_time).format('YYYY-MM-DD hh:mm:ss')
-        // console.log("new_game_start_time", new_game_start_time);
     
         const result = await this.checkPlayerExist(player_email);
-        //   console.log("result", result);
-        //   console.log("result.exist", result["exist"]);
-        //   console.log("result.name", result["name"]);
           var gameDate = moment(game_start_time).format('YYYY-MM-DD').toString();
           var gameTime = moment(game_start_time).format('HH:mm:ss').toString();
           const game_date_time = gameDate + " " + gameTime;
-        //   console.log("gameDate", gameDate);
-        //   console.log("gameTime", gameTime);
-        //   console.log("game_date_time", game_date_time);
           const my_timeConflict = await this.checkTimeConflict(my_name, my_email, game_date_time);
-        //   console.log("my_timeConflict", my_timeConflict);
-        //   console.log("!my_timeConflict", !my_timeConflict);
           const player_timeConflict = await this.checkTimeConflict(result.name, player_email, game_date_time);
-        //   console.log("player_timeConflict", player_timeConflict);
-        //   console.log("!player_timeConflict", !player_timeConflict);
           if(result["exist"]){
               this.setState({player_exist: true});
               if( !my_timeConflict && !player_timeConflict ){
@@ -290,7 +269,6 @@ class Home extends Component {
                 alignItems="stretch" 
                 direction="column" 
                 >
-                {/*<Paper className={classes.paper}>*/}
                     <Paper 
                     style={styles.paper}
                     >
@@ -338,14 +316,6 @@ class Home extends Component {
                             </ThemeProvider>
                         </Grid>
 
-                    
-
-                    {/* { (!this.state.player_exist) && 
-                        <Alert severity="error">
-                        <AlertTitle>No such a player</AlertTitle>
-                        We do not have such a player — <strong>Please choose another player!</strong>
-                        </Alert>
-                    } */}
 
                     
                     
