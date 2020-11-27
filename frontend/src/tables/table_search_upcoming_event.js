@@ -165,7 +165,7 @@ export default function BasicSearch() {
                   //   var game_start_time = moment(row.start_time).utcOffset(0).format('hh:mm a');
                   var gamedate = moment(row.start_time).add(7, 'hour').format('YYYY-MM-DD');
                   var game_start_time = moment(row.start_time).add(7, 'hour').format('hh:mm a');
-                  var title = "Vibraint Minds Together" ;
+                  var title = "Vibrant Minds Together" ;
                   var description = row.player + " will play with me at Vibraint Minds Together";
                   var startTime = moment(row.start_time).add(7, 'hour').format();
                   // var startTime = moment(row.start_time).add(1, 'day').utcOffset(5).format();
