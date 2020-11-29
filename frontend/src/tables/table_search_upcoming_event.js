@@ -51,13 +51,13 @@ const columns = [
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_id) {
+function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, id) {
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
     game_start_time: data_game_start_time, 
     download_calendar: data_download_calendar,
-    id:data_id
+    id:id
   };
 }
   
