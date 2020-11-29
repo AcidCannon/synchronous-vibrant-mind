@@ -51,14 +51,13 @@ const columns = [
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, id) {
+function createData(data_player, data_gamedate, data_game_start_time, data_download_calendar, data_id) {
   return { 
     player: data_player, 
     gamedate: data_gamedate, 
     game_start_time: data_game_start_time, 
-
     download_calendar: data_download_calendar,
-    id:id
+    id:data_id
   };
 }
   
@@ -167,7 +166,7 @@ export default function BasicSearch() {
                       gamedate, 
                       game_start_time, 
                       <ICalendarLink event={event}>Calendar.ics</ICalendarLink>, 
-                      row.ids
+                      row.id
                       ));
               }
               
